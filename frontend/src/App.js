@@ -1,26 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+//import { useState, useEffect } from "react";
+//import { getUsers } from "./mock-api/usersApi";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  // Get users example
+  // const [users, setUsers] = useState([]);
+  // useEffect(() => {
+  //   getUsers().then((_users) => setUsers(_users));
+  // }, []);
+  // console.log(users);
+
+  return <h1>HandyMan App</h1>;
 }
 
 export default App;
