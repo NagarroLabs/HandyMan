@@ -1,0 +1,50 @@
+.RegisterPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #161032;
+  padding: 10px 10px;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+.registerTitle {
+  color: white;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 50px;
+}
+
+.lettering {
+  color: white;
+  font-family: "Lucida Console", Courier, monospace;
+}
+
+.submitButton {
+  width: 200px;
+  background-color: #e9810a;
+  text-decoration-color: white;
+  font-size: 20px;
+  border-radius: 10px;
+  display: block;
+  margin: auto;
+}
+
+.inputField {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50;
+}
+
+.registerForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #161032;
+  width: auto;
+  height: auto;
+}
