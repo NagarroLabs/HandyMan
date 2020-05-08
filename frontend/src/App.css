@@ -1,38 +1,83 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+.app{
+  background-color: #161032;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form-control {
+  width: 30% !important;
+  border-radius: 10px !important;
+  padding:11px 19px !important;
+  background-color: rgba(255,255,255,0.3) !important;
+  font-family:'Rubik', sans-serif;
+  font-weight:400;
+  font-size: 14px;
+  color:#FFFFFF !important;
+  margin: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.form-label{
+  font-family:'Rubik', sans-serif;
+  font-weight:00;
+  font-size: 16px;
+  color:#FFFFFF;
+  padding:2px 19px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.form-check{
+  font-family:'Rubik', sans-serif;
+  font-weight:400;
+  font-size: 16px;
+  color:#FFFFFF;
+  margin: 17px;
 }
 
-.App-link {
-  color: #61dafb;
+.btn {
+  display:inline-block;
+  padding:11px 19px !important;
+  margin:0 5px 5px 0 !important;
+  border-radius:20px !important;
+  border-color: white !important; 
+  box-sizing: border-box !important;
+  font-family:'Rubik', sans-serif;
+  font-weight:400 !important;
+  font-size: 14px !important;
+  color:#FFFFFF !important;
+  box-shadow:inset 0 -9.6px 0 -5.6px rgba(0,0,0,0.17) !important;
+  text-align:center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.href{
+  color: #FFE1A8;
+  font-family:'Rubik', sans-serif;
+  font-weight:400;
+  font-size: 16px;
+}
+
+.href:hover{
+  color: #E9810A;
+}
+
+.href:visited{
+  color: #6D213C;
+}
+
+.progress{
+  width: 31%;
+  border-radius:20px !important;
+  font-family:'Rubik', sans-serif;
+  font-weight:200 !important;
+  font-size: 14px !important;
+  color:#FFFFFF !important;
+}
+
+.card-body{
+  font-family:'Rubik', sans-serif;
+  font-weight:200;
+  font-size: 14px;
+  text-align:center;
+}
+
+.formRange{
+  width:31%;
 }
