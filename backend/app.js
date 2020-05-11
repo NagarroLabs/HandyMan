@@ -12,7 +12,20 @@ const reviewsRouter = require('./routes/reviews-routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// app.use(bodyParser.urlencoded({ extended: true }));
+/* In order to allow certain headers and HTTP verbs
+ (can be deleted if React App & our API is on the same server) */
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+  next();
+});
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/api/users/', usersRouter);
@@ -24,6 +37,8 @@ app.use((req, res, next) => {
   throw new HttpError('Sorry, could not find this route.', 404);
 });
 
+// Error handling middleware
+
 app.use((error, req, res, next) => {
   if (res.headerSent) {
     return next(error);
@@ -32,6 +47,9 @@ app.use((error, req, res, next) => {
   res.status(error.code || 500);
   res.json({ message: error.message || 'An unknown error occurred.' });
 });
+
+/* Setting up connection to the Mongo Cluster and only then
+   start listening for incoming request */
 
 mongoose
   .connect(

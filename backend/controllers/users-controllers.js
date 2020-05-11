@@ -1,3 +1,7 @@
+const { validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 const HttpError = require('../models/http-error');
 const User = require('../models/users');
 
@@ -6,30 +10,31 @@ const getUsers = async (req, res, next) => {
   try {
     users = await User.find({}, '-password');
   } catch (err) {
-    return next(new HttpError('Fetching users failed, please try again later.'), 500);
+    return next(
+      new HttpError('Fetching users failed, please try again later.'),
+      500
+    );
   }
 
   res.json({ users: users.map((user) => user.toObject({ getters: true })) });
 };
 
 const signup = async (req, res, next) => {
+  const errors = validationResult(req);
+  console.log(errors);
+  if (!errors.isEmpty()) {
+    return next(new HttpError('Invalid inputs, please check your data.', 422));
+  }
   const {
-    firstName, lastName, email, password, phone, userName, gender, birthDate
+    firstName,
+    lastName,
+    email,
+    password,
+    phone,
+    userName,
+    gender,
+    birthDate
   } = req.body;
-
-  let existingUser;
-  try {
-    existingUser = await User.findOne({ email });
-  } catch (err) {
-    return next(new HttpError('Signing up failed, please try again', 500));
-  }
-
-  if (existingUser) {
-    return next(new HttpError(
-      'User exists already, please login instead',
-      422
-    ));
-  }
 
   // To be updated with proper password storage
   const createdUser = new User({
