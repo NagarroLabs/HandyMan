@@ -29,3 +29,14 @@ Example of an accepted format for <b>LOGIN</b> after successful signup:
 }
 
 Try them out in POSTMAN.
+
+## ENV Variables
+
+Create a .env file in the backend folder and add: 
+
+<details>
+	<summary>Spoiler warning</summary>
+	
+	DB_PASS=ligaaclabs
+	TOKEN_ENCRYPTION=SantaClausIsComingToTown
+</details>
