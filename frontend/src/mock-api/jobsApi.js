@@ -16,3 +16,21 @@ export function getJobById(id) {
     })
     .catch(handleError);
 }
+
+export function addJob(job) {
+  return fetch(baseUrl + (job.id || ""), {
+    method: job.id ? "PUT" : "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      ...job,
+    }),
+  })
+    .then(handleResponse)
+    .catch(handleError);
+}
+
+export function deleteJob(id) {
+  return fetch(baseUrl + id, { method: "DELETE" })
+    .then(handleResponse)
+    .catch(handleError);
+}

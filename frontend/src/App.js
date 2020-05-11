@@ -1,16 +1,44 @@
 import React from "react";
-//import { useState, useEffect } from "react";
-//import { getUsers } from "./mock-api/usersApi";
+import * as usersApi from "./mock-api/usersApi";
 
 function App() {
-  // Get users example
-  // const [users, setUsers] = useState([]);
-  // useEffect(() => {
-  //   getUsers().then((_users) => setUsers(_users));
-  // }, []);
-  // console.log(users);
+  // const user = {
+  //   id: "",
+  //   HandyMan: 0,
+  //   firstName: "Jack",
+  //   lastName: "Chan",
+  //   email: "jackiechan@gmail.com",
+  //   phone: "323243243",
+  //   gender: "Male",
+  //   birthDate: "1964-03-07T07:48:19Z",
+  //   userName: "JackC",
+  //   password: "jackie",
+  //   employedHandyMen: [],
+  // };
 
-  return <h1>HandyMan App</h1>;
+  // return (
+  //   <div>
+  //     <h1>HandyMan App</h1>
+  //     <button
+  //       onClick={() => {
+  //         usersApi.deleteUser(6);
+  //         usersApi.getUsers().then((users) => console.log(users));
+  //       }}
+  //     >
+  //       Delete user
+  //     </button>
+  //     <button
+  //       onClick={() => {
+  //         usersApi.addUser(user);
+  //         usersApi.getUsers().then((users) => console.log(users));
+  //       }}
+  //     >
+  //       Add user
+  //     </button>
+  //   </div>
+  // );
+  return;
+  <h1>HandyMan App</h1>;
 }
 
 export default App;

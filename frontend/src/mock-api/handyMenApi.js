@@ -16,3 +16,21 @@ export function getHandyManById(id) {
     })
     .catch(handleError);
 }
+
+export function addHandyMan(handyMan) {
+  return fetch(baseUrl + (handyMan.id || ""), {
+    method: handyMan.id ? "PUT" : "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      ...handyMan,
+    }),
+  })
+    .then(handleResponse)
+    .catch(handleError);
+}
+
+export function deleteHandyMan(id) {
+  return fetch(baseUrl + id, { method: "DELETE" })
+    .then(handleResponse)
+    .catch(handleError);
+}

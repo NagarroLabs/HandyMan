@@ -16,3 +16,21 @@ export function getReviewById(id) {
     })
     .catch(handleError);
 }
+
+export function addReview(review) {
+  return fetch(baseUrl + (review.id || ""), {
+    method: review.id ? "PUT" : "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      ...review,
+    }),
+  })
+    .then(handleResponse)
+    .catch(handleError);
+}
+
+export function deleteReview(id) {
+  return fetch(baseUrl + id, { method: "DELETE" })
+    .then(handleResponse)
+    .catch(handleError);
+}
