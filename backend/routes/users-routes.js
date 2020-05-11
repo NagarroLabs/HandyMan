@@ -8,6 +8,7 @@ const {
   requirePhone,
   requireUsername
 } = require('../util/validators');
+const { handleErrors } = require('../middlewares/handle-errors.js');
 const { getUsers, signup, login } = require('../controllers/users-controllers');
 
 const router = express.Router();
@@ -24,6 +25,7 @@ router.post(
     requirePhone,
     requireUsername
   ],
+  handleErrors,
   signup
 );
 
