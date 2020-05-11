@@ -1,5 +1,9 @@
-## Created routes (more to come when components for them will be available) 
+## Created routes
 
-## Added Context app-wide and two custom hooks to deal with http requests to the backend and with app context.
+-> (more to come when components for them will be available) 
 
-Check the examples text file in the hooks folder!!!!
+## Added Context & custom hooks 
+
+-> http-hook to avoid code duplication when making backend requests <b>(CHECK EXAMPLES)</b>
+
+-> context hook to manage user state (logged in or not) app-wide. 
