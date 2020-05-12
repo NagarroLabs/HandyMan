@@ -1,120 +1,231 @@
-import React from "react";
+import React, { useState } from "react";
 import TextInput from "./common/TextInput";
 import PropTypes from "prop-types";
-import "./index.css";
+import logo from "../Logo.svg";
+import "./RegisterForm.css";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
 
 function RegisterForm(props) {
+  function validate(email, password) {
+    // true means invalid, so our conditions got reversed
+    return {
+      email: email.length === 0,
+      password: password.length === 0,
+    };
+  }
+
+  function formIsValid() {
+    return {
+      error_firstName:
+        props.user.firstName.length === 0 ? "First name is required!" : "",
+      error_lastName:
+        props.user.lastName.length === 0 ? "Last name is required!" : "",
+      error_email: props.user.email.length === 0 ? "Email is required!" : "",
+      error_username:
+        props.user.username.length === 0 ? "Username is required!" : "",
+      error_gender: props.user.gender.length === 0 ? "Gender is required!" : "",
+      error_phoneNumber:
+        props.user.phoneNumber.length === 0 ? "Phone number is required!" : "",
+      error_birthday:
+        props.user.birthday.length === 0 ? "Birthday is required!" : "",
+    };
+  }
+
+  let errors = formIsValid();
+  console.log(errors.error_firstName);
+
+  // function handleSubmit(event) {
+
+  //   if (errors.error_firstName === "") return;
+  // }
+
+  const isEnabled =
+    props.user.firstName.length > 0 &&
+    props.user.lastName.length > 0 &&
+    props.user.email.length > 0 &&
+    props.user.phoneNumber.length > 0 &&
+    props.user.gender.length > 0 &&
+    props.user.birthday.length > 0 &&
+    props.user.username.length > 0;
+
+  console.log(props.user.password);
+
   return (
     <>
-      <form className="registerForm" onSubmit={props.onSubmit}>
-        <h1 className="registerTitle">Register</h1>
+      <img src={logo} width="500px" alt="HandyMan" />
+      <br />
+      <h1 className="registerTitle">R e g i s t e r</h1>
+      <br />
+      <Form className="registerForm" onSubmit="handleSubmit">
+        <Form.Row>
+          <Col className="inputBox">
+            <Form.Group>
+              <Form.Label>First name</Form.Label>
+              <Form.Control
+                placeholder="First name"
+                id="firstName"
+                name="firstName"
+                onChange={props.onChange}
+                value={props.user.firstName}
+              />
+            </Form.Group>
+            {/* {errors.error_firstName && (
+              <div className="alert alert-danger">{errors.error_firstName}</div>
+            )} */}
+          </Col>
+          <Col className="inputBox">
+            <Form.Group>
+              <Form.Label>Last name</Form.Label>
+              <Form.Control
+                placeholder="Last name"
+                id="lastName"
+                name="lastName"
+                onChange={props.onChange}
+                value={props.user.lastName}
+              />
+            </Form.Group>
+          </Col>
+        </Form.Row>
 
-        <TextInput
-          id="firstName"
-          name="firstName"
-          label="First Name"
-          onChange={props.onChange}
-          value={props.user.firstName}
-          error={props.errors.firstName}
-        />
+        <br />
+        <Form.Row>
+          <Col className="inputBox">
+            <Form.Group>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                id="email"
+                name="email"
+                onChange={props.onChange}
+                value={props.user.email}
+              />
+            </Form.Group>
+          </Col>
+          <Col className="inputBox">
+            <Form.Group>
+              <Form.Label>Phone number</Form.Label>
+              <Form.Control
+                placeholder="Phone number"
+                id="phoneNumber"
+                name="phoneNumber"
+                onChange={props.onChange}
+                value={props.user.phoneNumber}
+              />
+            </Form.Group>
+          </Col>
+        </Form.Row>
 
-        <TextInput
-          id="lastName"
-          name="lastName"
-          label="Last Name"
-          onChange={props.onChange}
-          value={props.user.lastName}
-          error={props.errors.lastName}
-        />
+        <br />
+        <Form.Row>
+          <Col
+            className="inputBox"
+            style={{
+              marginTop: "20px",
+              marginLeft: "150px",
+            }}
+          >
+            <Form.Label style={{ marginLeft: "20px" }}>Gender</Form.Label>
+            <div key={`inline-radio`} style={{ color: "white" }}>
+              <Form.Check
+                inline
+                type="radio"
+                label="Male"
+                name="gender"
+                onChange={props.onChange}
+                value="male"
+              />
+              <Form.Check
+                inline
+                type="radio"
+                label="Female"
+                name="gender"
+                onChange={props.onChange}
+                value="female"
+              />
+            </div>
+          </Col>
 
-        <TextInput
-          id="email"
-          name="email"
-          label="E-mail"
-          onChange={props.onChange}
-          value={props.user.email}
-          error={props.errors.email}
-        />
+          <Col className="inputBox">
+            <Form.Group style={{ margin: "auto", padding: "10px" }}>
+              <Form.Label>Birthday</Form.Label>
+              <Form.Control
+                style={{ width: "240px" }}
+                type="date"
+                name="birthday"
+                onChange={props.onChange}
+                value={props.user.birthday}
+              />
+            </Form.Group>
+          </Col>
 
-        <TextInput
-          id="username"
-          name="username"
-          label="Username"
-          onChange={props.onChange}
-          value={props.user.username}
-          error={props.errors.username}
-        />
-
-        <TextInput
-          id="phoneNumber"
-          name="phoneNumber"
-          label="Phone Number"
-          onChange={props.onChange}
-          value={props.user.phoneNumber}
-          error={props.errors.phoneNumber}
-        />
+          {console.log(props.user.birthday)}
+        </Form.Row>
 
         <br />
 
-        <label className="lettering">
-          Birthday:
-          <br />
-          <input
-            style={{ width: 160 }}
-            type="date"
-            name="birthday"
-            onChange={props.onChange}
-            value={props.errors.birthday}
-          />
-          {props.errors.birthday && (
-            <div className="alert alert-danger">{props.errors.birthday}</div>
-          )}
-        </label>
+        <Form.Row>
+          <Col className="inputBox">
+            <Form.Group>
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                placeholder="Username"
+                id="username"
+                name="username"
+                label="Username"
+                onChange={props.onChange}
+                value={props.user.username}
+              />
+            </Form.Group>
+          </Col>
 
-        <p className="lettering">Gender: </p>
+          <Col className="inputBox">
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+          </Col>
+        </Form.Row>
 
-        <label className="lettering">
-          <input
-            type="radio"
-            name="gender"
-            onChange={props.onChange}
-            value="male"
-            checked={props.user.gender === "male"}
-          />{" "}
-          Male
-        </label>
+        {
+          <style>
+            {`
+              .btn-princ {
+                background-color:#E9810A;
+                }
 
-        <label className="lettering">
-          <input
-            type="radio"
-            name="gender"
-            onChange={props.onChange}
-            value="female"
-            checked={props.user.gender === "female"}
-          />{" "}
-          Female
-        </label>
+              .btn-princ:active {
+                top:1px;
+                background-color: rgb(231, 155, 68); 
+                }
 
-        <br />
-        <br />
+              .btn-sec {
+                background-color:#6D213C;
+              }
 
-        <label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={props.onChange}
-            value={props.user.password}
-          />
-        </label>
+              .btn-sec:active{
+                top:1px;
+                background-color: rgb(155, 46, 84);
+               }
 
-        <br />
+              .progress-bar{
+                background-color: #E9810A;
+                
+              }
 
-        <input type="submit" value="Join Handyman!" className="submitButton" />
-        {/* <button className="submitButton" onClick>
-          <span className="lettering">SUBMIT</span>
-        </button> */}
-      </form>
+              `}
+          </style>
+        }
+      </Form>
+      <br />
+      <Button variant="princ">Register</Button>
+      <br />
     </>
   );
 }
