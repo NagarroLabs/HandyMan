@@ -1,4 +1,3 @@
-const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -17,6 +16,23 @@ const getUsers = async (req, res, next) => {
   }
 
   res.json({ users: users.map((user) => user.toObject({ getters: true })) });
+};
+
+const getUserById = async (req, res, next) => {
+  const { userId } = req.params;
+
+  let user;
+  try {
+    user = await User.findById(userId, '-password');
+  } catch (err) {
+    return next(new HttpError('Something went wrong, could not find user.', 500));
+  }
+
+  if (!user) {
+    return next(new HttpError('Could not find user with the provided id', 404));
+  }
+
+  res.json({ user: user.toObject({ getters: true }) });
 };
 
 const signup = async (req, res, next) => {
@@ -154,6 +170,43 @@ const login = async (req, res, next) => {
   });
 };
 
+const updateUser = async (req, res, next) => {
+  const {
+    firstName, lastName, phone, birthDate
+  } = req.body;
+  const { userId } = req.params;
+
+  let user;
+  try {
+    user = await User.findById(userId, '-password');
+  } catch (err) {
+    return next(new HttpError(
+      'Something went wrong, could not find a user',
+      500
+    ));
+  }
+
+  if (userId !== req.userData.userId) {
+    return next(new HttpError('You do not have edit privileges.', 401));
+  }
+
+  user.firstName = firstName;
+  user.lastName = lastName;
+  user.phone = phone;
+  user.birthDate = new Date(birthDate);
+
+  try {
+    await user.save();
+  } catch (err) {
+    const error = new HttpError('Updating place failed.', 500);
+    return next(error);
+  }
+
+  res.status(200).json({ user: user.toObject({ getters: true }) });
+};
+
 exports.getUsers = getUsers;
 exports.signup = signup;
 exports.login = login;
+exports.getUserById = getUserById;
+exports.updateUser = updateUser;
