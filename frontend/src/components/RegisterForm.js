@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import TextInput from "./common/TextInput";
 import PropTypes from "prop-types";
 import logo from "../Logo.svg";
 import "./RegisterForm.css";
@@ -7,43 +6,52 @@ import "./RegisterForm.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import ProgressBar from "react-bootstrap/ProgressBar";
-import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
+/* eslint-disable */
 
 function RegisterForm(props) {
-  function validate(email, password) {
-    // true means invalid, so our conditions got reversed
-    return {
-      email: email.length === 0,
-      password: password.length === 0,
-    };
-  }
+  const [errors, setErrors] = useState({});
 
   function formIsValid() {
-    return {
-      error_firstName:
-        props.user.firstName.length === 0 ? "First name is required!" : "",
-      error_lastName:
-        props.user.lastName.length === 0 ? "Last name is required!" : "",
-      error_email: props.user.email.length === 0 ? "Email is required!" : "",
-      error_username:
-        props.user.username.length === 0 ? "Username is required!" : "",
-      error_gender: props.user.gender.length === 0 ? "Gender is required!" : "",
-      error_phoneNumber:
-        props.user.phoneNumber.length === 0 ? "Phone number is required!" : "",
-      error_birthday:
-        props.user.birthday.length === 0 ? "Birthday is required!" : "",
-    };
+    const _errors = {};
+
+    const validEmailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const isEmailValid = validEmailRegex.test(props.user.email);
+    isEmailValid === false
+      ? (_errors.emailError = "Please enter a valid email!")
+      : "";
+
+    props.user.firstName.length === 0
+      ? (_errors.firstNameError = "First name is required!")
+      : "";
+
+    props.user.lastName.length === 0
+      ? (_errors.lastNameError = "Last name is required!")
+      : "";
+
+    props.user.username.length === 0
+      ? (_errors.usernameError = "Username is required!")
+      : "";
+
+    props.user.gender.length === 0
+      ? (_errors.genderError = "Gender is required!")
+      : "";
+
+    props.user.phoneNumber.length !== 10
+      ? (_errors.phoneNumberError = "Phone number is required!")
+      : "";
+
+    props.user.birthday.length === 0
+      ? (_errors.birthdayError = "Birthday is required!")
+      : "";
+
+    setErrors(_errors);
   }
 
-  let errors = formIsValid();
-  console.log(errors.error_firstName);
-
-  // function handleSubmit(event) {
-
-  //   if (errors.error_firstName === "") return;
-  // }
+  const doSth = (event) => {
+    props.onSubmit(event);
+    formIsValid();
+  };
 
   const isEnabled =
     props.user.firstName.length > 0 &&
@@ -54,15 +62,13 @@ function RegisterForm(props) {
     props.user.birthday.length > 0 &&
     props.user.username.length > 0;
 
-  console.log(props.user.password);
-
   return (
     <>
       <img src={logo} width="500px" alt="HandyMan" />
       <br />
       <h1 className="registerTitle">R e g i s t e r</h1>
       <br />
-      <Form className="registerForm" onSubmit="handleSubmit">
+      <Form className="registerForm">
         <Form.Row>
           <Col className="inputBox">
             <Form.Group>
@@ -75,9 +81,9 @@ function RegisterForm(props) {
                 value={props.user.firstName}
               />
             </Form.Group>
-            {/* {errors.error_firstName && (
-              <div className="alert alert-danger">{errors.error_firstName}</div>
-            )} */}
+            {errors.firstNameError && (
+              <div className="alert alert-danger">{errors.firstNameError}</div>
+            )}
           </Col>
           <Col className="inputBox">
             <Form.Group>
@@ -90,6 +96,9 @@ function RegisterForm(props) {
                 value={props.user.lastName}
               />
             </Form.Group>
+            {errors.lastNameError && (
+              <div className="alert alert-danger">{errors.lastNameError}</div>
+            )}
           </Col>
         </Form.Row>
 
@@ -107,6 +116,9 @@ function RegisterForm(props) {
                 value={props.user.email}
               />
             </Form.Group>
+            {errors.emailError && (
+              <div className="alert alert-danger">{errors.emailError}</div>
+            )}
           </Col>
           <Col className="inputBox">
             <Form.Group>
@@ -119,6 +131,11 @@ function RegisterForm(props) {
                 value={props.user.phoneNumber}
               />
             </Form.Group>
+            {errors.phoneNumberError && (
+              <div className="alert alert-danger">
+                {errors.phoneNumberError}
+              </div>
+            )}
           </Col>
         </Form.Row>
 
@@ -150,6 +167,9 @@ function RegisterForm(props) {
                 value="female"
               />
             </div>
+            {errors.genderError && (
+              <div className="alert alert-danger">{errors.genderError}</div>
+            )}
           </Col>
 
           <Col className="inputBox">
@@ -163,9 +183,10 @@ function RegisterForm(props) {
                 value={props.user.birthday}
               />
             </Form.Group>
+            {errors.birthdayError && (
+              <div className="alert alert-danger">{errors.birthdayError}</div>
+            )}
           </Col>
-
-          {console.log(props.user.birthday)}
         </Form.Row>
 
         <br />
@@ -183,6 +204,9 @@ function RegisterForm(props) {
                 value={props.user.username}
               />
             </Form.Group>
+            {errors.usernameError && (
+              <div className="alert alert-danger">{errors.usernameError}</div>
+            )}
           </Col>
 
           <Col className="inputBox">
@@ -224,7 +248,9 @@ function RegisterForm(props) {
         }
       </Form>
       <br />
-      <Button variant="princ">Register</Button>
+      <Button onClick={doSth} variant="princ">
+        Register
+      </Button>
       <br />
     </>
   );

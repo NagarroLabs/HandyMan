@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import RegisterForm from "./RegisterForm";
 
 function RegisterPage() {
-  const [errors, setErrors] = useState({});
   const [user, setUser] = useState({
     id: null,
     firstName: "",
@@ -24,12 +23,7 @@ function RegisterPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // if (!formIsValid()) return;
-    // let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    // if (re.test(event.target.name)) {
-    //   console.log("eroare");
-    // } else {
-    // }
+    console.log("registered");
   }
 
   return (
