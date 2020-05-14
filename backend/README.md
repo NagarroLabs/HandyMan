@@ -31,14 +31,3 @@ Content-Type: application/json Authorization: "JWT [insertTokenGeneratedFromSign
 Example of an accepted format for patch (after setting the correct header for the particular user you want to update):
 
 { "firstName": "Ion", "lastName": "Pop", "phone": "0722581728", "birthDate": "<1999-05-17>" }
-
-## ENV Variables
-
-Create a .env file in the backend folder and add:
-
-<details>
-	<summary>Spoiler warning</summary>
-	
-	DB_PASS=ligaaclabs
-	TOKEN_ENCRYPTION=SantaClausIsComingToTown
-</details>
