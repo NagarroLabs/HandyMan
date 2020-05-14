@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RegisterForm from "./RegisterForm";
+import { addUser } from "../mock-api/usersApi";
 
 function RegisterPage() {
   const [user, setUser] = useState({
@@ -24,6 +25,7 @@ function RegisterPage() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log("registered");
+    addUser(user);
   }
 
   return (

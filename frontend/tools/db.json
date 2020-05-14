@@ -139,6 +139,53 @@
   ],
   "users": [
     {
+      "id": 1,
+      "handyManId": 4,
+      "firstName": "Jarad",
+      "lastName": "Williscroft",
+      "email": "jwilliscroft0@nationalgeographic.com",
+      "phone": "5571359939",
+      "gender": "Male",
+      "birthDate": "1994-03-07T07:48:19Z",
+      "userName": "jwilliscroft0",
+      "password": "uBDKkeogRa",
+      "employedHandyMen": [
+        {
+          "id": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "handyManId": 0,
+      "firstName": "Gaylord",
+      "lastName": "Childerhouse",
+      "email": "gchilderhouse1@fc2.com",
+      "phone": "4867763168",
+      "gender": "Male",
+      "birthDate": "1981-08-22T23:22:53Z",
+      "userName": "gchilderhouse1",
+      "password": "zHb1EET1I",
+      "employedHandyMen": [
+        {
+          "id": 4
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "handyManId": 0,
+      "firstName": "Rudd",
+      "lastName": "Whewill",
+      "email": "rwhewill3@huffingtonpost.com",
+      "phone": "2029224424",
+      "gender": "Male",
+      "birthDate": "1980-05-14T22:43:23Z",
+      "userName": "rwhewill3",
+      "password": "TOQp4YKcX04",
+      "employedHandyMen": []
+    },
+    {
       "id": 4,
       "handyManId": 2,
       "firstName": "Kerri",
@@ -176,46 +223,16 @@
       ]
     },
     {
-      "id": 7,
-      "HandyMan": 0,
-      "firstName": "Jack",
-      "lastName": "Chan",
-      "email": "jackiechan@gmail.com",
-      "phone": "323243243",
-      "gender": "Male",
-      "birthDate": "1964-03-07T07:48:19Z",
-      "userName": "JackC",
-      "password": "jackie",
-      "employedHandyMen": [],
-      "createAt": 1589219645991
-    },
-    {
-      "id": 8,
-      "HandyMan": 0,
-      "firstName": "Jack",
-      "lastName": "Chan",
-      "email": "jackiechan@gmail.com",
-      "phone": "323243243",
-      "gender": "Male",
-      "birthDate": "1964-03-07T07:48:19Z",
-      "userName": "JackC",
-      "password": "jackie",
-      "employedHandyMen": [],
-      "createAt": 1589219693861
-    },
-    {
-      "id": 9,
-      "HandyMan": 0,
-      "firstName": "Jack",
-      "lastName": "Chan",
-      "email": "jackiechan@gmail.com",
-      "phone": "323243243",
-      "gender": "Male",
-      "birthDate": "1964-03-07T07:48:19Z",
-      "userName": "JackC",
-      "password": "jackie",
-      "employedHandyMen": [],
-      "createAt": 1589219700396
+      "id": 6,
+      "firstName": "Patricia",
+      "lastName": "Boc",
+      "email": "patyboc@yahoo.com",
+      "username": "kassimii",
+      "phoneNumber": "0723232323",
+      "gender": "female",
+      "birthday": "2020-05-14",
+      "password": "",
+      "createAt": 1589383411624
     }
   ],
   "handyMen": [
