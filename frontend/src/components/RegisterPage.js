@@ -9,9 +9,9 @@ function RegisterPage() {
     lastName: "",
     email: "",
     username: "",
-    phoneNumber: "",
+    phone: "",
     gender: "",
-    birthday: "",
+    birthDate: "",
     password: "",
   });
 
@@ -38,7 +38,7 @@ function RegisterPage() {
       <p className="lettering" style={{ fontSize: "18px" }}>
         Already have an account?{" "}
         <a
-          href=""
+          href="/auth"
           style={{ color: "#ffe18a", fontFamily: "Rubik", fontSize: "20px" }}
         >
           Sign in

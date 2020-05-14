@@ -37,12 +37,12 @@ function RegisterForm(props) {
       ? (_errors.genderError = "Gender is required!")
       : "";
 
-    props.user.phoneNumber.length !== 10
-      ? (_errors.phoneNumberError = "Phone number is required!")
+    props.user.phone.length !== 10
+      ? (_errors.phoneError = "Phone number is required!")
       : "";
 
-    props.user.birthday.length === 0
-      ? (_errors.birthdayError = "Birthday is required!")
+    props.user.birthDate.length === 0
+      ? (_errors.birthDateError = "Birthday is required!")
       : "";
 
     setErrors(_errors);
@@ -57,9 +57,9 @@ function RegisterForm(props) {
     props.user.firstName.length > 0 &&
     props.user.lastName.length > 0 &&
     props.user.email.length > 0 &&
-    props.user.phoneNumber.length > 0 &&
+    props.user.phone.length > 0 &&
     props.user.gender.length > 0 &&
-    props.user.birthday.length > 0 &&
+    props.user.birthDate.length > 0 &&
     props.user.username.length > 0;
 
   return (
@@ -125,16 +125,14 @@ function RegisterForm(props) {
               <Form.Label>Phone number</Form.Label>
               <Form.Control
                 placeholder="Phone number"
-                id="phoneNumber"
-                name="phoneNumber"
+                id="phone"
+                name="phone"
                 onChange={props.onChange}
-                value={props.user.phoneNumber}
+                value={props.user.phone}
               />
             </Form.Group>
-            {errors.phoneNumberError && (
-              <div className="alert alert-danger">
-                {errors.phoneNumberError}
-              </div>
+            {errors.phoneError && (
+              <div className="alert alert-danger">{errors.phoneError}</div>
             )}
           </Col>
         </Form.Row>
@@ -174,17 +172,17 @@ function RegisterForm(props) {
 
           <Col className="inputBox">
             <Form.Group style={{ margin: "auto", padding: "10px" }}>
-              <Form.Label>Birthday</Form.Label>
+              <Form.Label>birthDate</Form.Label>
               <Form.Control
                 style={{ width: "240px" }}
                 type="date"
-                name="birthday"
+                name="birthDate"
                 onChange={props.onChange}
-                value={props.user.birthday}
+                value={props.user.birthDate}
               />
             </Form.Group>
-            {errors.birthdayError && (
-              <div className="alert alert-danger">{errors.birthdayError}</div>
+            {errors.birthDateError && (
+              <div className="alert alert-danger">{errors.birthDateError}</div>
             )}
           </Col>
         </Form.Row>
@@ -218,37 +216,31 @@ function RegisterForm(props) {
         </Form.Row>
 
         {
-          <style>
-            {`
-              .btn-princ {
-                background-color:#E9810A;
-                }
-
-              .btn-princ:active {
-                top:1px;
-                background-color: rgb(231, 155, 68); 
-                }
-
-              .btn-sec {
-                background-color:#6D213C;
-              }
-
-              .btn-sec:active{
-                top:1px;
-                background-color: rgb(155, 46, 84);
-               }
-
-              .progress-bar{
-                background-color: #E9810A;
-                
-              }
-
-              `}
-          </style>
+          // <style>
+          //   {`
+          //     .btn-princ {
+          //       background-color:#E9810A;
+          //       }
+          //     .btn-princ:active {
+          //       top:1px;
+          //       background-color: rgb(231, 155, 68);
+          //       }
+          //     .btn-sec {
+          //       background-color:#6D213C;
+          //     }
+          //     .btn-sec:active{
+          //       top:1px;
+          //       background-color: rgb(155, 46, 84);
+          //      }
+          //     .progress-bar{
+          //       background-color: #E9810A;
+          //     }
+          //     `}
+          // </style>
         }
       </Form>
       <br />
-      <Button onClick={doSth} variant="princ">
+      <Button onClick={doSth} className="btn-princ">
         Register
       </Button>
       <br />

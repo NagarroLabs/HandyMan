@@ -1,0 +1,38 @@
+.RegisterPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #161032;
+  padding: 10px 10px;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+.lettering {
+  color: white;
+  font-family: "Rubik", sans-serif;
+}
+
+.btn-princ {
+  background-color: #e9810a;
+}
+
+.btn-princ:active {
+  top: 1px;
+  background-color: rgb(231, 155, 68);
+}
+
+.btn-sec {
+  background-color: #6d213c;
+}
+
+.btn-sec:active {
+  top: 1px;
+  background-color: rgb(155, 46, 84);
+}
+
+.progress-bar {
+  background-color: #e9810a;
+}
