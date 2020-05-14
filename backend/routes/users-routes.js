@@ -10,7 +10,11 @@ const {
 } = require('../util/validators');
 const { handleErrors } = require('../middlewares/handle-errors.js');
 const {
-  getUsers, signup, login, getUserById, updateUser
+  getUsers,
+  signup,
+  login,
+  getUserById,
+  updateUser
 } = require('../controllers/users-controllers');
 const checkAuth = require('../middlewares/check-auth');
 
@@ -38,6 +42,12 @@ router.post(
 
 router.post('/login', login);
 
-router.patch('/update/:userId', checkAuth, [requireFirstName, requireLastName, requirePhone], handleErrors, updateUser);
+router.patch(
+  '/update/:userId',
+  checkAuth,
+  [requireFirstName, requireLastName, requirePhone, requireEmail, requirePhone],
+  handleErrors,
+  updateUser
+);
 
 module.exports = router;
