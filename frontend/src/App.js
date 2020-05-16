@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import AuthRoutes from './routes/AuthRoutes';
+import NoAuthRoutes from './routes/NoAuthRoutes';
+import { AuthContext } from './shared/context/auth-context';
+import { useAuth } from './shared/hooks/auth-hook';
+
 import './App.css';
 
-function App() {
+const App = () => {
+  const { token, userId, login, logout } = useAuth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: !!token,
+        token,
+        userId,
+        login,
+        logout
+      }}
+    >
+      <Router>
+        <div>Insert Navbar component here.</div>
+        <main>{token ? <AuthRoutes /> : <NoAuthRoutes />}</main>
+        <div>Insert Footer component here.</div>
+      </Router>
+    </AuthContext.Provider>
   );
-}
+};
 
 export default App;
