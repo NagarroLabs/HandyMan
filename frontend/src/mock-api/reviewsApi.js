@@ -10,7 +10,7 @@ export function getReviewById(id) {
     .then((response) => {
       if (!response.ok) throw new Error("Network response was not ok.");
       return response.json().then((reviews) => {
-        if (reviews.length !== 1) throw new Error("Course not found: " + id);
+        if (reviews.length !== 1) throw new Error("Review not found: " + id);
         return reviews[0];
       });
     })
