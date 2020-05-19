@@ -10,7 +10,7 @@ export function getUserById(id) {
     .then((response) => {
       if (!response.ok) throw new Error("Network response was not ok.");
       return response.json().then((users) => {
-        if (users.length !== 1) throw new Error("Course not found: " + id);
+        if (users.length !== 1) throw new Error("User not found: " + id);
         return users[0];
       });
     })
