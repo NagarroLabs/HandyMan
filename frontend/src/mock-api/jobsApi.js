@@ -10,7 +10,7 @@ export function getJobById(id) {
     .then((response) => {
       if (!response.ok) throw new Error("Network response was not ok.");
       return response.json().then((jobs) => {
-        if (jobs.length !== 1) throw new Error("Course not found: " + id);
+        if (jobs.length !== 1) throw new Error("Job not found: " + id);
         return jobs[0];
       });
     })
