@@ -30,10 +30,5 @@ server.listen(port, () => {
 });
 
 server.post("/users/", function (req, res, next) {
-  //const error = validateCourse(req.body);
-  //if (error) {
-  // res.status(400).send(error);
-  //} else {
-  //req.body.slug = createSlug(req.body.title); // Generate a slug for new courses.
   next();
 });
