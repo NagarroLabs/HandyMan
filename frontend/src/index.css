@@ -1,4 +1,4 @@
-.RegisterPage {
+.RegisterLoginPage {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,9 +10,44 @@
   height: auto;
 }
 
+.EditProfilePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #ffe1a8;
+  padding: 10px 10px;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+.formStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+.inputBox {
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
 .lettering {
   color: white;
   font-family: "Rubik", sans-serif;
+}
+
+.orangeLettering {
+  color: #e9810a;
+  font-family: "Rubik", sans-serif;
+  font-size: 24px;
 }
 
 .btn-princ {
@@ -31,6 +66,15 @@
 .btn-sec:active {
   top: 1px;
   background-color: rgb(155, 46, 84);
+}
+
+.btn-other {
+  background-color: #161032;
+}
+
+.btn-other:active {
+  top: 1px;
+  background-color: rgb(17, 5, 82);
 }
 
 .progress-bar {

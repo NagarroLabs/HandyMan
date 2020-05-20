@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import RegisterForm from "./RegisterForm";
-import { addUser } from "../mock-api/usersApi";
+import EditProfileForm from "./EditProfileForm";
+import { addUser } from "../mock-api/usersApi",
+/* eslint-disable */
 
-function RegisterPage() {
+function EditProfilePage() {
   const [user, setUser] = useState({
     id: null,
     firstName: "",
@@ -29,22 +30,13 @@ function RegisterPage() {
 
   return (
     <>
-      <RegisterForm
+      <EditProfileForm
         user={user}
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-      <p className="lettering" style={{ fontSize: "18px" }}>
-        Already have an account?{" "}
-        <a
-          href="/login"
-          style={{ color: "#ffe18a", fontFamily: "Rubik", fontSize: "20px" }}
-        >
-          Sign in
-        </a>
-      </p>
     </>
   );
 }
 
-export default RegisterPage;
+export default EditProfilePage;

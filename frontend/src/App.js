@@ -1,11 +1,18 @@
 import React from "react";
-import * as usersApi from "./mock-api/usersApi";
+import RegisterPage from "./components/RegisterPage";
+import LoginPage from "./components/LoginPage";
+import EditProfilePage from "./components/EditProfilePage";
 
 function App() {
-  return
-  <h1>
-    HandyMan App
-  </h1>;
+  return (
+    <div className="RegisterLoginPage">
+      {/* <RegisterPage /> */}
+      <LoginPage />
+    </div>
+    // <div className="EditProfilePage">
+    //   <EditProfilePage />
+    // </div>
+  );
 }
 
 export default App;

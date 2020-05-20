@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import logo from "../WhiteLogo.svg";
-import "./RegisterForm.css";
+import logo from "../BlueLogo.svg";
+import "./EditProfileForm.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
@@ -53,26 +53,17 @@ function RegisterForm(props) {
     formIsValid();
   };
 
-  const isEnabled =
-    props.user.firstName.length > 0 &&
-    props.user.lastName.length > 0 &&
-    props.user.email.length > 0 &&
-    props.user.phone.length > 0 &&
-    props.user.gender.length > 0 &&
-    props.user.birthDate.length > 0 &&
-    props.user.username.length > 0;
-
   return (
     <>
       <img src={logo} width="500px" alt="HandyMan" />
       <br />
-      <h1 className="registerTitle">R e g i s t e r</h1>
+      <h1 className="editProfileTitle">E d i t P r o f i l e</h1>
       <br />
       <Form>
         <Form.Row>
           <Col className="inputBox">
             <Form.Group>
-              <Form.Label>First name</Form.Label>
+              <Form.Label className="orangeLettering">First name</Form.Label>
               <Form.Control
                 placeholder="First name"
                 id="firstName"
@@ -87,7 +78,7 @@ function RegisterForm(props) {
           </Col>
           <Col className="inputBox">
             <Form.Group>
-              <Form.Label>Last name</Form.Label>
+              <Form.Label className="orangeLettering">Last name</Form.Label>
               <Form.Control
                 placeholder="Last name"
                 id="lastName"
@@ -106,7 +97,7 @@ function RegisterForm(props) {
         <Form.Row>
           <Col className="inputBox">
             <Form.Group>
-              <Form.Label>Email</Form.Label>
+              <Form.Label className="orangeLettering">Email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
@@ -122,7 +113,7 @@ function RegisterForm(props) {
           </Col>
           <Col className="inputBox">
             <Form.Group>
-              <Form.Label>Phone number</Form.Label>
+              <Form.Label className="orangeLettering">Phone number</Form.Label>
               <Form.Control
                 placeholder="Phone number"
                 id="phone"
@@ -146,7 +137,12 @@ function RegisterForm(props) {
               marginLeft: "150px",
             }}
           >
-            <Form.Label style={{ marginLeft: "20px" }}>Gender</Form.Label>
+            <Form.Label
+              style={{ marginLeft: "20px" }}
+              className="orangeLettering"
+            >
+              Gender
+            </Form.Label>
             <div key={`inline-radio`} style={{ color: "white" }}>
               <Form.Check
                 inline
@@ -155,6 +151,7 @@ function RegisterForm(props) {
                 name="gender"
                 onChange={props.onChange}
                 value="male"
+                className="orangeLettering"
               />
               <Form.Check
                 inline
@@ -163,6 +160,7 @@ function RegisterForm(props) {
                 name="gender"
                 onChange={props.onChange}
                 value="female"
+                className="orangeLettering"
               />
             </div>
             {errors.genderError && (
@@ -172,7 +170,7 @@ function RegisterForm(props) {
 
           <Col className="inputBox">
             <Form.Group style={{ margin: "auto", padding: "10px" }}>
-              <Form.Label>birthDate</Form.Label>
+              <Form.Label className="orangeLettering">Birth Date</Form.Label>
               <Form.Control
                 style={{ width: "240px" }}
                 type="date"
@@ -192,7 +190,7 @@ function RegisterForm(props) {
         <Form.Row>
           <Col className="inputBox">
             <Form.Group>
-              <Form.Label>Username</Form.Label>
+              <Form.Label className="orangeLettering">Username</Form.Label>
               <Form.Control
                 placeholder="Username"
                 id="username"
@@ -209,7 +207,7 @@ function RegisterForm(props) {
 
           <Col className="inputBox">
             <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
+              <Form.Label className="orangeLettering">Password</Form.Label>
               <Form.Control type="password" placeholder="Password" />
             </Form.Group>
           </Col>
@@ -218,7 +216,7 @@ function RegisterForm(props) {
       <br />
       <Button
         onClick={submitButtonClick}
-        className="btn-princ"
+        className="btn-other"
         style={{
           width: "300px",
           height: "70px",
