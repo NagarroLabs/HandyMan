@@ -1,11 +1,8 @@
 import React from "react";
-import * as usersApi from "./mock-api/usersApi";
+import JobListingPage from "./JobListingPage";
 
 function App() {
-  return
-  <h1>
-    HandyMan App
-  </h1>;
+  return <JobListingPage />;
 }
 
 export default App;
