@@ -25,7 +25,9 @@ const getUserById = async (req, res, next) => {
   try {
     user = await User.findById(userId, '-password');
   } catch (err) {
-    return next(new HttpError('Something went wrong, could not find user.', 500));
+    return next(
+      new HttpError('Something went wrong, could not find user.', 500)
+    );
   }
 
   if (!user) {
@@ -171,19 +173,16 @@ const login = async (req, res, next) => {
 };
 
 const updateUser = async (req, res, next) => {
-  const {
-    firstName, lastName, phone, birthDate
-  } = req.body;
+  const { firstName, lastName, phone, birthDate } = req.body;
   const { userId } = req.params;
 
   let user;
   try {
     user = await User.findById(userId, '-password');
   } catch (err) {
-    return next(new HttpError(
-      'Something went wrong, could not find a user',
-      500
-    ));
+    return next(
+      new HttpError('Something went wrong, could not find a user', 500)
+    );
   }
 
   if (userId !== req.userData.userId) {

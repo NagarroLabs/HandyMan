@@ -12,9 +12,8 @@
     "react-calendar": "^3.0.1",
     "react-datepicker": "^2.14.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "react-social-login-buttons": "^3.0.0",
-    "reactstrap": "^8.4.1"
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "run-p start:dev start:api",
