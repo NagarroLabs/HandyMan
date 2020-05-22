@@ -173,6 +173,7 @@ const login = async (req, res, next) => {
 };
 
 const updateUser = async (req, res, next) => {
+
   const { firstName, lastName, phone, birthDate, email, password } = req.body;
   const { userId } = req.params;
 
