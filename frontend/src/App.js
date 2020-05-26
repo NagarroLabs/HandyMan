@@ -6,8 +6,6 @@ import NoAuthRoutes from "./routes/NoAuthRoutes";
 import { AuthContext } from "./shared/context/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
 
-import "./App.css";
-
 const App = () => {
   const { token, userId, login, logout } = useAuth();
 

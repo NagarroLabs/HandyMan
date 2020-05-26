@@ -1,8 +1,8 @@
-import App from "./App";
-import "./index.css";
-import "tachyons";
 import React from "react";
 import ReactDOM from "react-dom";
+import "./index.css";
+import "tachyons";
+
 import App from "./App";
 
 import "./index.css";

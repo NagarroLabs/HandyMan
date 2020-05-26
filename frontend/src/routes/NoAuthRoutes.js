@@ -1,24 +1,26 @@
-import React from 'react';
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch
-} from 'react-router-dom';
+  Switch,
+} from "react-router-dom";
+
+import JobsListingPage from "../pages/JobsListingPage";
 
 const NoAuthRoutes = () => {
   return (
     <Switch>
-      <Route path='/' exact>
+      <Route path="/" exact>
         <div>Insert home page component here.</div>
       </Route>
-      <Route path='/jobs' exact>
-        <div>Insert all jobs page component here.</div>
+      <Route path="/jobs" exact>
+        <JobsListingPage />
       </Route>
-      <Route path='/auth' exact>
+      <Route path="/auth" exact>
         <div>Insert register/login page component here.</div>
       </Route>
-      <Redirect to='/auth' />
+      <Redirect to="/auth" />
     </Switch>
   );
 };
