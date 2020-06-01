@@ -24,17 +24,12 @@ export default function JobsListingPage(props) {
     return <h1>Loading...</h1>;
   } else {
     return (
-      <div className='tc'>
-        <div className='w-100 pa2'>
-          <h1 className='f1'>Jobs Page</h1>
-          <SearchBox searchChange={onSearchChange} />
-        </div>
-        <div className='mw9 center ph3-ns pa5'>
-          <div className='cf ph2'>
-            <div className='fl w-100'>
-              <FilteringSection props={{ jobs, searchField }} />
-            </div>
-          </div>
+      <div className="mx-auto">
+        <h1 className="text-center">Jobs Page</h1>
+        <SearchBox className="" searchChange={onSearchChange} />
+
+        <div className="d-block">
+          <FilteringSection props={{ jobs, searchField }} />
         </div>
       </div>
     );

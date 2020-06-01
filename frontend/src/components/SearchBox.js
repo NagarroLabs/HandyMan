@@ -2,14 +2,17 @@ import React from 'react';
 
 function SearchBox({ searchChange }) {
   return (
-    <input
-      className='f6 f5-l input-reset bn black-80 bg-white pa3 lh-solid br2-ns br--left-ns'
-      placeholder='search jobs'
-      type='search'
-      name='name'
-      id='name'
-      onChange={searchChange}
-    ></input>
+    <form className="form-inline d-flex justify-content-center md-form form-sm mt-0 m-3">
+      <i className="fas fa-search" area-hidden="true"></i>
+      <input
+        className="form-control form-control w-auto"
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Search jobs"
+        onChange={searchChange}
+      />
+    </form>
   );
 }
 

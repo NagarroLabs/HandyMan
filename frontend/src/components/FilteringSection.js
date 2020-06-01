@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ErrorBoundry from '../components/ErrorBoundry';
 import JobsList from '../components/JobsList';
-import SearchForm from './SearchForm';
+import FilterForm from './FilterForm';
 
 export default function FilteringSection({ props }) {
   const [jobs, setJobs] = useState([]);
@@ -60,14 +60,16 @@ export default function FilteringSection({ props }) {
   };
 
   return (
-    <div className=''>
-      <div className='fl w-100 w-50-m w-25-l'>
-        <SearchForm props={{ applyFilter }} />
-      </div>
-      <div className='fl w-100 w-50-m w-75-l'>
-        <ErrorBoundry>
-          <JobsList props={{ displayedJobs }} />
-        </ErrorBoundry>
+    <div className="container-fluid justify-content-center">
+      <div className="row">
+        <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6">
+          <FilterForm props={{ applyFilter }} />
+        </div>
+        <div className="col-xl-10 col-lg-8 col-md-8 col-sm-6 ">
+          <ErrorBoundry>
+            <JobsList props={{ displayedJobs }} />
+          </ErrorBoundry>
+        </div>
       </div>
     </div>
   );

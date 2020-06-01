@@ -4,11 +4,11 @@ import JobCard from './JobCard';
 export default function JobsList({ props }) {
   if (props.displayedJobs) {
     return (
-      <>
+      <div className="card-deck m-1 justify-content-center">
         {props.displayedJobs.map((job, index) => {
           return (
             <JobCard
-              className=''
+              className=""
               key={index}
               id={job.id}
               name={job.name}
@@ -18,7 +18,7 @@ export default function JobsList({ props }) {
             />
           );
         })}
-      </>
+      </div>
     );
   } else {
     return <div>Loading</div>;

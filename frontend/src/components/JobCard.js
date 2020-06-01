@@ -1,5 +1,6 @@
-import React from "react";
-import { Button } from "react-bootstrap";
+import React from 'react';
+import { Button } from 'react-bootstrap';
+import './JobCard.css';
 
 const JobCard = ({
   id,
@@ -9,24 +10,24 @@ const JobCard = ({
   specialization,
 }) => {
   return (
-    <div className="tc bg-tangerine dib hover-bg-gold shadow-hover br3 pa3 ma2 bw2 shadow-5">
-      <div className="fw3">
-        <h2 className="dark-purple underline">{name}</h2>
-        <p className="dark-purple">{description}</p>
-        <p className="dark-purple">
+    <div className="card text-center m-2">
+      <div className="card-body">
+        <h3 className="card-title">{name}</h3>
+        <p className="card-subtitle">{description}</p>
+        <p className="">
           Estimated budget: <span className="b">{estimatedBudget}</span>
         </p>
-        <h3 className="dark-purple">
+        <h5 className="">
           Specialization: <span className="b">{specialization}</span>
-        </h3>
+        </h5>
       </div>
-      <div className="f3">
-        <Button className="f4 b ma3 grow no-underline br-pill ph3 pv2 mb2 dib pansy-purple bg-peach">
+      <div className="">
+        <button type="button" className="btn btn-primary m-2">
           Details
-        </Button>
-        <Button className="f4 b ma3 grow no-underline br-pill ph3 pv2 mb2 dib pansy-purple bg-peach">
+        </button>
+        <button type="button" className="btn btn-secondary m-2">
           Contact
-        </Button>
+        </button>
       </div>
     </div>
   );
