@@ -9,7 +9,6 @@ const User = require('../models/users');
 
 module.exports = {
   requireFirstName: check('firstName')
-<<<<<<< HEAD
     .not()
     .isEmpty()
     .trim()
@@ -17,13 +16,6 @@ module.exports = {
   requireLastName: check('lastName')
     .not()
     .isEmpty()
-=======
-    .not().isEmpty()
-    .trim()
-    .withMessage('First name must not be empty.'),
-  requireLastName: check('lastName')
-    .not().isEmpty()
->>>>>>> cbc19f53118317244704859382e5e4b94a8afc5a
     .trim()
     .withMessage('Last name must not be empty.'),
   requirePassword: check('password')
@@ -44,24 +36,13 @@ module.exports = {
       }
 
       if (existingUser) {
-<<<<<<< HEAD
         throw new HttpError('User exists already, please login instead.', 422);
-=======
-        throw new HttpError(
-          'User exists already, please login instead.',
-          422
-        );
->>>>>>> cbc19f53118317244704859382e5e4b94a8afc5a
       }
       return true;
     }),
   requireUsername: check('userName')
-<<<<<<< HEAD
     .not()
     .isEmpty()
-=======
-    .not().isEmpty()
->>>>>>> cbc19f53118317244704859382e5e4b94a8afc5a
     .trim()
     .withMessage('Must be a valid username.')
     .custom(async (userName) => {
@@ -81,7 +62,6 @@ module.exports = {
       return true;
     }),
   requirePhone: check('phone')
-<<<<<<< HEAD
     .not()
     .isEmpty()
     .trim()
@@ -102,9 +82,4 @@ module.exports = {
       }
       return true;
     })
-=======
-    .not().isEmpty()
-    .trim()
-    .withMessage('Phone must not be empty.'),
->>>>>>> cbc19f53118317244704859382e5e4b94a8afc5a
 };
