@@ -1,0 +1,114 @@
+GET------------------------------------------------------------------------------------
+
+-> An example to GET all users in a component: 
+
+import React, {useState} from 'react';
+import {useHttpClient} from '../../shared/hooks/http-hook';
+
+const Users = () => {
+
+    const {isLoading, error, sendRequest, clearError } = useHttpClient();
+    const [loadedUsers, setLoadedUsers] = useState();
+
+try{
+    const responseData = await sendRequest('http://localhost:3001/api/users/');
+    setLoadedUsers(responseData.users);
+   } catch(err) {
+    console.log(err);
+   }
+
+ return [JSX here, with error and loading handling]
+
+}
+
+POST------------------------------------------------------------------------------------------
+
+-> Login example using auth-hook as well: 
+
+import React, { useState, useContext } from 'react';
+
+import { useHttpClient } from '../../shared/hooks/http-hook';
+import { AuthContext } from '../../shared/context/auth-context';
+
+const Auth = () => {
+
+    const auth = useContext(AuthContext);
+    const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+    ...set other states here and what else
+
+    try {
+        const responseData = await sendRequest(
+          'http://localhost:3001/api/users/login',
+          'POST',
+          JSON.stringify({
+            email: inputs.email.value,
+            password: inputs.password.value
+          }),
+          {
+            'Content-Type': 'application/json'
+          }
+        );
+        auth.login(responseData.userId, responseData.token);
+      } catch (err) {}
+
+    return [JSX here, with error and loading handling]
+
+}
+
+PATCH------------------------------------------------------------------------------------------
+
+-> An example to update job: 
+
+    import React, { useEffect, useState, useContext } from 'react';
+
+    import { useHttpClient } from '../../shared/hooks/http-hook';
+    import { AuthContext } from '../../shared/context/auth-context';
+
+const UpdateJob = () => {
+
+  const auth = useContext(AuthContext);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [loadedJob, setLoadedJob] = useState();
+
+  try {
+      await sendRequest(
+        `http://localhost:5000/api/jobs/${jobId}`,
+        'PATCH',
+        JSON.stringify({
+          title: inputs.title.value,
+          description: inputs.description.value
+        }),
+        {
+          'Content-Type': 'application/json',
+          'Authorization': 'JWT ' + auth.token ->>>>>>>> THIS IS IMPORTANT, BECAUSE THIS IS A RESTRICTED ROUTE ON THE BACKEND (check backend auth-http middleware)
+        }
+      );
+    } catch (err) {}
+    
+ return [JSX here, with error and loading handling]
+
+DELETE------------------------------------------------------------------------------------------
+
+import React, { useState, useContext } from 'react';
+
+import { AuthContext } from '../../shared/context/auth-context';
+import { useHttpClient } from '../../shared/hooks/http-hook';
+
+Could be used in a JobItem component
+
+ const confirmDeleteHandler = async () => {
+    try {
+      await sendRequest(
+        `http://localhost:5000/api/jobs/${props.id}`,
+        'DELETE',
+        null,
+        {
+          Authorization: 'Bearer ' + auth.token  ->>>>>>>> THIS IS IMPORTANT, BECAUSE THIS IS A RESTRICTED ROUTE ON THE BACKEND (check backend auth-http middleware)
+        }
+      );
+      props.onDelete(props.id); <---- Pass this to the component that renders a job and possibly apply a filter on the entire jobs Array in that high-level component
+    } catch (err) {}
+  };
+
+  return [JSX here, with error and loading handling]
