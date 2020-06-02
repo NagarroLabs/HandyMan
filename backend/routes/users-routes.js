@@ -14,7 +14,8 @@ const {
   signup,
   login,
   getUserById,
-  updateUser
+  updateUser, 
+  updatePassword
 } = require('../controllers/users-controllers');
 const checkAuth = require('../middlewares/check-auth');
 
@@ -41,6 +42,8 @@ router.post(
 );
 
 router.post('/login', login);
+
+router.patch('/update/:userId/password', checkAuth, [requirePassword], handleErrors, updatePassword);
 
 router.patch(
   '/update/:userId',
