@@ -35,11 +35,11 @@ function LoginForm(props) {
 
   return (
     <>
-      <img src={logo} width="500px" alt="HandyMan" />
-      <br />
-      <h1 className="loginTitle">L o g i n</h1>
-      <br />
       <Form className="RegisterLoginPage">
+        <img src={logo} width="500px" alt="HandyMan" />
+        <br />
+        <h1 className="loginTitle">L o g i n</h1>
+        <br />
         <Form.Row>
           <Col className="inputBox">
             <Form.Group>
@@ -62,24 +62,29 @@ function LoginForm(props) {
           <Col className="inputBox">
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                onChange={props.onChange}
+              />
             </Form.Group>
           </Col>
         </Form.Row>
+        <br />
+        <Button
+          onClick={onLoginButtonClick}
+          className="btn-princ formStyle"
+          style={{
+            width: "300px",
+            height: "70px",
+            fontSize: "40px",
+          }}
+        >
+          Login
+        </Button>
+        <br />
       </Form>
-      <br />
-      <Button
-        onClick={onLoginButtonClick}
-        className="btn-princ formStyle"
-        style={{
-          width: "300px",
-          height: "70px",
-          fontSize: "40px",
-        }}
-      >
-        Login
-      </Button>
-      <br />
     </>
   );
 }

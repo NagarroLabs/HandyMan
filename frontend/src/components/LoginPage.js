@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import LoginForm from "./LoginForm";
 
 import { useHttpClient } from "../shared/hooks/http-hook";
@@ -10,6 +10,9 @@ function LoginPage() {
     password: "",
   });
 
+  const auth = useContext(AuthContext);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
   function handleChange({ target }) {
     setLoginInfo({
       ...loginInfo,
@@ -19,6 +22,21 @@ function LoginPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    try {
+      const responseData = await sendRequest(
+        "http://localhost:3001/api/users/login",
+        "POST",
+        JSON.stringify({
+          email: loginInfo.email,
+          password: loginInfo.password,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+      auth.login(responseData.userId, responseData.token);
+      console.log("logged in");
+    } catch (err) {}
   }
 
   return (

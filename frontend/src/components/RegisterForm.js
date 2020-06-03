@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import logo from "../WhiteLogo.svg";
 import "./RegisterForm.css";
@@ -61,6 +63,11 @@ function RegisterForm(props) {
     props.user.gender.length > 0 &&
     props.user.birthDate.length > 0 &&
     props.user.username.length > 0;
+
+  const routeChange = () => {
+    let path = "/";
+    history.push(path);
+  };
 
   return (
     <>
@@ -253,4 +260,4 @@ RegisterForm.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default RegisterForm;
+export default withRouter(RegisterForm);
