@@ -25,9 +25,8 @@ export default function JobsListingPage(props) {
   } else {
     return (
       <div className="mx-auto">
-        <h1 className="text-center">Jobs Page</h1>
+        <h1 className="text-center m-3">Jobs Page</h1>
         <SearchBox className="" searchChange={onSearchChange} />
-
         <div className="d-block">
           <FilteringSection props={{ jobs, searchField }} />
         </div>

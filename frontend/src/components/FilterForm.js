@@ -21,7 +21,7 @@ export default function FilterForm({ props }) {
     props.applyFilter({ filters });
   };
   return (
-    <form className="text-center m-1 flex-wrap" onSubmit={sendFilters}>
+    <form className="text-center m-2 flex-wrap" onSubmit={sendFilters}>
       <h4 className="font-weight-bold">Refine your results</h4>
       <br />
       <div className="form-group">
@@ -85,7 +85,7 @@ export default function FilterForm({ props }) {
       </div>
       <br />
       <button className="btn btn-primary" type="submit">
-        Submit
+        Search
       </button>
     </form>
   );
