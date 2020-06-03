@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import RegisterForm from "./RegisterForm";
 import { addUser } from "../mock-api/usersApi";
+import { useHttpClient } from "../shared/hooks/http-hook";
+import { AuthContext } from "../shared/context/auth-context";
 
 function RegisterPage() {
   const [user, setUser] = useState({
@@ -15,6 +17,9 @@ function RegisterPage() {
     password: "",
   });
 
+  const auth = useContext(AuthContext);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
   function handleChange({ target }) {
     setUser({
       ...user,
@@ -22,9 +27,31 @@ function RegisterPage() {
     });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    addUser(user);
+    // addUser(user);
+
+    try {
+      const responseData = await sendRequest(
+        "http://localhost:3001/api/users/signup",
+        "POST",
+        JSON.stringify({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          userName: user.username,
+          phone: user.phone,
+          gender: user.gender,
+          birthDate: user.birthDate,
+          password: user.password,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+      auth.login(responseData.userId, responseData.token);
+      console.log("logged in");
+    } catch (err) {}
   }
 
   return (
@@ -34,15 +61,6 @@ function RegisterPage() {
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-      <p className="lettering" style={{ fontSize: "18px" }}>
-        Already have an account?{" "}
-        <a
-          href="/login"
-          style={{ color: "#ffe18a", fontFamily: "Rubik", fontSize: "20px" }}
-        >
-          Sign in
-        </a>
-      </p>
     </>
   );
 }

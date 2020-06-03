@@ -64,11 +64,11 @@ function RegisterForm(props) {
 
   return (
     <>
-      <img src={logo} width="500px" alt="HandyMan" />
-      <br />
-      <h1 className="registerTitle">R e g i s t e r</h1>
-      <br />
-      <Form>
+      <Form className="RegisterLoginPage">
+        <img src={logo} width="500px" alt="HandyMan" />
+        <br />
+        <h1 className="registerTitle">R e g i s t e r</h1>
+        <br />
         <Form.Row>
           <Col className="inputBox">
             <Form.Group>
@@ -210,24 +210,39 @@ function RegisterForm(props) {
           <Col className="inputBox">
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                onChange={props.onChange}
+                //value={props.user.password}
+              />
             </Form.Group>
           </Col>
         </Form.Row>
+        <br />
+        <Button
+          onClick={submitButtonClick}
+          className="btn-princ"
+          style={{
+            width: "300px",
+            height: "70px",
+            fontSize: "40px",
+          }}
+        >
+          Register
+        </Button>
+        <br />
+        <p className="lettering" style={{ fontSize: "18px" }}>
+          Already have an account?{" "}
+          <a
+            href="/login"
+            style={{ color: "#ffe18a", fontFamily: "Rubik", fontSize: "20px" }}
+          >
+            Sign in
+          </a>
+        </p>
       </Form>
-      <br />
-      <Button
-        onClick={submitButtonClick}
-        className="btn-princ"
-        style={{
-          width: "300px",
-          height: "70px",
-          fontSize: "40px",
-        }}
-      >
-        Register
-      </Button>
-      <br />
     </>
   );
 }

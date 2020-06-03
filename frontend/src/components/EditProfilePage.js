@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EditProfileForm from "./EditProfileForm";
-import { addUser } from "../mock-api/usersApi",
+import { addUser } from "../mock-api/usersApi";
 /* eslint-disable */
 
 function EditProfilePage() {

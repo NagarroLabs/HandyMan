@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import logo from "../BlueLogo.svg";
 import "./EditProfileForm.css";
 
-import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -76,6 +75,9 @@ function RegisterForm(props) {
               <div className="alert alert-danger">{errors.firstNameError}</div>
             )}
           </Col>
+        </Form.Row>
+
+        <Form.Row>
           <Col className="inputBox">
             <Form.Group>
               <Form.Label className="orangeLettering">Last name</Form.Label>
@@ -111,6 +113,9 @@ function RegisterForm(props) {
               <div className="alert alert-danger">{errors.emailError}</div>
             )}
           </Col>
+        </Form.Row>
+
+        <Form.Row>
           <Col className="inputBox">
             <Form.Group>
               <Form.Label className="orangeLettering">Phone number</Form.Label>
@@ -128,7 +133,6 @@ function RegisterForm(props) {
           </Col>
         </Form.Row>
 
-        <br />
         <Form.Row>
           <Col
             className="inputBox"
@@ -167,7 +171,6 @@ function RegisterForm(props) {
               <div className="alert alert-danger">{errors.genderError}</div>
             )}
           </Col>
-
           <Col className="inputBox">
             <Form.Group style={{ margin: "auto", padding: "10px" }}>
               <Form.Label className="orangeLettering">Birth Date</Form.Label>
@@ -184,8 +187,6 @@ function RegisterForm(props) {
             )}
           </Col>
         </Form.Row>
-
-        <br />
 
         <Form.Row>
           <Col className="inputBox">
@@ -204,7 +205,9 @@ function RegisterForm(props) {
               <div className="alert alert-danger">{errors.usernameError}</div>
             )}
           </Col>
+        </Form.Row>
 
+        <Form.Row>
           <Col className="inputBox">
             <Form.Group controlId="formBasicPassword">
               <Form.Label className="orangeLettering">Password</Form.Label>

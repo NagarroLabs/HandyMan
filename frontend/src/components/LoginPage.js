@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 
+import { useHttpClient } from "../shared/hooks/http-hook";
+import { AuthContext } from "../shared/context/auth-context";
+
 function LoginPage() {
   const [loginInfo, setLoginInfo] = useState({
     username: "",
@@ -14,7 +17,7 @@ function LoginPage() {
     });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
   }
 

@@ -5,8 +5,10 @@ import AuthRoutes from "./routes/AuthRoutes";
 import NoAuthRoutes from "./routes/NoAuthRoutes";
 import { AuthContext } from "./shared/context/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
+import RegisterPage from "./components/RegisterPage";
+import LoginPage from "./components/LoginPage";
 
-import "./App.css";
+import "./index.css";
 
 const App = () => {
   const { token, userId, login, logout } = useAuth();
@@ -22,9 +24,8 @@ const App = () => {
       }}
     >
       <Router>
-        <div>Insert Navbar component here.</div>
-        <main>{token ? <AuthRoutes /> : <NoAuthRoutes />}</main>
-        <div>Insert Footer component here.</div>
+        <RegisterPage />
+        {/* <main>{token ? <AuthRoutes /> : <NoAuthRoutes />}</main> */}
       </Router>
     </AuthContext.Provider>
   );

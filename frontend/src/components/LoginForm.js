@@ -6,7 +6,7 @@ import "./LoginForm.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col",
+import Col from "react-bootstrap/Col";
 /* eslint-disable */
 
 function LoginForm(props) {
@@ -39,7 +39,7 @@ function LoginForm(props) {
       <br />
       <h1 className="loginTitle">L o g i n</h1>
       <br />
-      <Form className="formStyle">
+      <Form className="RegisterLoginPage">
         <Form.Row>
           <Col className="inputBox">
             <Form.Group>
