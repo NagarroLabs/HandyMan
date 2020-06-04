@@ -3,8 +3,10 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch
+  Switch,
 } from 'react-router-dom';
+
+import JobsListingPage from '../pages/JobsListingPage';
 
 const NoAuthRoutes = () => {
   return (
@@ -12,9 +14,7 @@ const NoAuthRoutes = () => {
       <Route path='/' exact>
         <div>Insert home page component here.</div>
       </Route>
-      <Route path='/jobs' exact>
-        <div>Insert all jobs page component here.</div>
-      </Route>
+      <Route path='/jobs' exact component={JobsListingPage}/>
       <Route path='/auth' exact>
         <div>Insert register/login page component here.</div>
       </Route>

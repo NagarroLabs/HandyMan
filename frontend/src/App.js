@@ -1,12 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import CustomNavbar from './components/CustomNavbar';
 import AuthRoutes from './routes/AuthRoutes';
 import NoAuthRoutes from './routes/NoAuthRoutes';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
-
-import './App.css';
 
 const App = () => {
   const { token, userId, login, logout } = useAuth();
@@ -22,7 +21,9 @@ const App = () => {
       }}
     >
       <Router>
-        <div>Insert Navbar component here.</div>
+        <div>
+          <CustomNavbar />
+        </div>
         <main>{token ? <AuthRoutes /> : <NoAuthRoutes />}</main>
         <div>Insert Footer component here.</div>
       </Router>
