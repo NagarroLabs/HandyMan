@@ -19,18 +19,11 @@ export default function CustomNavbar(props) {
             <span className="navText">About</span>
           </Nav.Link>
           <NavDropdown
-            title={<span className="navText">Dropdown</span>}
+            title={<span className="navText">Dropdown Example</span>}
             id="basic-nav-dropdown"
           >
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
+            <NavDropdown.Item href="/exampleRoute">Action</NavDropdown.Item>
+         
           </NavDropdown>
         </Nav>
         <Nav>
