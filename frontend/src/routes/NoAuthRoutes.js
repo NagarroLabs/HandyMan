@@ -14,9 +14,7 @@ const NoAuthRoutes = () => {
       <Route path="/" exact>
         <div>Insert home page component here.</div>
       </Route>
-      <Route path="/jobs" exact>
-        <JobsListingPage />
-      </Route>
+      <Route path="/jobs" exact component={JobsListingPage}/>
       <Route path="/auth" exact>
         <div>Insert register/login page component here.</div>
       </Route>
