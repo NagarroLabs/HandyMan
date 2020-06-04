@@ -17,7 +17,7 @@ const App = () => {
         token,
         userId,
         login,
-        logout,
+        logout
       }}
     >
       <Router>
