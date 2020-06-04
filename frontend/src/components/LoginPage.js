@@ -6,7 +6,7 @@ import { AuthContext } from "../shared/context/auth-context";
 
 function LoginPage() {
   const [loginInfo, setLoginInfo] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -36,7 +36,9 @@ function LoginPage() {
       );
       auth.login(responseData.userId, responseData.token);
       console.log("logged in");
-    } catch (err) {}
+    } catch (err) {
+      console.log("error" + err);
+    }
   }
 
   return (

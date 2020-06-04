@@ -21,8 +21,8 @@ function LoginForm(props) {
     //   ? (_errors.emailError = "Please enter a valid email!")
     //   : "";
 
-    props.loginInfo.username.length === 0
-      ? (_errors.usernameError = "Username is required!")
+    props.loginInfo.email.length === 0
+      ? (_errors.emailError = "Email is required!")
       : "";
 
     setErrors(_errors);
@@ -43,18 +43,18 @@ function LoginForm(props) {
         <Form.Row>
           <Col className="inputBox">
             <Form.Group>
-              <Form.Label>Username</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
-                placeholder="Username"
-                id="username"
-                name="username"
-                label="Username"
+                placeholder="email"
+                id="email"
+                name="email"
+                label="email"
                 onChange={props.onChange}
-                value={props.loginInfo.username}
+                value={props.loginInfo.email}
               />
             </Form.Group>
-            {errors.usernameError && (
-              <div className="alert alert-danger">{errors.usernameError}</div>
+            {errors.emailError && (
+              <div className="alert alert-danger">{errors.emailError}</div>
             )}
           </Col>
         </Form.Row>

@@ -20,7 +20,7 @@ const NoAuthRoutes = () => {
       </Route>
       <Route path="/signup" exact component={RegisterPage} />
       <Route path="/login" exact component={LoginPage} />
-      <Redirect to="/auth" />
+      <Redirect to="/signup" />
     </Switch>
   );
 };
