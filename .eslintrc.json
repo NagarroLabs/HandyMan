@@ -1,9 +1,12 @@
 {
+  "parser": "babel-eslint"
+}
+
   "env": {
     "browser": true,
     "node": true
   },
-  "extends": ["airbnb", "airbnb/hooks"],
+  // "extends": ["airbnb", "airbnb/hooks"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
