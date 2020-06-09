@@ -173,12 +173,13 @@ const login = async (req, res, next) => {
 };
 
 const updateUser = async (req, res, next) => {
-  const { firstName, lastName, phone, birthDate } = req.body;
+
+  const { firstName, lastName, phone, birthDate, email } = req.body;
   const { userId } = req.params;
 
   let user;
   try {
-    user = await User.findById(userId, '-password');
+    user = await User.findById(userId);
   } catch (err) {
     return next(
       new HttpError('Something went wrong, could not find a user', 500)
@@ -193,19 +194,59 @@ const updateUser = async (req, res, next) => {
   user.lastName = lastName;
   user.phone = phone;
   user.birthDate = new Date(birthDate);
+  user.email = email;
 
   try {
     await user.save();
   } catch (err) {
-    const error = new HttpError('Updating place failed.', 500);
+    const error = new HttpError('Updating user failed.', 500);
     return next(error);
   }
 
-  res.status(200).json({ user: user.toObject({ getters: true }) });
+  res.status(200).json({
+    user: user.toObject({ getters: true })
+  });
 };
+
+const updatePassword = async(req, res, next) => {
+  const { password } = req.body;
+  const { userId } = req.params;
+
+  let user;
+  try {
+    user = await User.findById(userId);
+  } catch (err) {
+    return next(
+      new HttpError('Something went wrong, could not find a user', 500)
+    );
+  }
+
+  if (userId !== req.userData.userId) {
+    return next(new HttpError('You do not have password edit privileges.', 401));
+  }
+
+  let hashedPassword;
+  try {
+    hashedPassword = await bcrypt.hash(password, 12);
+  } catch (err) {
+    return next(new HttpError('Could not update user password, please try again', 500));
+  }
+
+  user.password = hashedPassword;
+
+  try {
+    await user.save();
+  } catch (err) {
+    const error = new HttpError('Updating user password failed.', 500);
+    return next(error);
+  }
+
+  res.status(200).json("Update succeeded.");
+}
 
 exports.getUsers = getUsers;
 exports.signup = signup;
 exports.login = login;
 exports.getUserById = getUserById;
 exports.updateUser = updateUser;
+exports.updatePassword = updatePassword;
