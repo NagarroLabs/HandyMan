@@ -8,14 +8,13 @@ const HttpError = require("../models/http-error");
 const User = require("../models/users");
 
 module.exports = {
-  requireFirstName: check("firstName")
-    .not()
-    .isEmpty()
+
+  requireFirstName: check('firstName')
+    .not().isEmpty()
     .trim()
-    .withMessage("First name must not be empty."),
-  requireLastName: check("lastName")
-    .not()
-    .isEmpty()
+    .withMessage('First name must not be empty.'),
+  requireLastName: check('lastName')
+    .not().isEmpty()
     .trim()
     .withMessage("Last name must not be empty."),
   requirePassword: check("password")
@@ -36,7 +35,11 @@ module.exports = {
       }
 
       if (existingUser) {
-        throw new HttpError("User exists already, please login instead.", 422);
+
+        throw new HttpError(
+          'User exists already, please login instead.',
+          422
+        );
       }
       return true;
     }),
@@ -61,25 +64,25 @@ module.exports = {
       }
       return true;
     }),
-  requirePhone: check("phone")
+  requirePhone: check('phone')
     .not()
     .isEmpty()
     .trim()
-    .withMessage("Phone must not be empty.")
+    .withMessage('Phone must not be empty.')
     .custom(async (phone) => {
       let existingUser;
       try {
         existingUser = await User.findOne({ phone });
       } catch (err) {
-        throw new HttpError("Signing up failed, please try again", 500);
+        throw new HttpError('Signing up failed, please try again', 500);
       }
 
       if (existingUser) {
         throw new HttpError(
-          "Phone is already in use, please enter a different one.",
+          'Phone is already in use, please enter a different one.',
           422
         );
       }
       return true;
-    }),
+    })
 };

@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users/', usersRouter);
 app.use(handyManRouter);
-app.use(jobsRouter);
+app.use('/api/jobs/',jobsRouter);
 app.use(reviewsRouter);
 
 app.use((req, res, next) => {

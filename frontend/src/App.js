@@ -13,10 +13,6 @@ import CustomNavbar from './components/CustomNavbar';
 
 import "./index.css";
 
-
-
-
-
 const App = () => {
   const { token, userId, login, logout } = useAuth();
 
