@@ -15,7 +15,7 @@ export default function AddJobPage() {
     jobStartDate: '',
     jobCompletionFrame: '',
     jobReqSkills: [],
-    jobDifficulty: '',
+    jobDifficulty: 1,
     jobCountry: '',
     jobCity: '',
     jobAddress: '',
@@ -29,6 +29,27 @@ export default function AddJobPage() {
       [target.name]: target.value,
     });
   }
+
+  function getData({
+    country,
+    region,
+    jobStartDate,
+    jobCompletionTimeFrame,
+    skillList,
+    jobDifficulty,
+  }) {
+    setJob({
+      ...job,
+      jobCountry: country,
+      jobCity: region,
+      jobStartDate: jobStartDate,
+      jobCompletionFrame: jobCompletionTimeFrame,
+      jobReqSkills: skillList,
+      jobDifficulty: jobDifficulty,
+    });
+  }
+
+  console.log(job);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -60,7 +81,12 @@ export default function AddJobPage() {
 
   return (
     <div>
-      <AddJobForm job={job} onChange={handleChange} onSubmit={handleSubmit} />
+      <AddJobForm
+        job={job}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        sendData={getData}
+      />
     </div>
   );
 }

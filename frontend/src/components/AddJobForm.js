@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, Text } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import StarRatings from 'react-star-ratings';
 export default function AddJobForm(props) {
   const specializations = ['Finance', 'Account Executive', 'Technology'];
   const [country, setCountry] = useState('Romania');
@@ -8,74 +9,207 @@ export default function AddJobForm(props) {
   const [jobStartDate, setStartDate] = useState('');
   const [jobCompletionTimeFrame, setTimeFrame] = useState('');
   const [skill, setSkill] = useState('');
-  const sendForm = (e) => {};
+  const [skillList, setSkillList] = useState([]);
+  const [jobDifficulty, setDifficulty] = useState(0);
+  const [showSkills, setShowSkills] = useState(false);
+  const sendForm = (event) => {
+    event.preventDefault();
+    props.sendData({
+      country,
+      region,
+      jobStartDate,
+      jobCompletionTimeFrame,
+      skillList,
+      jobDifficulty,
+    });
+    props.onSubmit(event);
+  };
 
   const handleSkill = (e) => {
-    if (e.key === 'Enter') {
-      console.log('Pressed');
-    }
+    setSkillList([...skillList, skill]);
+    setSkill('');
   };
+
+  function updateSkill({ target }) {
+    setSkill(target.value);
+  }
+
+  function displaySkills() {
+    setShowSkills(!showSkills);
+  }
 
   return (
     <div className="row justify-content-md-center">
       <form className="text-center m-2 col-xs-4 col-md-4" onSubmit={sendForm}>
+        {/* Name */}
         <div>
-          <label className="m-2 font-weight-bold" htmlFor="jobName">
-            Name of the job
-          </label>
+          <label className="m-3 font-weight-bold">Name of the job</label>
           <br />
           <input
             id="jobName"
             className=""
             type="text"
+            size="50"
             name="jobName"
             placeholder="Name"
             value={props.job.jobName}
             onChange={props.onChange}
           />
         </div>
-
-        <div className="form-group">
-          <label className="m-2 font-weight-bold" htmlFor="jobDescription">
-            Enter a description for the job
-          </label>
+        {/* Description */}
+        <div>
+          <label className="m-3 font-weight-bold">Job Description</label>
           <br />
           <textarea
             id="jobDescription"
             name="jobDescription"
-            placeHolder="Description"
+            placeholder="Description"
             cols="50"
             rows="4"
             value={props.job.jobDescription}
             onChange={props.onChange}
           />
         </div>
+        {/* Category */}
         <div>
-          <DateTimePicker
-            disableClock={true}
-            onChange={setStartDate}
-            value={jobStartDate}
-          />
+          <label className="m-3 font-weight-bold">Category for the job</label>
+          <select
+            id="jobCategory"
+            value={props.job.jobCategory}
+            name="jobCategory"
+            onChange={props.onChange}
+          >
+            <option value="">Choose...</option>
+            {specializations.map((cat) => (
+              <option key={cat} value={cat.toLowerCase()}>
+                {cat}
+              </option>
+            ))}
+          </select>
         </div>
+        {/* Budget */}
         <div>
-          Enter the required skills for this job
+          <label className="m-3 font-weight-bold">Job Budget</label>
           <input
-            className="form-control"
-            type="text"
-            onKeyDown={handleSkill}
-            value={skill}
+            className="text-center"
+            min="0"
+            max="10000000"
+            type="number"
+            name="jobBudget"
+            placeholder="1000"
+            value={props.job.jobBudget}
             onChange={props.onChange}
           />
         </div>
+        {/* Starting date */}
         <div>
-          <CountryDropdown value={country} onChange={setCountry} />
-          <RegionDropdown
-            country={country}
-            value={region}
-            onChange={setRegion}
+          <label className="m-2 font-weight-bold">
+            Starting date of the job
+          </label>
+          <DateTimePicker
+            disableClock={true}
+            name="jobStartDate"
+            value={jobStartDate}
+            onChange={setStartDate}
           />
         </div>
-        <button className="btn btn-primary" type="submit">
+        {/* Completion time frame */}
+        <div>
+          <label className="m-2 font-weight-bold">Ending date of the job</label>
+          <DateTimePicker
+            disableClock={true}
+            name="jobCompletionTimeFrame"
+            value={jobCompletionTimeFrame}
+            onChange={setTimeFrame}
+          />
+        </div>
+        {/* Required Skills */}
+        <div>
+          <label className="m-2 font-weight-bold">
+            Required skills for the job
+          </label>
+          <input
+            className="m-2"
+            id="jobReqSkills"
+            type="text"
+            name="jobReqSkills"
+            value={skill}
+            onChange={updateSkill}
+          />
+          <br />
+          <button
+            type="button"
+            className="m-2 btn btn-outline-success"
+            onClick={handleSkill}
+          >
+            Add skill
+          </button>
+          <button
+            type="button"
+            className="m-2 btn btn-outline-info"
+            onClick={displaySkills}
+          >
+            Show added skills
+          </button>
+          {showSkills ? (
+            <div>
+              {skillList.map((skill) => (
+                <span key={skill}>{skill}, </span>
+              ))}
+            </div>
+          ) : null}
+        </div>
+        {/* JobDifficulty */}
+        <div>
+          <label className="m-2 font-weight-bold">
+            Rate the difficulty of the job
+          </label>
+          <StarRatings
+            rating={jobDifficulty}
+            starRatedColor="rgb(109,33,60)"
+            starHoverColor="rgb(109,33,60)"
+            changeRating={setDifficulty}
+            numberOfStars={6}
+            name="jobDifficulty"
+          />
+        </div>
+        {/* Country and Region */}
+        <div>
+          <label className="m-2 font-weight-bold">
+            Choose the location for the job
+          </label>
+          <div>
+            <CountryDropdown
+              className="m-2"
+              value={country}
+              onChange={setCountry}
+            />
+            <RegionDropdown
+              className="m-2"
+              country={country}
+              value={region}
+              onChange={setRegion}
+            />
+          </div>
+        </div>
+        {/* Address */}
+        <div>
+          <label className="m-2 font-weight-bold">
+            Write the address for the job
+          </label>
+          <br />
+          <input
+            id="jobAddress"
+            size="50"
+            type="text"
+            name="jobAddress"
+            placeholder="Address"
+            value={props.job.jobAddress}
+            onChange={props.onChange}
+          />
+        </div>
+        {/* Submit */}
+        <button className="m-3 btn btn-primary" type="submit">
           Submit job
         </button>
       </form>
