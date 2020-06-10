@@ -45,7 +45,7 @@ function LoginForm(props) {
             <Form.Group>
               <Form.Label>Email</Form.Label>
               <Form.Control
-                placeholder="email"
+                placeholder="Email"
                 id="email"
                 name="email"
                 label="email"

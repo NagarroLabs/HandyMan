@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class ErrorBoundry extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class ErrorBoundry extends Component {
 
   render() {
     if (this.state.hasError) {
-      console.log(error);
+      console.log(this.state.hasError);
     }
     return this.props.children;
   }

@@ -9,8 +9,7 @@ import {
   Switch,
 } from "react-router-dom";
 
-
-import JobsListingPage from '../pages/JobsListingPage';
+import JobsListingPage from "../pages/JobsListingPage";
 
 const NoAuthRoutes = () => {
   return (
@@ -23,14 +22,11 @@ const NoAuthRoutes = () => {
       </Route>
       <Route path="/signup" exact component={RegisterPage} />
       <Route path="/login" exact component={LoginPage} />
-      <Redirect to="/signup" />
-
-      <Route path='/jobs' exact component={JobsListingPage}/>
-      <Route path='/auth' exact>
+      <Route path="/jobs" exact component={JobsListingPage} />
+      <Route path="/auth" exact>
         <div>Insert register/login page component here.</div>
       </Route>
-      <Redirect to='/auth' />
-
+      <Redirect to="/auth" />
     </Switch>
   );
 };

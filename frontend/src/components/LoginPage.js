@@ -3,6 +3,10 @@ import LoginForm from "./LoginForm";
 
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { AuthContext } from "../shared/context/auth-context";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
 
 function LoginPage() {
   const [loginInfo, setLoginInfo] = useState({
@@ -35,9 +39,15 @@ function LoginPage() {
         }
       );
       auth.login(responseData.userId, responseData.token);
-      console.log("logged in");
+      toast.success("Logged in successfully!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     } catch (err) {
-      console.log("error" + err);
+      toast.error("Invalid email or password!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: false,
+      });
     }
   }
 

@@ -3,6 +3,8 @@ import RegisterForm from "./RegisterForm";
 import { addUser } from "../mock-api/usersApi";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { AuthContext } from "../shared/context/auth-context";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function RegisterPage() {
   const [user, setUser] = useState({
@@ -29,7 +31,6 @@ function RegisterPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    // addUser(user);
 
     try {
       const responseData = await sendRequest(
@@ -50,8 +51,17 @@ function RegisterPage() {
         }
       );
       auth.login(responseData.userId, responseData.token);
-      console.log("logged in");
-    } catch (err) {}
+      toast.success("Account successfully created!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
+    } catch (err) {
+      console.log(err);
+      toast.error("Email or username already taken!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: false,
+      });
+    }
   }
 
   return (

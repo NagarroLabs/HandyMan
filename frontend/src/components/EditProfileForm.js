@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import logo from "../BlueLogo.svg";
-import "./EditProfileForm.css";
+import logo from "../WhiteLogo.svg";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+
 /* eslint-disable */
 
-function RegisterForm(props) {
+export default function EditProfileForm(props) {
   const [errors, setErrors] = useState({});
 
   function formIsValid() {
@@ -52,17 +53,26 @@ function RegisterForm(props) {
     formIsValid();
   };
 
+  const isEnabled =
+    props.user.firstName.length > 0 &&
+    props.user.lastName.length > 0 &&
+    props.user.email.length > 0 &&
+    props.user.phone.length > 0 &&
+    props.user.gender.length > 0 &&
+    props.user.birthDate.length > 0 &&
+    props.user.username.length > 0;
+
   return (
     <>
-      <img src={logo} width="500px" alt="HandyMan" />
-      <br />
-      <h1 className="editProfileTitle">E d i t P r o f i l e</h1>
-      <br />
-      <Form>
+      <Form className="EditProfilePage">
+        <img src={logo} width="500px" alt="HandyMan" />
+        <br />
+        <h1 className="editProfileTitle">E d i t P r o f i l e</h1>
+        <br />
         <Form.Row>
           <Col className="inputBox">
             <Form.Group>
-              <Form.Label className="orangeLettering">First name</Form.Label>
+              <Form.Label>First name</Form.Label>
               <Form.Control
                 placeholder="First name"
                 id="firstName"
@@ -75,12 +85,9 @@ function RegisterForm(props) {
               <div className="alert alert-danger">{errors.firstNameError}</div>
             )}
           </Col>
-        </Form.Row>
-
-        <Form.Row>
           <Col className="inputBox">
             <Form.Group>
-              <Form.Label className="orangeLettering">Last name</Form.Label>
+              <Form.Label>Last name</Form.Label>
               <Form.Control
                 placeholder="Last name"
                 id="lastName"
@@ -99,7 +106,7 @@ function RegisterForm(props) {
         <Form.Row>
           <Col className="inputBox">
             <Form.Group>
-              <Form.Label className="orangeLettering">Email</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
@@ -113,12 +120,9 @@ function RegisterForm(props) {
               <div className="alert alert-danger">{errors.emailError}</div>
             )}
           </Col>
-        </Form.Row>
-
-        <Form.Row>
           <Col className="inputBox">
             <Form.Group>
-              <Form.Label className="orangeLettering">Phone number</Form.Label>
+              <Form.Label>Phone number</Form.Label>
               <Form.Control
                 placeholder="Phone number"
                 id="phone"
@@ -133,6 +137,7 @@ function RegisterForm(props) {
           </Col>
         </Form.Row>
 
+        <br />
         <Form.Row>
           <Col
             className="inputBox"
@@ -141,12 +146,7 @@ function RegisterForm(props) {
               marginLeft: "150px",
             }}
           >
-            <Form.Label
-              style={{ marginLeft: "20px" }}
-              className="orangeLettering"
-            >
-              Gender
-            </Form.Label>
+            <Form.Label style={{ marginLeft: "20px" }}>Gender</Form.Label>
             <div key={`inline-radio`} style={{ color: "white" }}>
               <Form.Check
                 inline
@@ -155,7 +155,6 @@ function RegisterForm(props) {
                 name="gender"
                 onChange={props.onChange}
                 value="male"
-                className="orangeLettering"
               />
               <Form.Check
                 inline
@@ -164,16 +163,16 @@ function RegisterForm(props) {
                 name="gender"
                 onChange={props.onChange}
                 value="female"
-                className="orangeLettering"
               />
             </div>
             {errors.genderError && (
               <div className="alert alert-danger">{errors.genderError}</div>
             )}
           </Col>
+
           <Col className="inputBox">
             <Form.Group style={{ margin: "auto", padding: "10px" }}>
-              <Form.Label className="orangeLettering">Birth Date</Form.Label>
+              <Form.Label>Birthday</Form.Label>
               <Form.Control
                 style={{ width: "240px" }}
                 type="date"
@@ -188,10 +187,12 @@ function RegisterForm(props) {
           </Col>
         </Form.Row>
 
+        <br />
+
         <Form.Row>
           <Col className="inputBox">
             <Form.Group>
-              <Form.Label className="orangeLettering">Username</Form.Label>
+              <Form.Label>Username</Form.Label>
               <Form.Control
                 placeholder="Username"
                 id="username"
@@ -205,38 +206,39 @@ function RegisterForm(props) {
               <div className="alert alert-danger">{errors.usernameError}</div>
             )}
           </Col>
-        </Form.Row>
 
-        <Form.Row>
           <Col className="inputBox">
             <Form.Group controlId="formBasicPassword">
-              <Form.Label className="orangeLettering">Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Label>New Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                onChange={props.onChange}
+              />
             </Form.Group>
           </Col>
         </Form.Row>
+        <br />
+        <Button
+          onClick={submitButtonClick}
+          className="btn-princ"
+          style={{
+            width: "300px",
+            height: "70px",
+            fontSize: "40px",
+          }}
+        >
+          Update profile
+        </Button>
+        <br />
       </Form>
-      <br />
-      <Button
-        onClick={submitButtonClick}
-        className="btn-other"
-        style={{
-          width: "300px",
-          height: "70px",
-          fontSize: "40px",
-        }}
-      >
-        Register
-      </Button>
-      <br />
     </>
   );
 }
 
-RegisterForm.propTypes = {
+EditProfileForm.propTypes = {
   user: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };
-
-export default RegisterForm;

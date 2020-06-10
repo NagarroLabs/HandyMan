@@ -64,11 +64,6 @@ function RegisterForm(props) {
     props.user.birthDate.length > 0 &&
     props.user.username.length > 0;
 
-  const routeChange = () => {
-    let path = "/";
-    history.push(path);
-  };
-
   return (
     <>
       <Form className="RegisterLoginPage">
@@ -179,7 +174,7 @@ function RegisterForm(props) {
 
           <Col className="inputBox">
             <Form.Group style={{ margin: "auto", padding: "10px" }}>
-              <Form.Label>birthDate</Form.Label>
+              <Form.Label>Birthday</Form.Label>
               <Form.Control
                 style={{ width: "240px" }}
                 type="date"
@@ -222,7 +217,6 @@ function RegisterForm(props) {
                 placeholder="Password"
                 name="password"
                 onChange={props.onChange}
-                //value={props.user.password}
               />
             </Form.Group>
           </Col>
@@ -260,4 +254,4 @@ RegisterForm.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default withRouter(RegisterForm);
+export default RegisterForm;
