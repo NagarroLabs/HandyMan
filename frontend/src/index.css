@@ -133,20 +133,18 @@ body {
 .form-label {
   font-family: "Rubik", sans-serif;
   font-weight: 00;
-  font-size: 16px;
+  font-size: 20px;
   color: #ffffff;
   padding: 2px 19px;
 }
 
 .form-control {
-  align-self: center;
+  align-self: flex-end;
   border-radius: 10px !important;
   background-color: rgba(255, 255, 255, 0.3) !important;
   font-family: "Rubik", sans-serif;
   font-weight: 40;
-  font-size: 30px;
-  color: #ffffff !important;
+  font-size: 24px;
+  color: #161032 !important;
   margin: 10px;
-  height: 50px;
-  width: 500px;
 }

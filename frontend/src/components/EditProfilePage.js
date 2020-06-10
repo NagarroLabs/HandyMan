@@ -24,18 +24,6 @@ function EditProfilePage() {
     password: "",
   });
 
-  const [user, setUser] = useState({
-    id: null,
-    firstName: "",
-    lastName: "",
-    email: "",
-    username: "",
-    phone: "",
-    gender: "",
-    birthDate: "",
-    password: "",
-  });
-
   const auth = useContext(AuthContext);
   const userId = auth.userId;
 
@@ -64,15 +52,45 @@ function EditProfilePage() {
     });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    addUser(user);
+
+    try {
+      const url = "http://localhost:3001/api/users/update/" + userId;
+      const responseData = await sendRequest(
+        url,
+        "POST",
+        JSON.stringify({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          userName: user.username,
+          phone: user.phone,
+          gender: user.gender,
+          birthDate: user.birthDate,
+          password: user.password,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+      auth.login(responseData.userId, responseData.token);
+      toast.success("Account successfully upated!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
+    } catch (err) {
+      console.log(err);
+      toast.error("SOmething went wrong.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: false,
+      });
+    }
   }
 
   return (
     <>
       {/* {getUserInfo()} */}
-      {/* {console.log(loadedUsers.firstName)} */}
       <EditProfileForm
         user={loadedUser}
         onChange={handleChange}

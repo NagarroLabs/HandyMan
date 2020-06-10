@@ -146,8 +146,15 @@ export default function EditProfileForm(props) {
               marginLeft: "150px",
             }}
           >
-            <Form.Label style={{ marginLeft: "20px" }}>Gender</Form.Label>
-            <div key={`inline-radio`} style={{ color: "white" }}>
+            <Form.Label style={{ marginLeft: "10px", marginRight: "150px" }}>
+              Gender
+            </Form.Label>
+            <div
+              key={`inline-radio`}
+              style={{
+                color: "white",
+              }}
+            >
               <Form.Check
                 inline
                 type="radio"
@@ -171,7 +178,9 @@ export default function EditProfileForm(props) {
           </Col>
 
           <Col className="inputBox">
-            <Form.Group style={{ margin: "auto", padding: "10px" }}>
+            <Form.Group
+            // style={{ margin: "auto"}}
+            >
               <Form.Label>Birthday</Form.Label>
               <Form.Control
                 style={{ width: "240px" }}
