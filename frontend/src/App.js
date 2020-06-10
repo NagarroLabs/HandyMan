@@ -6,9 +6,12 @@ import AuthRoutes from "./routes/AuthRoutes";
 import NoAuthRoutes from "./routes/NoAuthRoutes";
 import { AuthContext } from "./shared/context/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
+import RegisterPage from "./components/RegisterPage";
+import LoginPage from "./components/LoginPage";
 import CustomNavbar from "./components/CustomNavbar";
-
 import EditProfilePage from "./components/EditProfilePage";
+
+import "./index.css";
 
 const App = () => {
   const { token, userId, login, logout } = useAuth();

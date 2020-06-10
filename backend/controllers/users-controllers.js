@@ -174,7 +174,7 @@ const login = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
 
-  const { firstName, lastName, phone, birthDate, email, password } = req.body;
+  const { firstName, lastName, phone, birthDate, email } = req.body;
   const { userId } = req.params;
 
   let user;
@@ -188,13 +188,6 @@ const updateUser = async (req, res, next) => {
 
   if (userId !== req.userData.userId) {
     return next(new HttpError('You do not have edit privileges.', 401));
-  }
-
-  let hashedPassword;
-  try {
-    hashedPassword = await bcrypt.hash(password, 12);
-  } catch (err) {
-    return next(new HttpError('Could not create user, please try again', 500));
   }
 
   user.firstName = firstName;

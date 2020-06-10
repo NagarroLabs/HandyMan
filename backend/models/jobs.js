@@ -48,7 +48,7 @@ const jobSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  jobAdress: {
+  jobAddress: {
     type: String,
     required: true
   },
