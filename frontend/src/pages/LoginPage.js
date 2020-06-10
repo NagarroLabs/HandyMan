@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react";
-import LoginForm from "./LoginForm";
+import React, { useState, useContext } from 'react';
+import LoginForm from '../components/LoginForm';
 
-import { useHttpClient } from "../shared/hooks/http-hook";
-import { AuthContext } from "../shared/context/auth-context";
+import { useHttpClient } from '../shared/hooks/http-hook';
+import { AuthContext } from '../shared/context/auth-context';
 
 function LoginPage() {
   const [loginInfo, setLoginInfo] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const auth = useContext(AuthContext);
@@ -24,20 +24,20 @@ function LoginPage() {
     event.preventDefault();
     try {
       const responseData = await sendRequest(
-        "http://localhost:3001/api/users/login",
-        "POST",
+        'http://localhost:3001/api/users/login',
+        'POST',
         JSON.stringify({
           email: loginInfo.email,
           password: loginInfo.password,
         }),
         {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         }
       );
       auth.login(responseData.userId, responseData.token);
-      console.log("logged in");
+      console.log('logged in');
     } catch (err) {
-      console.log("error" + err);
+      console.log('error' + err);
     }
   }
 

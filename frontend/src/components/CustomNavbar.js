@@ -1,9 +1,13 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import './CustomNavbar.css';
 import logo from '../icons/Logo_orizontal.svg';
+import { AuthContext } from '../shared/context/auth-context';
 
 export default function CustomNavbar(props) {
+  const auth = useContext(AuthContext);
+  const isLoggedIn = auth.isLoggedIn;
   return (
     <Navbar className="navbar" expand="lg">
       <Navbar.Brand href="/">
@@ -18,21 +22,44 @@ export default function CustomNavbar(props) {
           <Nav.Link href="/about">
             <span className="navText">About</span>
           </Nav.Link>
-          <NavDropdown
-            title={<span className="navText">Dropdown Example</span>}
-            id="basic-nav-dropdown"
-          >
-            <NavDropdown.Item href="/exampleRoute">Action</NavDropdown.Item>
-         
-          </NavDropdown>
+          {isLoggedIn ? (
+            <NavDropdown
+              title={<span className="navText">Jobs</span>}
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item href="/jobs/new">Add Jobs</NavDropdown.Item>
+              <NavDropdown.Item href="/exampleRoute">
+                Edit Jobs
+              </NavDropdown.Item>
+            </NavDropdown>
+          ) : (
+            <></>
+          )}
         </Nav>
         <Nav>
-          <Nav.Link href="/register">
-            <span className="navText">Register</span>
-          </Nav.Link>
-          <Nav.Link href="/login">
-            <span className="navText">Log In</span>
-          </Nav.Link>
+          {isLoggedIn ? (
+            <NavDropdown
+              alignRight
+              title={<span className="navText">Profile</span>}
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item href="/editProfile">
+                Edit Profile
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/" onChange={auth.logout}>
+                Log Out
+              </NavDropdown.Item>
+            </NavDropdown>
+          ) : (
+            <>
+              <Nav.Link href="/register">
+                <span className="navText">Register</span>
+              </Nav.Link>
+              <Nav.Link href="/login">
+                <span className="navText">Log In</span>
+              </Nav.Link>
+            </>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

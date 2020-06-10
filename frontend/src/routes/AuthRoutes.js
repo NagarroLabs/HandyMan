@@ -3,28 +3,28 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch
+  Switch,
 } from 'react-router-dom';
+
+import AddJobPage from '../pages/AddJobPage';
 
 const AuthRoutes = () => {
   return (
     <Switch>
-      <Route path='/' exact>
-        <div>Insert home page component here.</div>
+      <Route path="/" exact>
+        <div>Insert home auth page component here.</div>
       </Route>
-      <Route path='/jobs' exact>
+      <Route path="/jobs" exact>
         <div>Insert all jobs page component here.</div>
       </Route>
-      <Route path='/jobs/new' exact>
-        <div>Insert job creation page component here.</div>
-      </Route>
-      <Route path='/jobs/:jobId' exact>
+      <Route path="/jobs/new" exact component={AddJobPage} />
+      <Route path="/jobs/:jobId" exact>
         <div>Insert job page component here.</div>
       </Route>
-      <Route path='/:userId/jobs' exact>
+      <Route path="/:userId/jobs" exact>
         <div>Insert user-created jobs component here.</div>
       </Route>
-      <Redirect to='/' />
+      <Redirect to="/" />
     </Switch>
   );
 };

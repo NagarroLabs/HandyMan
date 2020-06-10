@@ -22,7 +22,7 @@ export const useAuth = () => {
       JSON.stringify({
         userId: uid,
         token: _token,
-        expiration: tokenExpirationDate.toISOString()
+        expiration: tokenExpirationDate.toISOString(),
       })
     );
   }, []);
@@ -67,7 +67,7 @@ export const useAuth = () => {
     userId,
     token,
     login,
-    logout
+    logout,
   };
 
   /* These will be available in any component (will allow you to check

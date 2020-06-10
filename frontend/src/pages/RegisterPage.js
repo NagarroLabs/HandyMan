@@ -1,20 +1,19 @@
-import React, { useState, useContext } from "react";
-import RegisterForm from "./RegisterForm";
-import { addUser } from "../mock-api/usersApi";
-import { useHttpClient } from "../shared/hooks/http-hook";
-import { AuthContext } from "../shared/context/auth-context";
+import React, { useState, useContext } from 'react';
+import RegisterForm from '../components/RegisterForm';
+import { useHttpClient } from '../shared/hooks/http-hook';
+import { AuthContext } from '../shared/context/auth-context';
 
 function RegisterPage() {
   const [user, setUser] = useState({
     id: null,
-    firstName: "",
-    lastName: "",
-    email: "",
-    username: "",
-    phone: "",
-    gender: "",
-    birthDate: "",
-    password: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    username: '',
+    phone: '',
+    gender: '',
+    birthDate: '',
+    password: '',
   });
 
   const auth = useContext(AuthContext);
@@ -33,8 +32,8 @@ function RegisterPage() {
 
     try {
       const responseData = await sendRequest(
-        "http://localhost:3001/api/users/signup",
-        "POST",
+        'http://localhost:3001/api/users/signup',
+        'POST',
         JSON.stringify({
           firstName: user.firstName,
           lastName: user.lastName,
@@ -46,11 +45,11 @@ function RegisterPage() {
           password: user.password,
         }),
         {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         }
       );
       auth.login(responseData.userId, responseData.token);
-      console.log("logged in");
+      console.log('logged in');
     } catch (err) {}
   }
 

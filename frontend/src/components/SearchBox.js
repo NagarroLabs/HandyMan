@@ -5,7 +5,7 @@ function SearchBox({ searchChange }) {
     <form className="form-inline d-flex justify-content-center md-form form-sm mt-0 m-3">
       <i className="fas fa-search" area-hidden="true"></i>
       <input
-        className="form-control form-control w-auto"
+        className="form-control w-auto"
         type="text"
         name="name"
         id="name"
