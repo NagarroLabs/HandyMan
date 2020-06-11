@@ -1,0 +1,21 @@
+.btn-princ {
+  background-color: #E9810A;
+}
+
+.btn-princ:active {
+  top: 1px;
+  background-color: rgb(231, 155, 68);
+}
+
+.btn-sec {
+  background-color: #6D213C;
+}
+
+.btn-sec:active {
+  top: 1px;
+  background-color: rgb(155, 46, 84);
+}
+
+.progress-bar {
+  background-color: #E9810A;
+}

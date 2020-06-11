@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ProgressBar from 'react-bootstrap/ProgressBar';
@@ -11,15 +12,14 @@ import Card from 'react-bootstrap/Card';
 
 const now = 60;
 
-class App extends Component {
+function App() {
   
-  render() {
     return (
       <div>
         <div className="app" >
           <br />
           <>
-            <style type="text/css">
+            {/* <style type="text/css">
               {`
               .btn-princ {
                 background-color:#E9810A;
@@ -45,9 +45,9 @@ class App extends Component {
               }
 
               `}
-            </style>
+            </style> */}
 
-            <Button variant="princ" >
+            <Button className="btn-princ" >
               Register
             </Button>
             <Button variant="sec" >
@@ -138,6 +138,6 @@ class App extends Component {
 
     );
   }
-}
+
 
 export default App;

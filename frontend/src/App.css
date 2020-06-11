@@ -5,14 +5,14 @@
 }
 
 .form-control {
-  width: 30% !important;
-  border-radius: 10px !important;
-  padding:11px 19px !important;
-  background-color: rgba(255,255,255,0.3) !important;
+  width: 30%;
+  border-radius: 10px;
+  padding:9px 19px;
+  background-color: rgba(255,255,255,0.3);
   font-family:'Rubik', sans-serif;
   font-weight:400;
   font-size: 14px;
-  color:#FFFFFF !important;
+  color:#FFFFFF;
   margin: 10px;
 }
 
@@ -34,16 +34,16 @@
 
 .btn {
   display:inline-block;
-  padding:11px 19px !important;
-  margin:0 5px 5px 0 !important;
-  border-radius:20px !important;
-  border-color: white !important; 
-  box-sizing: border-box !important;
+  padding:11px 19px;
+  margin:0 5px 5px 0;
+  border-radius:20px;
+  border-color: white; 
+  box-sizing: border-box;
   font-family:'Rubik', sans-serif;
-  font-weight:400 !important;
-  font-size: 14px !important;
-  color:#FFFFFF !important;
-  box-shadow:inset 0 -9.6px 0 -5.6px rgba(0,0,0,0.17) !important;
+  font-weight:400;
+  font-size: 14px;
+  color:#FFFFFF;
+  box-shadow:inset 0 -9.6px 0 -5.6px rgba(0,0,0,0.17);
   text-align:center;
 }
 
@@ -64,11 +64,11 @@
 
 .progress{
   width: 31%;
-  border-radius:20px !important;
+  border-radius:20px ;
   font-family:'Rubik', sans-serif;
-  font-weight:200 !important;
-  font-size: 14px !important;
-  color:#FFFFFF !important;
+  font-weight:200;
+  font-size: 14px;
+  color:#FFFFFF;
 }
 
 .card-body{
