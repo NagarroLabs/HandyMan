@@ -46,6 +46,12 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Types.ObjectId,
       ref: 'HandyMan'
     }
+  ],
+  jobsAdded: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: 'Job'
+    }
   ]
 });
 
