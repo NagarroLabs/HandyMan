@@ -1,5 +1,65 @@
+
+.RegisterLoginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #161032;
+  padding: 10px 10px;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+.EditProfilePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #ffe1a8;
+  padding: 10px 10px;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+.formStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+.inputBox {
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.lettering {
+  color: white;
+  font-family: "Rubik", sans-serif;
+}
+
+.orangeLettering {
+  color: #e9810a;
+  font-family: "Rubik", sans-serif;
+  font-size: 24px;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #ffe1a8 !important;
+
+}
+
 .btn-princ {
-  background-color: #E9810A;
+  background-color: #e9810a;
 }
 
 .btn-princ:active {
@@ -8,7 +68,7 @@
 }
 
 .btn-sec {
-  background-color: #6D213C;
+  background-color: #6d213c;
 }
 
 .btn-sec:active {
@@ -16,6 +76,53 @@
   background-color: rgb(155, 46, 84);
 }
 
-.progress-bar {
-  background-color: #E9810A;
+
+.btn-other {
+  background-color: #161032;
 }
+
+.btn-other:active {
+  top: 1px;
+  background-color: rgb(17, 5, 82);
+}
+
+.progress-bar {
+  background-color: #e9810a;
+}
+=======
+.progress-bar {
+  background-color: #e9810a;
+}
+
+.pansy-purple {
+  color: #6d213c;
+}
+.dark-purple {
+  color: #161032;
+}
+.tangerine {
+  color: #e9810a;
+}
+.peach {
+  color: #ffe1a8;
+}
+.orange-yellow {
+  color: #f4d06f;
+}
+
+.bg-pansy-purple {
+  background-color: #6d213c;
+}
+.bg-dark-purple {
+  background-color: #161032;
+}
+.bg-tangerine {
+  background-color: #e9810a;
+}
+.bg-peach {
+  background-color: #ffe1a8;
+}
+.bg-orange-yellow {
+  background-color: #f4d06f;
+}
+

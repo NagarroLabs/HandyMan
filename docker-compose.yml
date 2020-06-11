@@ -1,0 +1,54 @@
+version: '3'
+services:
+  backend:
+    image: handyman-backend
+    # dockerfile: ./backend/Dockerfile
+    build: ./backend
+    ports:
+      - "8181:8181"
+    volumes:
+      - ./backend:/usr/src/handyman
+      - /usr/src/handyman/node_modules
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    networks:
+      - handymannetwork
+
+  frontend:
+    image: handyman-frontend
+    # dockerfile: ./frontend/Dockerfile
+    build: ./frontend
+    restart: always
+    entrypoint: ["npm", "start"]
+    ports:
+        - "3000:3000"
+    volumes:
+        - ./frontend:/frontend
+        - /frontend/node_modules
+    links:
+        - backend
+    networks:
+      - handymannetwork
+
+  mongo:
+    image: mongo:4
+    hostname: mongo
+    container_name: mongodb
+    restart: always
+#    command: [service mongod start]
+#    command: "/entry.sh"  
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./handyman_data:/data/db
+    networks:
+      - handymannetwork
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: example
+
+networks:
+  handymannetwork:
+      driver: bridge

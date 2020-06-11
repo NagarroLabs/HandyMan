@@ -1,29 +1,43 @@
-import React from 'react';
-import './App.css';
-
-
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import ProgressBar from 'react-bootstrap/ProgressBar';
-import Card from 'react-bootstrap/Card';
 
+import AuthRoutes from "./routes/AuthRoutes";
+import NoAuthRoutes from "./routes/NoAuthRoutes";
+import { AuthContext } from "./shared/context/auth-context";
+import { useAuth } from "./shared/hooks/auth-hook";
+import RegisterPage from "./components/RegisterPage";
+import LoginPage from "./components/LoginPage";
+import CustomNavbar from './components/CustomNavbar';
 
+import "./index.css";
 
-const now = 60;
+const App = () => {
+  const { token, userId, login, logout } = useAuth();
 
-function App() {
-  
-    return (
-      <div>
-        <div className="app" >
-          <br />
-          <>
-            {/* <style type="text/css">
-              {`
-              .btn-princ {
-                background-color:#E9810A;
-                }
+  return (
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: !!token,
+        token,
+        userId,
+        login,
+        logout,
+      }}
+    >
+      <Router>
+
+        <div>
+          <CustomNavbar />
+        </div>
+
+        <main>{token ? <AuthRoutes /> : <NoAuthRoutes />}</main>
+      </Router>
+    </AuthContext.Provider>
+  );
+};
 
               .btn-princ:active {
                 top:1px;

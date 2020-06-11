@@ -1,0 +1,7 @@
+.card {
+  background-color: #e9810a !important;
+  width: 18rem !important;
+  display: inline-block !important;
+  max-width: 20rem !important;
+  min-width: 18rem !important;
+}
