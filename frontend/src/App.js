@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Switch, Redirect } from "react-router-dom";
+import ExampleUsage from "./ExampleUsage";
 
 import Form from 'react-bootstrap/Form';
 
@@ -60,7 +61,9 @@ const App = () => {
 
               `}
             </style> */}
-
+            <div>
+           <ExampleUsage />
+          </div>
             <Button className="btn-princ" >
               Register
             </Button>
