@@ -16,6 +16,10 @@
 
 <b>localhost:3001/api/jobs/new</b> -> <b>POST</b> route to add a new Job (authentication is required)
 
+<b>localhost:3001/api/jobs/edit/:jobId</b> -> <b>PATCH</b> route to edit existing Job (authentication is required)
+
+<b>localhost:3001/api/jobs/delete/:jobId</b> -> <b>DELETE</b> route to delete Job (authentication is required)
+
 ## Examples
 
 #### For users
@@ -57,6 +61,8 @@ Example of an accepted format for <b>ADDING JOB</b>:
 }
 
 <b> You also need to set the Authentication header, just as in the patch example in order to add a job.</b>
+
+Same JSON input for editing a job.
 
 Try them out in POSTMAN.
 
