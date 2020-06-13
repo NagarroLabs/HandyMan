@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Switch, Redirect } from "react-router-dom";
-
+import ExampleUsage from "./ExampleUsage";
 
 import AuthRoutes from "./routes/AuthRoutes";
 import NoAuthRoutes from "./routes/NoAuthRoutes";
@@ -29,6 +29,10 @@ const App = () => {
       <Router>
 
         <div>
+           <ExampleUsage />
+          </div>
+
+        <div>
           <CustomNavbar />
         </div>
 
@@ -36,6 +40,6 @@ const App = () => {
       </Router>
     </AuthContext.Provider>
   );
-};
+}
 
 export default App;
