@@ -7,7 +7,7 @@ const Job = require('../models/jobs');
 const addJob = async (req, res, next) => {
     
     const { jobName, jobDescription, jobCategory, jobBudget, jobStartDate,
-            jobCompletionTimeFrame, jobReqSkills, jobDifficulty, jobCountry,
+            jobCompletionTimeFrame, jobReqSkills, jobCountry,
             jobCity, jobAddress } = req.body;
   
     const addedJob = new Job({
@@ -18,7 +18,6 @@ const addJob = async (req, res, next) => {
        jobStartDate,
        jobCompletionTimeFrame,
        jobReqSkills, 
-       jobDifficulty,
        jobCountry,
        jobCity, 
        jobAddress,
@@ -69,7 +68,6 @@ const addJob = async (req, res, next) => {
       jobStartDate,
       jobCompletionTimeFrame,
       jobReqSkills, 
-      jobDifficulty,
       jobCountry,
       jobCity, 
       jobAddress } = req.body;
@@ -97,7 +95,6 @@ const addJob = async (req, res, next) => {
     job.jobStartDate = jobStartDate;
     job.jobCompletionTimeFrame = jobCompletionTimeFrame;
     job.jobReqSkills = jobReqSkills;
-    job.jobDifficulty = jobDifficulty;
     job.jobCountry = jobCountry;
     job.jobCity = jobCity;
     job.jobAddress = jobAddress;

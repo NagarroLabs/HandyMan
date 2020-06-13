@@ -54,7 +54,6 @@ Example of an accepted format for <b>ADDING JOB</b>:
 	"jobStartDate": "2020-07-01",
 	"jobCompletionTimeFrame": "2020-09-01",
 	"jobReqSkills": ["Good design foundations","Good negociator","Eye for innovation"],
-	"jobDifficulty": 4,
 	"jobCountry": "Romania",
 	"jobCity": "Timisoara",
 	"jobAddress": "Timisoara, Bulevardul Eroilor de la Tisa, Nr. 63"
