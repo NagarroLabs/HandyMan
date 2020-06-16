@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import AuthRoutes from "./routes/AuthRoutes";
 import NoAuthRoutes from "./routes/NoAuthRoutes";
@@ -8,6 +8,11 @@ import { useAuth } from "./shared/hooks/auth-hook";
 import CustomNavbar from "./components/CustomNavbar";
 
 import "./index.css";
+import EditProfilePage from "./components/EditProfilePage";
+import LoginPage from "./components/LoginPage";
+import PrivateRoute from "./components/PrivateRoute";
+import RegisterPage from "./components/RegisterPage";
+import JobsListingPage from "./pages/JobsListingPage";
 
 const App = () => {
   const { token, userId, login, logout } = useAuth();
@@ -27,8 +32,16 @@ const App = () => {
         <div>
           <CustomNavbar />
         </div>
-        {console.log(!!token)}
-        <main>{!!routes ? <AuthRoutes /> : <NoAuthRoutes />}</main>
+        {console.log(token)}
+        {/* <main>{token ? <AuthRoutes /> : <NoAuthRoutes />}</main> */}
+
+        <Route path="/" exact>
+          <div>Insert home page component here.</div>
+        </Route>
+        <PrivateRoute path="/profile" component={EditProfilePage} />
+        <Route path="/signup" exact component={RegisterPage} />
+        <Route path="/login" exact component={LoginPage} />
+        <Route path="/jobs" exact component={JobsListingPage} />
       </Router>
     </AuthContext.Provider>
   );

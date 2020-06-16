@@ -27,23 +27,23 @@ function EditProfilePage() {
   const auth = useContext(AuthContext);
   const userId = auth.userId;
 
-  // useEffect(() => {
-  //   console.log("userid is: " + userId);
-  //   getUserInfo();
-  // }, []);
-
-  async function getUserInfo() {
-    try {
-      const url = "http://localhost:3001/api/users/" + userId;
-      const responseData = await sendRequest(url);
-      setLoadedUser(responseData.user);
-    } catch (err) {
-      toast.error("Something went wrong.", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 2000,
-      });
+  useEffect(() => {
+    console.log("userid is: " + userId);
+    async function getUserInfo() {
+      try {
+        const url = "http://localhost:3001/api/users/" + userId;
+        const responseData = await sendRequest(url);
+        setLoadedUser(responseData.user);
+      } catch (err) {
+        toast.error("Something went wrong.", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000,
+        });
+      }
     }
-  }
+
+    getUserInfo();
+  }, [sendRequest, userId]);
 
   function handleChange({ target }) {
     setLoadedUser({
@@ -81,7 +81,7 @@ function EditProfilePage() {
       });
     } catch (err) {
       console.log(err);
-      toast.error("SOmething went wrong.", {
+      toast.error("Something went wrong.", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: false,
       });
@@ -94,7 +94,7 @@ function EditProfilePage() {
       <EditProfileForm
         user={loadedUser}
         onChange={handleChange}
-        onSubmit={getUserInfo}
+        onSubmit={handleSubmit}
       />
     </>
   );

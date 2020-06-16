@@ -53,15 +53,6 @@ export default function EditProfileForm(props) {
     formIsValid();
   };
 
-  const isEnabled =
-    props.user.firstName.length > 0 &&
-    props.user.lastName.length > 0 &&
-    props.user.email.length > 0 &&
-    props.user.phone.length > 0 &&
-    props.user.gender.length > 0 &&
-    props.user.birthDate.length > 0 &&
-    props.user.username.length > 0;
-
   return (
     <>
       <Form className="EditProfilePage">
