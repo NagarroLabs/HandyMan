@@ -15,12 +15,15 @@ const {
     addJob,
     editJob,
     deleteJob,
+    getJobById,
 } = require('../controllers/jobs-controllers');
 const checkAuth = require('../middlewares/check-auth');
 
 const router = express.Router();
 
 router.get('/', getJobs);
+
+router.get('/:jobId', getJobById);
 
 router.post(
     '/new',

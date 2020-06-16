@@ -7,7 +7,7 @@ const Job = require('../models/jobs');
 const getJobs = async (req, res, next) => {
     let jobs;
     try {
-        jobs = await Job.find({});
+        jobs = await Job.find();
     } catch (err) {
         return next(
             new HttpError('Fetching jobs failed, please try again later.'),
@@ -16,6 +16,27 @@ const getJobs = async (req, res, next) => {
     }
 
     res.json({ jobs: jobs.map((job) => job.toObject()) });
+};
+
+const getJobById = async (req, res, next) => {
+    const { jobId } = req.params;
+    let job;
+    try {
+        job = await Job.find(jobId);
+    } catch (err) {
+        return next(
+            new HttpError('Something went wrong, could not find job.'),
+            500
+        );
+    }
+
+    if (!job) {
+        return next(
+            new HttpError('Could not find job with the provided id', 404)
+        );
+    }
+
+    res.json({ job: job.toObject({ getters: true }) });
 };
 
 const addJob = async (req, res, next) => {
@@ -183,3 +204,4 @@ exports.addJob = addJob;
 exports.editJob = editJob;
 exports.deleteJob = deleteJob;
 exports.getJobs = getJobs;
+exports.getJobById = getJobById;
