@@ -16,11 +16,11 @@ export default function AddJobPage() {
         jobCompletionFrame: '',
         jobReqSkills: [],
         jobCountry: '',
-        jobCity: '',
+        jobRegion: '',
+        jobCity: 'Timisoara',
         jobAddress: '',
         jobOwner: null,
     });
-    console.log(job);
 
     function handleChange({ target }) {
         setJob({
@@ -39,21 +39,19 @@ export default function AddJobPage() {
         setJob({
             ...job,
             jobCountry: country,
-            jobCity: region,
+            jobRegion: region,
             jobStartDate: jobStartDate,
             jobCompletionFrame: jobCompletionTimeFrame,
             jobReqSkills: skillList,
         });
     }
 
-    console.log(job);
-
     async function handleSubmit(event) {
         event.preventDefault();
-
+        console.log(job);
         try {
             const responseData = await sendRequest(
-                'http://localhost:3001/api/jobs',
+                'http://localhost:3001/api/jobs/new',
                 'POST',
                 JSON.stringify({
                     jobName: job.jobName,
@@ -61,18 +59,20 @@ export default function AddJobPage() {
                     jobCategory: job.jobCategory,
                     jobBudget: job.jobBudget,
                     jobStartDate: job.jobStartDate,
-                    jobCompletionFrame: job.jobCompletionFrame,
+                    jobCompletionTimeFrame: job.jobCompletionFrame,
                     jobReqSkills: job.jobReqSkills,
                     jobCountry: job.jobCountry,
                     jobCity: job.jobCity,
                     jobAddress: job.jobAddress,
-                    jobOwner: auth.userId,
                 }),
                 {
                     'Content-Type': 'application/json',
+                    Authorization: `JWT ${auth.token}`,
                 }
             );
-        } catch (err) {}
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (

@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import DateTimePicker from 'react-datetime-picker';
+import Form from 'react-bootstrap/Form';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import StarRatings from 'react-star-ratings';
+
 export default function AddJobForm(props) {
     const specializations = ['Finance', 'Account Executive', 'Technology'];
     const [country, setCountry] = useState('Romania');
-    const [region, setRegion] = useState();
-    const [jobStartDate, setStartDate] = useState('');
-    const [jobCompletionTimeFrame, setTimeFrame] = useState('');
+    const [region, setRegion] = useState('Timis');
     const [skill, setSkill] = useState('');
     const [skillList, setSkillList] = useState([]);
     const [showSkills, setShowSkills] = useState(false);
@@ -16,8 +14,6 @@ export default function AddJobForm(props) {
         props.sendData({
             country,
             region,
-            jobStartDate,
-            jobCompletionTimeFrame,
             skillList,
         });
         props.onSubmit(event);
@@ -113,11 +109,12 @@ export default function AddJobForm(props) {
                     <label className="m-2 font-weight-bold">
                         Starting date of the job
                     </label>
-                    <DateTimePicker
-                        disableClock={true}
+                    <Form.Control
+                        style={{ width: '240px' }}
+                        type="date"
                         name="jobStartDate"
-                        value={jobStartDate}
-                        onChange={setStartDate}
+                        onChange={props.onChange}
+                        value={props.job.jobStartDate}
                     />
                 </div>
                 {/* Completion time frame */}
@@ -125,11 +122,12 @@ export default function AddJobForm(props) {
                     <label className="m-2 font-weight-bold">
                         Ending date of the job
                     </label>
-                    <DateTimePicker
-                        disableClock={true}
-                        name="jobCompletionTimeFrame"
-                        value={jobCompletionTimeFrame}
-                        onChange={setTimeFrame}
+                    <Form.Control
+                        style={{ width: '240px' }}
+                        type="date"
+                        name="jobCompletionFrame"
+                        onChange={props.onChange}
+                        value={props.job.jobCompletionFrame}
                     />
                 </div>
                 {/* Required Skills */}
@@ -176,21 +174,23 @@ export default function AddJobForm(props) {
                     <div>
                         <CountryDropdown
                             className="m-2"
-                            value={country}
+                            value={'Romania'}
                             onChange={setCountry}
+                            disabled
                         />
                         <RegionDropdown
                             className="m-2"
                             country={country}
-                            value={region}
+                            value={'Timis'}
                             onChange={setRegion}
+                            disabled
                         />
                     </div>
                 </div>
                 {/* Address */}
                 <div>
                     <label className="m-2 font-weight-bold">
-                        Write the address for the job
+                        Write the address for the job in Timisoara
                     </label>
                     <br />
                     <input

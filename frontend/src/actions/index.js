@@ -13,7 +13,6 @@ export const getJobs = (sendRequest) => async (dispatch) => {
 };
 
 export const setLoggedIn = (logged) => {
-    console.log('--' + logged);
     return {
         type: 'SET_LOGGEDIN',
         payload: logged,

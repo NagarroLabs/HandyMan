@@ -17,7 +17,7 @@ function CustomNavbar(props) {
     };
     return (
         <Navbar className="navbar" expand="lg">
-            <Navbar.Brand>
+            <Navbar.Brand className="mr-3">
                 <Link to="/">
                     <img src={logo} style={{ width: 100, marginTop: -7 }} />
                 </Link>
@@ -25,27 +25,30 @@ function CustomNavbar(props) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link>
+                    <Nav.Item className="mr-3 nav-link">
                         <Link to="/jobs">
                             <span className="navText">Browse Jobs</span>
                         </Link>
-                    </Nav.Link>
-                    <Nav.Link>
+                    </Nav.Item>
+
+                    <Nav.Item className="mr-3 nav-link">
                         <Link to="/about">
                             <span className="navText">About</span>
                         </Link>
-                    </Nav.Link>
+                    </Nav.Item>
+
                     {props.isLoggedIn ? (
                         <NavDropdown
+                            className="mr-3"
                             title={<span className="navText">Jobs</span>}
                             id="basic-nav-dropdown"
                         >
-                            <NavDropdown.Item>
+                            <Nav.Item>
                                 <Link to="/jobs/new">Add Jobs</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
+                            </Nav.Item>
+                            <Nav.Item>
                                 <Link to="/exampleRoute">Edit Jobs</Link>
-                            </NavDropdown.Item>
+                            </Nav.Item>
                         </NavDropdown>
                     ) : (
                         <></>
@@ -58,27 +61,28 @@ function CustomNavbar(props) {
                             title={<span className="navText">Profile</span>}
                             id="basic-nav-dropdown"
                         >
-                            <NavDropdown.Item>
+                            <Nav.Item>
                                 <Link to="/editProfile">Edit Profile</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
+                            </Nav.Item>
+                            <Nav.Item>
                                 <Link to="/">
                                     <span onClick={logOut}>Log out</span>
                                 </Link>
-                            </NavDropdown.Item>
+                            </Nav.Item>
                         </NavDropdown>
                     ) : (
                         <>
-                            <Nav.Link>
+                            <Nav.Item className="mr-3">
                                 <Link to="/register">
                                     <span className="navText">Register</span>
                                 </Link>
-                            </Nav.Link>
-                            <Nav.Link>
+                            </Nav.Item>
+
+                            <Nav.Item className="mr-3">
                                 <Link to="/login">
                                     <span className="navText">Log In</span>
                                 </Link>
-                            </Nav.Link>
+                            </Nav.Item>
                         </>
                     )}
                 </Nav>
@@ -88,7 +92,6 @@ function CustomNavbar(props) {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return { isLoggedIn: state.isLoggedIn };
 };
 

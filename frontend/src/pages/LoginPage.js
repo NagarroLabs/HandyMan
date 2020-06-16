@@ -37,7 +37,6 @@ function LoginPage(props) {
                 }
             );
             auth.login(responseData.userId, responseData.token);
-            console.log('logged in');
             props.setLoggedIn(true);
         } catch (err) {
             console.log('error' + err);
