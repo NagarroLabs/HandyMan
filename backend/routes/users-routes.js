@@ -1,21 +1,21 @@
 const express = require('express');
 
 const {
-  requireFirstName,
-  requireLastName,
-  requireEmail,
-  requirePassword,
-  requirePhone,
-  requireUsername
+    requireFirstName,
+    requireLastName,
+    requireEmail,
+    requirePassword,
+    requirePhone,
+    requireUsername,
 } = require('../util/validators');
 const { handleErrors } = require('../middlewares/handle-errors.js');
 const {
-  getUsers,
-  signup,
-  login,
-  getUserById,
-  updateUser, 
-  updatePassword
+    getUsers,
+    signup,
+    login,
+    getUserById,
+    updateUser,
+    updatePassword,
 } = require('../controllers/users-controllers');
 const checkAuth = require('../middlewares/check-auth');
 
@@ -28,29 +28,41 @@ router.get('/', getUsers);
 router.get('/:userId', getUserById);
 
 router.post(
-  '/signup',
-  [
-    requireFirstName,
-    requireLastName,
-    requireEmail,
-    requirePassword,
-    requirePhone,
-    requireUsername
-  ],
-  handleErrors,
-  signup
+    '/signup',
+    [
+        requireFirstName,
+        requireLastName,
+        requireEmail,
+        requirePassword,
+        requirePhone,
+        requireUsername,
+    ],
+    handleErrors,
+    signup
 );
 
 router.post('/login', login);
 
-router.patch('/update/:userId/password', checkAuth, [requirePassword], handleErrors, updatePassword);
+router.patch(
+    '/update/:userId/password',
+    checkAuth,
+    [requirePassword],
+    handleErrors,
+    updatePassword
+);
 
 router.patch(
-  '/update/:userId',
-  checkAuth,
-  [requireFirstName, requireLastName, requirePhone, requireEmail, requirePhone],
-  handleErrors,
-  updateUser
+    '/update/:userId',
+    checkAuth,
+    [
+        requireFirstName,
+        requireLastName,
+        requirePhone,
+        requireEmail,
+        requirePhone,
+    ],
+    handleErrors,
+    updateUser
 );
 
 module.exports = router;
