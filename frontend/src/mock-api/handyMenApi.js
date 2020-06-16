@@ -10,7 +10,8 @@ export function getHandyManById(id) {
     .then((response) => {
       if (!response.ok) throw new Error("Network response was not ok.");
       return response.json().then((handyMen) => {
-        if (handyMen.length !== 1) throw new Error("Handy Man not found: " + id);
+        if (handyMen.length !== 1)
+          throw new Error("Handy Man not found: " + id);
         return handyMen[0];
       });
     })

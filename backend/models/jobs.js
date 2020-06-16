@@ -34,12 +34,6 @@ const jobSchema = new mongoose.Schema({
     type: [String],
     required: true
   },
-  jobDifficulty: {
-    type: Number,
-    min: 1,
-    max: 5,
-    required: true
-  },
   jobCountry: {
     type: String,
     required: true
@@ -48,7 +42,7 @@ const jobSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  jobAdress: {
+  jobAddress: {
     type: String,
     required: true
   },
