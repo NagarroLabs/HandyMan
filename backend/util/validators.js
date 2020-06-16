@@ -10,21 +10,11 @@ const User = require("../models/users");
 module.exports = {
 
   requireFirstName: check('firstName')
-<<<<<<< HEAD
-    .not()
-    .isEmpty()
-    .trim()
-    .withMessage('First name must not be empty.'),
-  requireLastName: check('lastName')
-    .not()
-    .isEmpty()
-=======
     .not().isEmpty()
     .trim()
     .withMessage('First name must not be empty.'),
   requireLastName: check('lastName')
     .not().isEmpty()
->>>>>>> eda79ae3749574774a1fd16a9c87e6dea9d94b26
     .trim()
     .withMessage("Last name must not be empty."),
   requirePassword: check("password")
@@ -45,13 +35,6 @@ module.exports = {
       }
 
       if (existingUser) {
-<<<<<<< HEAD
-        throw new HttpError('User exists already, please login instead.', 422);
-      }
-      return true;
-    }),
-  requireUsername: check('userName')
-=======
 
         throw new HttpError(
           'User exists already, please login instead.',
@@ -61,7 +44,6 @@ module.exports = {
       return true;
     }),
   requireUsername: check("userName")
->>>>>>> eda79ae3749574774a1fd16a9c87e6dea9d94b26
     .not()
     .isEmpty()
     .trim()
@@ -102,5 +84,15 @@ module.exports = {
         );
       }
       return true;
-    })
+    }),
+  requireEditPhone: check('phone')
+  .not()
+  .isEmpty()
+  .trim()
+  .withMessage('Phone must not be empty.'),
+  requireEditMail: check("email")
+  .trim()
+  .normalizeEmail()
+  .isEmail()
+  .withMessage("Must be a valid email.")
 };
