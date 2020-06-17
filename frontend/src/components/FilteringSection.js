@@ -25,7 +25,7 @@ export default function FilteringSection({ props }) {
             searchField === ''
                 ? filteredJobs
                 : filteredJobs.filter((job) => {
-                      return job.name
+                      return job.jobName
                           .toLowerCase()
                           .includes(searchField.toLowerCase());
                   });
@@ -37,14 +37,14 @@ export default function FilteringSection({ props }) {
             if (
                 filters.priceTo !== 0 &&
                 filters.priceTo.length !== 0 &&
-                parseFloat(job.estimatedBudget) > filters.priceTo
+                parseFloat(job.jobBudget) > filters.priceTo
             ) {
                 return false;
             }
             if (
                 filters.specialization.length !== 0 &&
                 filters.specialization.localeCompare(
-                    job.category.toLowerCase()
+                    job.jobCategory.toLowerCase()
                 ) !== 0
             ) {
                 return false;
@@ -53,12 +53,12 @@ export default function FilteringSection({ props }) {
         });
         if (filters.order === 'ascending') {
             searchedJobs = searchedJobs.sort(
-                (a, b) => a.estimatedBudget - b.estimatedBudget
+                (a, b) => a.jobBudget - b.jobBudget
             );
         }
         if (filters.order === 'descending') {
             searchedJobs = searchedJobs.sort(
-                (b, a) => a.estimatedBudget - b.estimatedBudget
+                (b, a) => a.jobBudget - b.jobBudget
             );
         }
         setFilteredJobs(searchedJobs);
