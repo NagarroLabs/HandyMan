@@ -8,7 +8,7 @@ const {
     requirePhone,
     requireUsername,
     requireEditMail,
-    requireEditPhone,
+    requireEditPhone
 } = require('../util/validators');
 const { handleErrors } = require('../middlewares/handle-errors.js');
 const {
@@ -17,7 +17,7 @@ const {
     login,
     getUserById,
     updateUser,
-    updatePassword,
+    updatePassword
 } = require('../controllers/users-controllers');
 const checkAuth = require('../middlewares/check-auth');
 
@@ -37,7 +37,7 @@ router.post(
         requireEmail,
         requirePassword,
         requirePhone,
-        requireUsername,
+        requireUsername
     ],
     handleErrors,
     signup

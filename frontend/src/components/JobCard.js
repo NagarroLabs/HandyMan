@@ -6,7 +6,7 @@ const JobCard = ({
     name,
     description,
     estimatedBudget,
-    specialization,
+    specialization
 }) => {
     return (
         <div className="card text-center m-2">

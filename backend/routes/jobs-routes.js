@@ -7,7 +7,7 @@ const {
     requireJobBudget,
     requireJobCountry,
     requireJobCity,
-    requireJobAddress,
+    requireJobAddress
 } = require('../util/jobValidators');
 const { handleErrors } = require('../middlewares/handle-errors.js');
 const {
@@ -15,7 +15,7 @@ const {
     addJob,
     editJob,
     deleteJob,
-    getJobById,
+    getJobById
 } = require('../controllers/jobs-controllers');
 const checkAuth = require('../middlewares/check-auth');
 
@@ -35,7 +35,7 @@ router.post(
         requireJobBudget,
         requireJobCountry,
         requireJobCity,
-        requireJobAddress,
+        requireJobAddress
     ],
     handleErrors,
     addJob
@@ -51,7 +51,7 @@ router.patch(
         requireJobBudget,
         requireJobCountry,
         requireJobCity,
-        requireJobAddress,
+        requireJobAddress
     ],
     handleErrors,
     editJob

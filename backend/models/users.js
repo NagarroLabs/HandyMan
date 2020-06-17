@@ -4,55 +4,55 @@ const uniqueValidator = require('mongoose-unique-validator');
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required: true,
+        required: true
     },
     lastName: {
         type: String,
-        required: true,
+        required: true
     },
     email: {
         type: String,
         required: true,
-        unique: true,
+        unique: true
     },
     password: {
         type: String,
         required: true,
         minlength: 5,
-        maxlength: 60,
+        maxlength: 60
     },
     phone: {
         type: String,
-        required: true,
+        required: true
     },
     gender: {
         type: String,
-        required: true,
+        required: true
     },
     birthDate: {
         type: Date,
-        required: true,
+        required: true
     },
     userName: {
         type: String,
-        required: true,
+        required: true
     },
     handyManId: {
         type: mongoose.Types.ObjectId,
-        ref: 'HandyMan',
+        ref: 'HandyMan'
     },
     employedHandyMen: [
         {
             type: mongoose.Types.ObjectId,
-            ref: 'HandyMan',
-        },
+            ref: 'HandyMan'
+        }
     ],
     jobsAdded: [
         {
             type: mongoose.Types.ObjectId,
-            ref: 'Job',
-        },
-    ],
+            ref: 'Job'
+        }
+    ]
 });
 
 userSchema.plugin(uniqueValidator);

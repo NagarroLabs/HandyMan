@@ -98,5 +98,5 @@ module.exports = {
         .trim()
         .normalizeEmail()
         .isEmail()
-        .withMessage('Must be a valid email.'),
+        .withMessage('Must be a valid email.')
 };

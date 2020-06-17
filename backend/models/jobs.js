@@ -4,62 +4,62 @@ const jobSchema = new mongoose.Schema({
     jobOwner: {
         type: mongoose.Types.ObjectId,
         required: true,
-        ref: 'User',
+        ref: 'User'
     },
     jobName: {
         type: String,
-        required: true,
+        required: true
     },
     jobDescription: {
         type: String,
-        required: true,
+        required: true
     },
     jobCategory: {
         type: String,
-        required: true,
+        required: true
     },
     jobBudget: {
         type: String,
-        required: true,
+        required: true
     },
     jobStartDate: {
         type: Date,
-        required: true,
+        required: true
     },
     jobCompletionTimeFrame: {
         type: Date,
-        required: true,
+        required: true
     },
     jobReqSkills: {
         type: [String],
-        required: true,
+        required: true
     },
     jobCountry: {
         type: String,
-        required: true,
+        required: true
     },
     jobCity: {
         type: String,
-        required: true,
+        required: true
     },
     jobAddress: {
         type: String,
-        required: true,
+        required: true
     },
     jobComments: {
         title: String,
-        postBody: String,
+        postBody: String
     },
     jobApplicants: [
         {
             type: mongoose.Types.ObjectId,
-            ref: 'HandyMan',
-        },
+            ref: 'HandyMan'
+        }
     ],
     jobAssignee: {
         type: mongoose.Types.ObjectId,
-        ref: 'HandyMan',
-    },
+        ref: 'HandyMan'
+    }
 });
 
 module.exports = mongoose.model('Job', jobSchema);

@@ -19,19 +19,17 @@ function JobsListingPage(props) {
         setSearchField(event.target.value);
     };
 
-    if (jobs.length === 0) {
-        return <h1>Loading...</h1>;
-    } else {
-        return (
-            <div className="mx-auto">
-                <h1 className="text-center m-3">Jobs Page</h1>
-                <SearchBox className="" searchChange={onSearchChange} />
-                <div className="d-block">
-                    <FilteringSection props={{ jobs, searchField }} />
-                </div>
+    !jobs.length ? (
+        <h1>Loading...</h1>
+    ) : (
+        <div className="mx-auto">
+            <h1 className="text-center m-3">Jobs Page</h1>
+            <SearchBox className="" searchChange={onSearchChange} />
+            <div className="d-block">
+                <FilteringSection props={{ jobs, searchField }} />
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 const mapStateToProps = (state) => {
