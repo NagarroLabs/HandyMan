@@ -19,20 +19,20 @@ const upgradeToHandyMan = async (req, res, next) => {
     experience,
   } = req.body;
 
-  const { userId } = req.params;
+  //const { userId } = req.params;
 
-  let user;
-  try {
-    user = await User.findById(userId);
-  } catch (err) {
-    return next(
-      new HttpError("Something went wrong, could not find a user", 500)
-    );
-  }
+  // let user;
+  // try {
+  //   user = await User.findById(userId);
+  // } catch (err) {
+  //   return next(
+  //     new HttpError("Something went wrong, could not find a user", 500)
+  //   );
+  // }
 
-  if (userId !== req.userData.userId) {
-    return next(new HttpError("You do not have edit privileges.", 401));
-  }
+  // if (userId !== req.userData.userId) {
+  //   return next(new HttpError("You do not have edit privileges.", 401));
+  // }
 
   const createdHandyMan = new HandyMan({
     areaOfInterest,
@@ -56,6 +56,6 @@ const upgradeToHandyMan = async (req, res, next) => {
   }
 
   res.status(201).json({
-    user: user.toObject({ getters: true }),
+    handyManId: createdUser.id,
   });
 };
