@@ -46,6 +46,7 @@ module.exports = {
             }
             return true;
         }),
+
     requireUsername: check('userName')
         .not()
         .isEmpty()
@@ -88,4 +89,14 @@ module.exports = {
             }
             return true;
         }),
+    requireEditPhone: check('phone')
+        .not()
+        .isEmpty()
+        .trim()
+        .withMessage('Phone must not be empty.'),
+    requireEditMail: check('email')
+        .trim()
+        .normalizeEmail()
+        .isEmail()
+        .withMessage('Must be a valid email.'),
 };

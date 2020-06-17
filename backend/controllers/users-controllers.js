@@ -177,7 +177,7 @@ const login = async (req, res, next) => {
 };
 
 const updateUser = async (req, res, next) => {
-    const { firstName, lastName, phone, birthDate, email } = req.body;
+    const { firstName, lastName, phone, email } = req.body;
     const { userId } = req.params;
 
     let user;
@@ -196,7 +196,6 @@ const updateUser = async (req, res, next) => {
     user.firstName = firstName;
     user.lastName = lastName;
     user.phone = phone;
-    user.birthDate = new Date(birthDate);
     user.email = email;
 
     try {

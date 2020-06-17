@@ -7,6 +7,8 @@ const {
     requirePassword,
     requirePhone,
     requireUsername,
+    requireEditMail,
+    requireEditPhone,
 } = require('../util/validators');
 const { handleErrors } = require('../middlewares/handle-errors.js');
 const {
@@ -54,13 +56,7 @@ router.patch(
 router.patch(
     '/update/:userId',
     checkAuth,
-    [
-        requireFirstName,
-        requireLastName,
-        requirePhone,
-        requireEmail,
-        requirePhone,
-    ],
+    [requireFirstName, requireLastName, requireEditMail, requireEditPhone],
     handleErrors,
     updateUser
 );
