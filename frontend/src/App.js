@@ -1,45 +1,44 @@
-import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Route, Switch, Redirect } from "react-router-dom";
-import ExampleUsage from "./ExampleUsage";
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import AuthRoutes from "./routes/AuthRoutes";
-import NoAuthRoutes from "./routes/NoAuthRoutes";
-import { AuthContext } from "./shared/context/auth-context";
-import { useAuth } from "./shared/hooks/auth-hook";
-import RegisterPage from "./components/RegisterPage";
-import LoginPage from "./components/LoginPage";
+import AuthRoutes from './routes/AuthRoutes';
+import NoAuthRoutes from './routes/NoAuthRoutes';
+import { AuthContext } from './shared/context/auth-context';
+import { useAuth } from './shared/hooks/auth-hook';
 import CustomNavbar from './components/CustomNavbar';
+import { connect } from 'react-redux';
+import { setLoggedIn } from './actions';
 
-import "./index.css";
+import './index.css';
 
-const App = () => {
-  const { token, userId, login, logout } = useAuth();
+const App = (props) => {
+    const { token, userId, login, logout } = useAuth();
 
-  return (
-    <AuthContext.Provider
-      value={{
-        isLoggedIn: !!token,
-        token,
-        userId,
-        login,
-        logout,
-      }}
-    >
-      <Router>
+    return (
+        <AuthContext.Provider
+            value={{
+                isLogged: props.loggedIn,
+                token,
+                userId,
+                login,
+                logout,
+            }}
+        >
+            <Router>
+                <div>
+                    <CustomNavbar />
+                </div>
 
-        <div>
-           <ExampleUsage />
-          </div>
+                <main>
+                    {props.isLoggedIn ? <AuthRoutes /> : <NoAuthRoutes />}
+                </main>
+            </Router>
+        </AuthContext.Provider>
+    );
+};
 
-        <div>
-          <CustomNavbar />
-        </div>
+const mapStateToProps = (state) => {
+    return { isLoggedIn: state.isLoggedIn };
+};
 
-        <main>{token ? <AuthRoutes /> : <NoAuthRoutes />}</main>
-      </Router>
-    </AuthContext.Provider>
-  );
-}
-
-export default App;
+export default connect(mapStateToProps, { setLoggedIn })(App);

@@ -1,87 +1,86 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik');
 
-.app{
+.app {
   background-color: #161032;
 }
 
 .form-control {
   width: 30%;
   border-radius: 10px;
-  padding:9px 19px;
-  background-color: rgba(255,255,255,0.3);
-  font-family:'Rubik', sans-serif;
-  font-weight:400;
+  padding: 9px 19px;
+  background-color: rgba(255, 255, 255, 0.3);
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
   font-size: 14px;
-  color:#FFFFFF;
+  color: #ffffff;
   margin: 10px;
 }
 
-.form-label{
-  font-family:'Rubik', sans-serif;
-  font-weight:00;
+.form-label {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 00;
   font-size: 16px;
-  color:#FFFFFF;
-  padding:2px 19px;
+  color: #ffffff;
+  padding: 2px 19px;
 }
 
-.form-check{
-  font-family:'Rubik', sans-serif;
-  font-weight:400;
+.form-check {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
   font-size: 16px;
-  color:#FFFFFF;
+  color: #ffffff;
   margin: 17px;
 }
 
 .btn {
-  display:inline-block;
-  padding:11px 19px;
-  margin:0 5px 5px 0;
-  border-radius:20px;
-  border-color: white; 
+  display: inline-block;
+  padding: 11px 19px;
+  margin: 0 5px 5px 0;
+  border-radius: 20px;
+  border-color: white;
   box-sizing: border-box;
-  font-family:'Rubik', sans-serif;
-  font-weight:400;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
   font-size: 14px;
-  color:#FFFFFF;
-  box-shadow:inset 0 -9.6px 0 -5.6px rgba(0,0,0,0.17);
-  text-align:center;
+  color: #ffffff;
+  box-shadow: inset 0 -9.6px 0 -5.6px rgba(0, 0, 0, 0.17);
+  text-align: center;
 }
 
-.href{
-  color: #FFE1A8;
-  font-family:'Rubik', sans-serif;
-  font-weight:400;
+.href {
+  color: #ffe1a8;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
   font-size: 16px;
 }
 
-.href:hover{
-  color: #E9810A;
+.href:hover {
+  color: #e9810a;
 }
 
-.href:visited{
-  color: #6D213C;
+.href:visited {
+  color: #6d213c;
 }
 
-.progress{
+.progress {
   width: 31%;
-  border-radius:20px ;
-  font-family:'Rubik', sans-serif;
-  font-weight:200;
+  border-radius: 20px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 200;
   font-size: 14px;
-  color:#FFFFFF;
+  color: #ffffff;
 }
 
-.card-body{
-  font-family:'Rubik', sans-serif;
-  font-weight:200;
+.card-body {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 200;
   font-size: 14px;
-  text-align:center;
+  text-align: center;
 }
 
-.formRange{
-  width:31%;
+.formRange {
+  width: 31%;
 }
-
 
 .RegisterLoginPage {
   display: flex;
@@ -126,20 +125,20 @@
 
 .lettering {
   color: white;
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
 .orangeLettering {
   color: #e9810a;
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-size: 24px;
+}
 
-body {
+.body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   background-color: #ffe1a8 !important;
-
 }
 
 .btn-princ {
@@ -160,7 +159,6 @@ body {
   background-color: rgb(155, 46, 84);
 }
 
-
 .btn-other {
   background-color: #161032;
 }
@@ -173,7 +171,6 @@ body {
 .progress-bar {
   background-color: #e9810a;
 }
-=======
 .progress-bar {
   background-color: #e9810a;
 }
@@ -209,4 +206,3 @@ body {
 .bg-orange-yellow {
   background-color: #f4d06f;
 }
-
