@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import EditProfileForm from "./EditProfileForm";
-import { addUser } from "../mock-api/usersApi";
 import { AuthContext } from "../shared/context/auth-context";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,70 +11,58 @@ import "./EditProfileForm.css";
 
 function EditProfilePage() {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [loadedUser, setLoadedUser] = useState({
+  const [user, setUser] = useState({
     id: null,
     firstName: "",
     lastName: "",
     email: "",
-    username: "",
     phone: "",
-    gender: "",
-    birthDate: "",
-    password: "",
   });
 
   const auth = useContext(AuthContext);
   const userId = auth.userId;
 
   useEffect(() => {
-    console.log("userid is: " + userId);
     async function getUserInfo() {
       try {
         const url = "http://localhost:3001/api/users/" + userId;
         const responseData = await sendRequest(url);
-        setLoadedUser(responseData.user);
-      } catch (err) {
-        toast.error("Something went wrong.", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000,
-        });
-      }
+        setUser(responseData.user);
+      } catch (err) {}
     }
 
     getUserInfo();
   }, [sendRequest, userId]);
 
   function handleChange({ target }) {
-    setLoadedUser({
-      ...loadedUser,
+    setUser({
+      ...user,
       [target.name]: target.value,
     });
   }
 
   async function handleSubmit(event) {
     event.preventDefault();
+    console.log(user.firstName);
 
     try {
       const url = "http://localhost:3001/api/users/update/" + userId;
       const responseData = await sendRequest(
         url,
-        "POST",
+        "PATCH",
         JSON.stringify({
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
-          userName: user.username,
           phone: user.phone,
-          gender: user.gender,
-          birthDate: user.birthDate,
-          password: user.password,
         }),
         {
           "Content-Type": "application/json",
+          Authorization: "JWT " + auth.token,
         }
       );
       auth.login(responseData.userId, responseData.token);
-      toast.success("Account successfully upated!", {
+      toast.success("Account successfully updated!", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 2000,
       });
@@ -90,11 +77,11 @@ function EditProfilePage() {
 
   return (
     <>
-      {/* {getUserInfo()} */}
       <EditProfileForm
-        user={loadedUser}
+        user={user}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        userId={userId}
       />
     </>
   );

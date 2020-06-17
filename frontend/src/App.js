@@ -15,6 +15,7 @@ import LoginPage from "./components/LoginPage";
 import PrivateRoute from "./components/PrivateRoute";
 import RegisterPage from "./components/RegisterPage";
 import JobsListingPage from "./pages/JobsListingPage";
+import UpgradeToHandyManPage from "./components/UpgradeToHandyManPage";
 
 const App = () => {
   const { token, userId, login, logout } = useAuth();
@@ -32,22 +33,19 @@ const App = () => {
     >
       <Router>
         <div>
-          <ExampleUsage />
-        </div>
-
-        <div>
           <CustomNavbar />
         </div>
         {console.log(token)}
         {/* <main>{token ? <AuthRoutes /> : <NoAuthRoutes />}</main> */}
 
-        <Route path="/" exact>
+        {/* <Route path="/" exact>
           <div>Insert home page component here.</div>
         </Route>
         <PrivateRoute path="/profile" component={EditProfilePage} />
         <Route path="/signup" exact component={RegisterPage} />
         <Route path="/login" exact component={LoginPage} />
-        <Route path="/jobs" exact component={JobsListingPage} />
+        <Route path="/jobs" exact component={JobsListingPage} /> */}
+        <UpgradeToHandyManPage />
       </Router>
     </AuthContext.Provider>
   );

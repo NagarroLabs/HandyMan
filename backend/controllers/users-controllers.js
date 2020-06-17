@@ -1,16 +1,16 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
-const HttpError = require('../models/http-error');
-const User = require('../models/users');
+const HttpError = require("../models/http-error");
+const User = require("../models/users");
 
 const getUsers = async (req, res, next) => {
   let users;
   try {
-    users = await User.find({}, '-password');
+    users = await User.find({}, "-password");
   } catch (err) {
     return next(
-      new HttpError('Fetching users failed, please try again later.'),
+      new HttpError("Fetching users failed, please try again later."),
       500
     );
   }
@@ -23,15 +23,15 @@ const getUserById = async (req, res, next) => {
 
   let user;
   try {
-    user = await User.findById(userId, '-password');
+    user = await User.findById(userId, "-password");
   } catch (err) {
     return next(
-      new HttpError('Something went wrong, could not find user.', 500)
+      new HttpError("Something went wrong, could not find user.", 500)
     );
   }
 
   if (!user) {
-    return next(new HttpError('Could not find user with the provided id', 404));
+    return next(new HttpError("Could not find user with the provided id", 404));
   }
 
   res.json({ user: user.toObject({ getters: true }) });
@@ -46,7 +46,7 @@ const signup = async (req, res, next) => {
     phone,
     userName,
     gender,
-    birthDate
+    birthDate,
   } = req.body;
 
   /* If you want to check out bcrypt's methods:
@@ -57,7 +57,7 @@ const signup = async (req, res, next) => {
   try {
     hashedPassword = await bcrypt.hash(password, 12);
   } catch (err) {
-    return next(new HttpError('Could not create user, please try again', 500));
+    return next(new HttpError("Could not create user, please try again", 500));
   }
 
   const createdUser = new User({
@@ -68,13 +68,13 @@ const signup = async (req, res, next) => {
     phone,
     userName,
     gender,
-    birthDate: new Date(birthDate)
+    birthDate: new Date(birthDate),
   });
 
   try {
     await createdUser.save();
   } catch (err) {
-    const error = new HttpError('Signing up user to DB failed.', 500);
+    const error = new HttpError("Signing up user to DB failed.", 500);
     return next(error);
   }
 
@@ -92,13 +92,13 @@ const signup = async (req, res, next) => {
       {
         userId: createdUser.id,
         email: createdUser.email,
-        userName: createdUser.userName
+        userName: createdUser.userName,
       },
       process.env.TOKEN_ENCRYPTION,
-      { expiresIn: '6h' }
+      { expiresIn: "6h" }
     );
   } catch (err) {
-    const error = new HttpError('Signing up user failed.', 500);
+    const error = new HttpError("Signing up user failed.", 500);
     return next(error);
   }
 
@@ -106,7 +106,7 @@ const signup = async (req, res, next) => {
     userId: createdUser.id,
     email: createdUser.email,
     userName: createdUser.userName,
-    token
+    token,
   });
 };
 
@@ -117,13 +117,13 @@ const login = async (req, res, next) => {
   try {
     existingUser = await User.findOne({ email });
   } catch (err) {
-    const error = new HttpError('Login failed, please try again', 500);
+    const error = new HttpError("Login failed, please try again", 500);
     return next(error);
   }
 
   if (!existingUser) {
     const error = new HttpError(
-      'Invalid credentials, could not log you in',
+      "Invalid credentials, could not log you in",
       401
     );
     return next(error);
@@ -134,7 +134,7 @@ const login = async (req, res, next) => {
     isValidPassword = await bcrypt.compare(password, existingUser.password);
   } catch (err) {
     const error = new HttpError(
-      'Could not log you in, please check your credentials.',
+      "Could not log you in, please check your credentials.",
       500
     );
     return next(error);
@@ -142,7 +142,7 @@ const login = async (req, res, next) => {
 
   if (!isValidPassword) {
     const error = new HttpError(
-      'Invalid credentials, could not log you in',
+      "Invalid credentials, could not log you in",
       403
     );
     return next(error);
@@ -154,13 +154,13 @@ const login = async (req, res, next) => {
       {
         userId: existingUser.id,
         email: existingUser.email,
-        userName: existingUser.userName
+        userName: existingUser.userName,
       },
       process.env.TOKEN_ENCRYPTION,
-      { expiresIn: '6h' }
+      { expiresIn: "6h" }
     );
   } catch (err) {
-    const error = new HttpError('Logging in failed.', 500);
+    const error = new HttpError("Logging in failed.", 500);
     return next(error);
   }
 
@@ -168,13 +168,12 @@ const login = async (req, res, next) => {
     userId: existingUser.id,
     email: existingUser.email,
     userName: existingUser.userName,
-    token
+    token,
   });
 };
 
 const updateUser = async (req, res, next) => {
-
-  const { firstName, lastName, phone, birthDate, email } = req.body;
+  const { firstName, lastName, phone, email } = req.body;
   const { userId } = req.params;
 
   let user;
@@ -182,33 +181,32 @@ const updateUser = async (req, res, next) => {
     user = await User.findById(userId);
   } catch (err) {
     return next(
-      new HttpError('Something went wrong, could not find a user', 500)
+      new HttpError("Something went wrong, could not find a user", 500)
     );
   }
 
   if (userId !== req.userData.userId) {
-    return next(new HttpError('You do not have edit privileges.', 401));
+    return next(new HttpError("You do not have edit privileges.", 401));
   }
 
   user.firstName = firstName;
   user.lastName = lastName;
   user.phone = phone;
-  user.birthDate = new Date(birthDate);
   user.email = email;
 
   try {
     await user.save();
   } catch (err) {
-    const error = new HttpError('Updating user failed.', 500);
+    const error = new HttpError("Updating user failed.", 500);
     return next(error);
   }
 
   res.status(200).json({
-    user: user.toObject({ getters: true })
+    user: user.toObject({ getters: true }),
   });
 };
 
-const updatePassword = async(req, res, next) => {
+const updatePassword = async (req, res, next) => {
   const { password } = req.body;
   const { userId } = req.params;
 
@@ -217,19 +215,23 @@ const updatePassword = async(req, res, next) => {
     user = await User.findById(userId);
   } catch (err) {
     return next(
-      new HttpError('Something went wrong, could not find a user', 500)
+      new HttpError("Something went wrong, could not find a user", 500)
     );
   }
 
   if (userId !== req.userData.userId) {
-    return next(new HttpError('You do not have password edit privileges.', 401));
+    return next(
+      new HttpError("You do not have password edit privileges.", 401)
+    );
   }
 
   let hashedPassword;
   try {
     hashedPassword = await bcrypt.hash(password, 12);
   } catch (err) {
-    return next(new HttpError('Could not update user password, please try again', 500));
+    return next(
+      new HttpError("Could not update user password, please try again", 500)
+    );
   }
 
   user.password = hashedPassword;
@@ -237,12 +239,12 @@ const updatePassword = async(req, res, next) => {
   try {
     await user.save();
   } catch (err) {
-    const error = new HttpError('Updating user password failed.', 500);
+    const error = new HttpError("Updating user password failed.", 500);
     return next(error);
   }
 
   res.status(200).json("Update succeeded.");
-}
+};
 
 exports.getUsers = getUsers;
 exports.signup = signup;

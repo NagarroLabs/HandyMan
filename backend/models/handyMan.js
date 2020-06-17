@@ -1,34 +1,38 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const handyManSchema = new mongoose.Schema({
   info: {
     type: mongoose.Types.ObjectId,
     required: true,
-    ref: 'User'
+    ref: "User",
   },
   areaOfInterest: {
     type: [String],
-    required: true
+    required: true,
   },
   topFiveSkills: {
     type: [String],
-    required: true
+    required: true,
   },
   spokenLanguages: {
     type: [String],
-    required: true
+    required: true,
   },
   country: {
     type: String,
-    required: true
+    required: true,
   },
   city: {
     type: String,
-    required: true
+    required: true,
   },
   address: {
     type: String,
-    required: true
+    required: true,
+  },
+  experience: {
+    type: String,
+    required: true,
   },
   companyName: String,
   companyPhone: String,
@@ -37,9 +41,9 @@ const handyManSchema = new mongoose.Schema({
   reviews: [
     {
       type: mongoose.Types.ObjectId,
-      ref: 'Review'
-    }
-  ]
+      ref: "Review",
+    },
+  ],
 });
 
-module.exports = mongoose.model('HandyMan', handyManSchema);
+module.exports = mongoose.model("HandyMan", handyManSchema);

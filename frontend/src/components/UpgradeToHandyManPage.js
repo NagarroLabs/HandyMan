@@ -32,6 +32,7 @@ function UpgradeToHandyManPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     // try {
     //   const responseData = await sendRequest(
     //     "http://localhost:3001/api/users/signup", // to be modified

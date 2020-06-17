@@ -12,6 +12,8 @@ import Col from "react-bootstrap/Col";
 export default function EditProfileForm(props) {
   const [errors, setErrors] = useState({});
 
+  const linkChangePassword = "/api/users/update/" + props.userId + "/password";
+
   function formIsValid() {
     const _errors = {};
 
@@ -27,10 +29,6 @@ export default function EditProfileForm(props) {
 
     props.user.lastName.length === 0
       ? (_errors.lastNameError = "Last name is required!")
-      : "";
-
-    props.user.username.length === 0
-      ? (_errors.usernameError = "Username is required!")
       : "";
 
     props.user.gender.length === 0
@@ -56,7 +54,7 @@ export default function EditProfileForm(props) {
   return (
     <>
       <Form className="EditProfilePage">
-        <img src={logo} width="500px" alt="HandyMan" />
+        <br />
         <br />
         <h1 className="editProfileTitle">E d i t P r o f i l e</h1>
         <br />
@@ -129,97 +127,14 @@ export default function EditProfileForm(props) {
         </Form.Row>
 
         <br />
-        <Form.Row>
-          <Col
-            className="inputBox"
-            style={{
-              marginTop: "20px",
-              marginLeft: "150px",
-            }}
-          >
-            <Form.Label style={{ marginLeft: "10px", marginRight: "150px" }}>
-              Gender
-            </Form.Label>
-            <div
-              key={`inline-radio`}
-              style={{
-                color: "white",
-              }}
-            >
-              <Form.Check
-                inline
-                type="radio"
-                label="Male"
-                name="gender"
-                onChange={props.onChange}
-                value="male"
-              />
-              <Form.Check
-                inline
-                type="radio"
-                label="Female"
-                name="gender"
-                onChange={props.onChange}
-                value="female"
-              />
-            </div>
-            {errors.genderError && (
-              <div className="alert alert-danger">{errors.genderError}</div>
-            )}
-          </Col>
-
-          <Col className="inputBox">
-            <Form.Group
-            // style={{ margin: "auto"}}
-            >
-              <Form.Label>Birthday</Form.Label>
-              <Form.Control
-                style={{ width: "240px" }}
-                type="date"
-                name="birthDate"
-                onChange={props.onChange}
-                value={props.user.birthDate}
-              />
-            </Form.Group>
-            {errors.birthDateError && (
-              <div className="alert alert-danger">{errors.birthDateError}</div>
-            )}
-          </Col>
-        </Form.Row>
-
         <br />
 
-        <Form.Row>
-          <Col className="inputBox">
-            <Form.Group>
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                placeholder="Username"
-                id="username"
-                name="username"
-                label="Username"
-                onChange={props.onChange}
-                value={props.user.username}
-              />
-            </Form.Group>
-            {errors.usernameError && (
-              <div className="alert alert-danger">{errors.usernameError}</div>
-            )}
-          </Col>
+        <div>
+          <p className="blueLettering">
+            Change your password <a href={linkChangePassword}>here</a>
+          </p>
+        </div>
 
-          <Col className="inputBox">
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>New Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                name="password"
-                onChange={props.onChange}
-              />
-            </Form.Group>
-          </Col>
-        </Form.Row>
-        <br />
         <Button
           onClick={submitButtonClick}
           className="btn-princ"
