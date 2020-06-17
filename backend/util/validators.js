@@ -6,6 +6,7 @@ const { check } = require("express-validator");
 
 const HttpError = require("../models/http-error");
 const User = require("../models/users");
+const HandyMan = require("../models/handyMan");
 
 module.exports = {
   requireFirstName: check("firstName")
@@ -93,4 +94,30 @@ module.exports = {
     .normalizeEmail()
     .isEmail()
     .withMessage("Must be a valid email."),
+
+  requireSkills: check("skills")
+    .not()
+    .isEmpty()
+    .trim()
+    .withMessage("Skills must not be empty."),
+  requireSpokenLanguages: check("spokenLanguages")
+    .not()
+    .isEmpty()
+    .trim()
+    .withMessage("Spoken languages must not be empty."),
+  requireCountry: check("country")
+    .not()
+    .isEmpty()
+    .trim()
+    .withMessage("Country must not be empty."),
+  requireCity: check("city")
+    .not()
+    .isEmpty()
+    .trim()
+    .withMessage("City must not be empty."),
+  requireAddress: check("address")
+    .not()
+    .isEmpty()
+    .trim()
+    .withMessage("Address must not be empty."),
 };

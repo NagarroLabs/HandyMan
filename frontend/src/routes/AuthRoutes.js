@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 
 import AddJobPage from "../pages/AddJobPage";
+import EditProfilePage from "../components/EditProfilePage";
+import UpgradeToHandyManPage from "../components/UpgradeToHandyManPage";
 
 const AuthRoutes = () => {
   return (
@@ -24,6 +26,12 @@ const AuthRoutes = () => {
       <Route path="/:userId/jobs" exact>
         <div>Insert user-created jobs component here.</div>
       </Route>
+      <Route path="/profile/edit" exact component={EditProfilePage} />
+      <Route
+        path="/profile/upgradeToHandyMan"
+        exact
+        component={UpgradeToHandyManPage}
+      />
       <Redirect to="/" />
     </Switch>
   );

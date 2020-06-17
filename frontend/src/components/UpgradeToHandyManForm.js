@@ -5,13 +5,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import Dropdown from "react-bootstrap/Dropdown";
 
 const specializations = ["Finance", "Account Executive", "Technology"];
 
 /* eslint-disable */
 
-export default function EditProfileForm(props) {
+function UpgradeToHandyManForm(props) {
   const [errors, setErrors] = useState({});
 
   function formIsValid() {
@@ -264,7 +263,7 @@ export default function EditProfileForm(props) {
                 className="blueLettering"
                 type="radio"
                 label="Beginner"
-                name="gender"
+                name="experience"
                 onChange={props.onChange}
                 value="male"
               />
@@ -272,7 +271,7 @@ export default function EditProfileForm(props) {
                 className="blueLettering"
                 type="radio"
                 label="Intermediate (2 to 5 years)"
-                name="gender"
+                name="experience"
                 onChange={props.onChange}
                 value="female"
               />
@@ -281,7 +280,7 @@ export default function EditProfileForm(props) {
                 className="blueLettering"
                 type="radio"
                 label="Advanced (more than 5 years)"
-                name="gender"
+                name="experience"
                 onChange={props.onChange}
                 value="female"
               />
@@ -310,8 +309,10 @@ export default function EditProfileForm(props) {
   );
 }
 
-EditProfileForm.propTypes = {
+UpgradeToHandyManForm.propTypes = {
   user: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };
+
+export default UpgradeToHandyManForm;

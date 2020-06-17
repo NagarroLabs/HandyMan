@@ -59,3 +59,5 @@ const upgradeToHandyMan = async (req, res, next) => {
     handyManId: createdUser.id,
   });
 };
+
+exports.upgradeToHandyMan = upgradeToHandyMan;

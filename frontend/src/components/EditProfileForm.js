@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import logo from "../WhiteLogo.svg";
-
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -147,6 +146,16 @@ export default function EditProfileForm(props) {
           Update profile
         </Button>
         <br />
+
+        <div>
+          <p className="blueLettering">
+            DO you want to sign up for jobs?{" "}
+            <Link to="/profile/upgradeToHandyMan">
+              {" "}
+              Upgrade to HandyMan account!
+            </Link>
+          </p>
+        </div>
       </Form>
     </>
   );

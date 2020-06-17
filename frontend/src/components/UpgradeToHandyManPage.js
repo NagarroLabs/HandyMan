@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import UpgradeToHandyManForm from "./UpgradeToHandyManForm";
-import { addUser } from "../mock-api/usersApi";
 import { AuthContext } from "../shared/context/auth-context";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -32,37 +31,39 @@ function UpgradeToHandyManPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
-    // try {
-    //   const responseData = await sendRequest(
-    //     "http://localhost:3001/api/users/signup", // to be modified
-    //     "POST",
-    //     JSON.stringify({
-    //       firstName: user.firstName,
-    //       lastName: user.lastName,
-    //       email: user.email,
-    //       userName: user.username,
-    //       phone: user.phone,
-    //       gender: user.gender,
-    //       birthDate: user.birthDate,
-    //       password: user.password,
-    //     }),
-    //     {
-    //       "Content-Type": "application/json",
-    //     }
-    //   );
-    //   auth.login(responseData.userId, responseData.token);
-    //   toast.success("Account successfully created!", {
-    //     position: toast.POSITION.TOP_CENTER,
-    //     autoClose: 2000,
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    //   toast.error("Email or username already taken!", {
-    //     position: toast.POSITION.TOP_CENTER,
-    //     autoClose: false,
-    //   });
-    // }
+    try {
+      const responseData = await sendRequest(
+        "http://localhost:3001/api/handyMen/upgradeToHandyMan",
+        "POST",
+        JSON.stringify({
+          areaOfInterest: user.areaOfInterest,
+          skills: user.skills,
+          spokenLanguages: user.spokenLanguages,
+          city: user.city,
+          country: user.country,
+          address: user.address,
+          companyName: user.companyName,
+          companyAddress: user.companyAddress,
+          companyWebsite: user.companyWebsite,
+          companyPhone: user.companyPhone,
+          experience: user.experience,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+      auth.login(responseData.userId, responseData.token);
+      toast.success("Account successfully updated to HandyMan!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
+    } catch (err) {
+      console.log(err);
+      toast.error("Email or username already taken!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: false,
+      });
+    }
   }
 
   return (
