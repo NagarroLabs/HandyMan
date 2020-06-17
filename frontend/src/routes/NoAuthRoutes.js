@@ -6,15 +6,15 @@ import {
   Switch,
 } from "react-router-dom";
 
-import RegisterPage from "../components/RegisterPage";
-import LoginPage from "../components/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
+import LoginPage from "../pages/LoginPage";
 import JobsListingPage from "../pages/JobsListingPage";
 
 const NoAuthRoutes = () => {
   return (
     <Switch>
       <Route path="/" exact>
-        <div>Insert home page component here.</div>
+        <div>Insert home no auth page component here.</div>
       </Route>
       <Route path="/signup" exact component={RegisterPage} />
       <Route path="/login" exact component={LoginPage} />

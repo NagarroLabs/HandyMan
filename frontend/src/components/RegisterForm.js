@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import logo from "../WhiteLogo.svg";

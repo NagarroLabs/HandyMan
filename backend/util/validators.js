@@ -40,6 +40,7 @@ module.exports = {
       }
       return true;
     }),
+
   requireUsername: check("userName")
     .not()
     .isEmpty()

@@ -1,40 +1,98 @@
 import React from 'react';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
 import './CustomNavbar.css';
 import logo from '../icons/Logo_orizontal.svg';
+import { AuthContext } from '../shared/context/auth-context';
+import { setLoggedIn } from '../actions';
 
-export default function CustomNavbar(props) {
-  return (
-    <Navbar className="navbar" expand="lg">
-      <Navbar.Brand href="/">
-        <img src={logo} style={{ width: 100, marginTop: -7 }} />
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="/jobs">
-            <span className="navText">Browse Jobs</span>
-          </Nav.Link>
-          <Nav.Link href="/about">
-            <span className="navText">About</span>
-          </Nav.Link>
-          <NavDropdown
-            title={<span className="navText">Dropdown Example</span>}
-            id="basic-nav-dropdown"
-          >
-            <NavDropdown.Item href="/exampleRoute">Action</NavDropdown.Item>
-         
-          </NavDropdown>
-        </Nav>
-        <Nav>
-          <Nav.Link href="/register">
-            <span className="navText">Register</span>
-          </Nav.Link>
-          <Nav.Link href="/login">
-            <span className="navText">Log In</span>
-          </Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-  );
+function CustomNavbar(props) {
+    const auth = useContext(AuthContext);
+    const logOut = () => {
+        auth.logout();
+        props.setLoggedIn(false);
+    };
+    return (
+        <Navbar className="navbar" expand="lg">
+            <Navbar.Brand className="mr-3">
+                <Link to="/">
+                    <img src={logo} style={{ width: 100, marginTop: -7 }} />
+                </Link>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                    <Nav.Item className="mr-3 nav-link">
+                        <Link to="/jobs">
+                            <span className="navText">Browse Jobs</span>
+                        </Link>
+                    </Nav.Item>
+
+                    <Nav.Item className="mr-3 nav-link">
+                        <Link to="/about">
+                            <span className="navText">About</span>
+                        </Link>
+                    </Nav.Item>
+
+                    {props.isLoggedIn ? (
+                        <NavDropdown
+                            className="mr-3"
+                            title={<span className="navText">Jobs</span>}
+                            id="basic-nav-dropdown"
+                        >
+                            <Nav.Item>
+                                <Link to="/jobs/new">Add Jobs</Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Link to="/exampleRoute">Edit Jobs</Link>
+                            </Nav.Item>
+                        </NavDropdown>
+                    ) : (
+                        <></>
+                    )}
+                </Nav>
+                <Nav>
+                    {props.isLoggedIn ? (
+                        <NavDropdown
+                            alignRight
+                            title={<span className="navText">Profile</span>}
+                            id="basic-nav-dropdown"
+                        >
+                            <Nav.Item>
+                                <Link to="/editProfile">Edit Profile</Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Link to="/">
+                                    <span onClick={logOut}>Log out</span>
+                                </Link>
+                            </Nav.Item>
+                        </NavDropdown>
+                    ) : (
+                        <>
+                            <Nav.Item className="mr-3">
+                                <Link to="/register">
+                                    <span className="navText">Register</span>
+                                </Link>
+                            </Nav.Item>
+
+                            <Nav.Item className="mr-3">
+                                <Link to="/login">
+                                    <span className="navText">Log In</span>
+                                </Link>
+                            </Nav.Item>
+                        </>
+                    )}
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
+    );
 }
+
+const mapStateToProps = (state) => {
+    return { isLoggedIn: state.isLoggedIn };
+};
+
+export default connect(mapStateToProps, { setLoggedIn })(CustomNavbar);
