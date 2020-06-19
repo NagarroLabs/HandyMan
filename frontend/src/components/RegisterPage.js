@@ -1,38 +1,25 @@
-import React, { useState, useContext, useEffect } from "react";
-import EditProfileForm from "./EditProfileForm";
+import React, { useState, useContext } from "react";
+import RegisterForm from "./RegisterForm";
+import { useHttpClient } from "../shared/hooks/http-hook";
 import { AuthContext } from "../shared/context/auth-context";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useHttpClient } from "../shared/hooks/http-hook";
-
-import "./EditProfileForm.css";
-/* eslint-disable */
-
-function EditProfilePage() {
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+function RegisterPage() {
   const [user, setUser] = useState({
     id: null,
     firstName: "",
     lastName: "",
     email: "",
+    username: "",
     phone: "",
+    gender: "",
+    birthDate: "",
+    password: "",
   });
 
   const auth = useContext(AuthContext);
-  const userId = auth.userId;
-
-  useEffect(() => {
-    async function getUserInfo() {
-      try {
-        const url = "http://localhost:3001/api/users/" + userId;
-        const responseData = await sendRequest(url);
-        setUser(responseData.user);
-      } catch (err) {}
-    }
-
-    getUserInfo();
-  }, [sendRequest, userId]);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   function handleChange({ target }) {
     setUser({
@@ -43,35 +30,33 @@ function EditProfilePage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    toast.success("Account successfully updated!", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 2000,
-    });
 
     try {
-      const url = "http://localhost:3001/api/users/update/" + userId;
       const responseData = await sendRequest(
-        url,
-        "PATCH",
+        "http://localhost:3001/api/users/signup",
+        "POST",
         JSON.stringify({
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
+          userName: user.username,
           phone: user.phone,
+          gender: user.gender,
+          birthDate: user.birthDate,
+          password: user.password,
         }),
         {
           "Content-Type": "application/json",
-          Authorization: "JWT " + auth.token,
         }
       );
       auth.login(responseData.userId, responseData.token);
-      toast.success("Account successfully updated!", {
+      toast.success("Account successfully created!", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 2000,
       });
     } catch (err) {
       console.log(err);
-      toast.error("Something went wrong.", {
+      toast.error("Email or username already taken!", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: false,
       });
@@ -80,14 +65,13 @@ function EditProfilePage() {
 
   return (
     <>
-      <EditProfileForm
+      <RegisterForm
         user={user}
         onChange={handleChange}
         onSubmit={handleSubmit}
-        userId={userId}
       />
     </>
   );
 }
 
-export default EditProfilePage;
+export default RegisterPage;
