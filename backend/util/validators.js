@@ -94,7 +94,6 @@ module.exports = {
     .normalizeEmail()
     .isEmail()
     .withMessage("Must be a valid email."),
-
   requireSkills: check("skills")
     .not()
     .isEmpty()
@@ -119,5 +118,5 @@ module.exports = {
     .not()
     .isEmpty()
     .trim()
-    .withMessage("Address must not be empty."),
+    .withMessage("Address must not be empty.")
 };
