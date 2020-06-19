@@ -3,10 +3,13 @@
 .app {
   background-color: #161032;
 }
-/* 
+
+.form-row {
+  width: 100%;
+}
+
 .form-control {
   width: 400px;
-  width: 30%;
   border-radius: 10px;
   padding: 9px 19px;
   background-color: rgba(255, 255, 255, 0.3);
@@ -15,15 +18,15 @@
   font-size: 14px;
   color: #ffffff;
   margin: 10px;
-} */
+}
 
-/* .form-label {
+.form-label {
   font-family: "Rubik", sans-serif;
   font-weight: 00;
   font-size: 16px;
   color: #ffffff;
   padding: 2px 19px;
-} */
+}
 
 .form-check {
   font-family: "Rubik", sans-serif;
@@ -212,23 +215,4 @@
 }
 .bg-orange-yellow {
   background-color: #f4d06f;
-}
-
-.form-label {
-  font-family: "Rubik", sans-serif;
-  font-weight: 00;
-  font-size: 20px;
-  color: #ffffff;
-  padding: 2px 19px;
-}
-
-.form-control {
-  align-self: flex-end;
-  border-radius: 10px !important;
-  background-color: rgba(255, 255, 255, 0.3) !important;
-  font-family: "Rubik", sans-serif;
-  font-weight: 40;
-  font-size: 24px;
-  color: #161032 !important;
-  margin: 10px;
 }

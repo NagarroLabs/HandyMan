@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import UpgradeToHandyManForm from "./UpgradeToHandyManForm";
 import { AuthContext } from "../shared/context/auth-context";
+import { useHttpClient } from "../shared/hooks/http-hook";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -29,11 +30,14 @@ function UpgradeToHandyManPage() {
     });
   }
 
+  const auth = useContext(AuthContext);
+  const { sendRequest } = useHttpClient();
+
   async function handleSubmit(event) {
     event.preventDefault();
     try {
       const responseData = await sendRequest(
-        "http://localhost:3001/api/handyMen/upgradeToHandyMan",
+        "http://localhost:3001/api/handymen/upgradeToHandyMan",
         "POST",
         JSON.stringify({
           areaOfInterest: user.areaOfInterest,
@@ -50,6 +54,7 @@ function UpgradeToHandyManPage() {
         }),
         {
           "Content-Type": "application/json",
+          Authorization: `JWT ${auth.token}`,
         }
       );
       auth.login(responseData.userId, responseData.token);

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import RegisterForm from "./RegisterForm";
-import { addUser } from "../mock-api/usersApi";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { AuthContext } from "../shared/context/auth-context";
 import { toast } from "react-toastify";

@@ -10,11 +10,13 @@ const {
 const { upgradeToHandyMan } = require("../controllers/handyMan-controllers");
 
 const { handleErrors } = require("../middlewares/handle-errors.js");
+const checkAuth = require("../middlewares/check-auth");
 
 const router = express.Router();
 
 router.post(
   "/upgradeToHandyMan",
+  checkAuth,
   [
     requireSkills,
     requireSpokenLanguages,
