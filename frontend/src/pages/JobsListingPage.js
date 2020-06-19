@@ -9,11 +9,11 @@ import FilteringSection from '../components/FilteringSection';
 function JobsListingPage(props) {
     const jobs = props.jobs;
     const [searchField, setSearchField] = useState('');
-    const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const { sendRequest } = useHttpClient();
 
     useEffect(() => {
         props.getJobs(sendRequest);
-    }, []);
+    }, [props, sendRequest]);
 
     const onSearchChange = (event) => {
         setSearchField(event.target.value);

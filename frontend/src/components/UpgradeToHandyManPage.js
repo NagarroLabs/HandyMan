@@ -1,9 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import UpgradeToHandyManForm from "./UpgradeToHandyManForm";
 import { AuthContext } from "../shared/context/auth-context";
 import { useHttpClient } from "../shared/hooks/http-hook";
-import { toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 /* eslint-disable */
 
