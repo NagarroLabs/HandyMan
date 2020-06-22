@@ -14,7 +14,7 @@ export default function AddJobForm(props) {
         props.sendData({
             country,
             region,
-            skillList,
+            skillList
         });
         props.onSubmit(event);
     };

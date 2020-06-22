@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import AuthRoutes from './routes/AuthRoutes';
@@ -7,7 +7,7 @@ import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
 import CustomNavbar from './components/CustomNavbar';
 import { connect } from 'react-redux';
-import { setLoggedIn } from './actions';
+import { setLoggedIn } from './redux/actions';
 
 import './index.css';
 
@@ -21,7 +21,7 @@ const App = (props) => {
                 token,
                 userId,
                 login,
-                logout,
+                logout
             }}
         >
             <Router>

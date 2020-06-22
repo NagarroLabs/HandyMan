@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import logo from '../WhiteLogo.svg';
-import './RegisterForm.css';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
+import './RegisterForm.css';
 /* eslint-disable */
 
 function RegisterForm(props) {
@@ -153,17 +152,9 @@ function RegisterForm(props) {
 
                 <br />
                 <Form.Row>
-                    <Col
-                        className="inputBox"
-                        style={{
-                            marginTop: '20px',
-                            marginLeft: '150px',
-                        }}
-                    >
-                        <Form.Label style={{ marginLeft: '20px' }}>
-                            Gender
-                        </Form.Label>
-                        <div key={`inline-radio`} style={{ color: 'white' }}>
+                    <Col className="inputBox">
+                        <Form.Label>Gender</Form.Label>
+                        <div key={`inline-radio`}>
                             <Form.Check
                                 inline
                                 type="radio"
@@ -189,10 +180,9 @@ function RegisterForm(props) {
                     </Col>
 
                     <Col className="inputBox">
-                        <Form.Group style={{ margin: 'auto', padding: '10px' }}>
+                        <Form.Group>
                             <Form.Label>birthDate</Form.Label>
                             <Form.Control
-                                style={{ width: '240px' }}
                                 type="date"
                                 name="birthDate"
                                 onChange={props.onChange}
@@ -243,30 +233,12 @@ function RegisterForm(props) {
                     </Col>
                 </Form.Row>
                 <br />
-                <Button
-                    onClick={submitButtonClick}
-                    className="btn-princ"
-                    style={{
-                        width: '300px',
-                        height: '70px',
-                        fontSize: '40px',
-                    }}
-                >
+                <Button onClick={submitButtonClick} className="btn-princ">
                     Register
                 </Button>
                 <br />
                 <p className="lettering" style={{ fontSize: '18px' }}>
-                    Already have an account?{' '}
-                    <a
-                        href="/login"
-                        style={{
-                            color: '#ffe18a',
-                            fontFamily: 'Rubik',
-                            fontSize: '20px',
-                        }}
-                    >
-                        Sign in
-                    </a>
+                    Already have an account? <a href="/login">Sign in</a>
                 </p>
             </Form>
         </>
@@ -276,7 +248,7 @@ function RegisterForm(props) {
 RegisterForm.propTypes = {
     user: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired
 };
 
 export default withRouter(RegisterForm);

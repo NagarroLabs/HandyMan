@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import LoginForm from '../components/LoginForm';
 import { useHttpClient } from '../shared/hooks/http-hook';
 import { AuthContext } from '../shared/context/auth-context';
-import { setLoggedIn } from '../actions';
+import { setLoggedIn } from '../redux/actions';
 
 function LoginPage(props) {
     const [loginInfo, setLoginInfo] = useState({
         email: '',
-        password: '',
+        password: ''
     });
 
     const auth = useContext(AuthContext);
@@ -18,7 +18,7 @@ function LoginPage(props) {
     function handleChange({ target }) {
         setLoginInfo({
             ...loginInfo,
-            [target.name]: target.value,
+            [target.name]: target.value
         });
     }
 
@@ -30,10 +30,10 @@ function LoginPage(props) {
                 'POST',
                 JSON.stringify({
                     email: loginInfo.email,
-                    password: loginInfo.password,
+                    password: loginInfo.password
                 }),
                 {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             );
             auth.login(responseData.userId, responseData.token);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getJobs } from '../actions';
+import { getJobs } from '../redux/actions';
 
 import { useHttpClient } from '../shared/hooks/http-hook';
 import SearchBox from '../components/SearchBox';

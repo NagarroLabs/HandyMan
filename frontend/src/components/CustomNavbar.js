@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import './CustomNavbar.css';
 import logo from '../icons/Logo_orizontal.svg';
 import { AuthContext } from '../shared/context/auth-context';
-import { setLoggedIn } from '../actions';
+import { setLoggedIn } from '../redux/actions';
 
 function CustomNavbar(props) {
     const auth = useContext(AuthContext);
