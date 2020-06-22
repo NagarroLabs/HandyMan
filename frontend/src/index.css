@@ -15,7 +15,7 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
     font-size: 14px;
-    color: #ffffff;
+    color: #000000;
     margin: 10px;
 }
 
@@ -23,7 +23,7 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 00;
     font-size: 16px;
-    color: #ffffff;
+    color: #000000;
     padding: 2px 19px;
 }
 
@@ -31,7 +31,7 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
     font-size: 16px;
-    color: #ffffff;
+    color: #000000;
     margin: 17px;
 }
 
@@ -45,7 +45,7 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
     font-size: 14px;
-    color: #ffffff;
+    color: #000000;
     box-shadow: inset 0 -9.6px 0 -5.6px rgba(0, 0, 0, 0.17);
     text-align: center;
 }

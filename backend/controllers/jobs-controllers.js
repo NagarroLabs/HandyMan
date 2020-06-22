@@ -39,6 +39,18 @@ const getJobById = async (req, res, next) => {
     res.json({ job: job.toObject({ getters: true }) });
 };
 
+const getJobsForCurrentUser = async (req, res, next) => {
+    const { userId } = req.params;
+    let jobs;
+    try {
+        console.log('aici');
+        jobs = await User.findById(userId);
+    } catch (err) {
+        return next(new HttpError('something went wrong'), 500);
+    }
+    console.log(jobs);
+};
+
 const addJob = async (req, res, next) => {
     const {
         jobName,
@@ -50,7 +62,7 @@ const addJob = async (req, res, next) => {
         jobReqSkills,
         jobCountry,
         jobCity,
-        jobAddress,
+        jobAddress
     } = req.body;
 
     const addedJob = new Job({
@@ -64,7 +76,7 @@ const addJob = async (req, res, next) => {
         jobCountry,
         jobCity,
         jobAddress,
-        jobOwner: req.userData.userId,
+        jobOwner: req.userData.userId
     });
 
     let user;
@@ -116,7 +128,7 @@ const editJob = async (req, res, next) => {
         jobReqSkills,
         jobCountry,
         jobCity,
-        jobAddress,
+        jobAddress
     } = req.body;
     const jobId = req.params.jobId;
 
@@ -205,3 +217,4 @@ exports.editJob = editJob;
 exports.deleteJob = deleteJob;
 exports.getJobs = getJobs;
 exports.getJobById = getJobById;
+exports.getJobsForCurrentUser = getJobsForCurrentUser;

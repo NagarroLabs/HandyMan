@@ -47,7 +47,7 @@ function CustomNavbar(props) {
                                 <Link to="/jobs/new">Add Jobs</Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Link to="/exampleRoute">Edit Jobs</Link>
+                                <Link to="/jobs/:userId">Edit Jobs</Link>
                             </Nav.Item>
                         </NavDropdown>
                     ) : (
