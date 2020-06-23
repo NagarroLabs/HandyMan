@@ -74,7 +74,7 @@ const applyForJob = async (req,res,next) => {
     user = await User.findById(userId).populate("handyManId");
   } catch (err) {
     return next(
-      new HttpError("Something went wrong, could not find a user to upgrade.", 500)
+      new HttpError("Something went wrong, could not find the user that wishes to apply.", 500)
     );
   }
 
