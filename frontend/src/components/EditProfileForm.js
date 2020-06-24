@@ -134,15 +134,7 @@ export default function EditProfileForm(props) {
           </p>
         </div>
 
-        <Button
-          onClick={submitButtonClick}
-          className="btn-princ"
-          style={{
-            width: "300px",
-            height: "70px",
-            fontSize: "40px",
-          }}
-        >
+        <Button onClick={submitButtonClick} className="btn-princ">
           Update profile
         </Button>
         <br />
