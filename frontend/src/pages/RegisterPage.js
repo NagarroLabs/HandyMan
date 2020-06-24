@@ -22,8 +22,8 @@ function RegisterPage(props) {
     password: "",
   });
 
-    const auth = useContext(AuthContext);
-    const { sendRequest } = useHttpClient();
+  const auth = useContext(AuthContext);
+  const { sendRequest } = useHttpClient();
 
   function handleChange({ target }) {
     setUser({
@@ -61,7 +61,12 @@ function RegisterPage(props) {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 2000,
       });
-    } catch (err) {}
+    } catch (err) {
+      toast.error("Email or username already taken!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: false,
+      });
+    }
   }
 
   return (

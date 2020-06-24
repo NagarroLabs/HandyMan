@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { setLoggedIn } from "./actions";
 
 import "./index.css";
+import EditHandyManProfilePage from "./components/EditHandyManProfilePage";
 
 const App = (props) => {
   const { token, userId, login, logout } = useAuth();
@@ -28,7 +29,7 @@ const App = (props) => {
         <div>
           <CustomNavbar />
         </div>
-
+        {/* <EditHandyManProfilePage /> */}
         <main>{props.isLoggedIn ? <AuthRoutes /> : <NoAuthRoutes />}</main>
       </Router>
     </AuthContext.Provider>

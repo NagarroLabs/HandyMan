@@ -130,7 +130,7 @@ export default function EditProfileForm(props) {
 
         <div>
           <p className="blueLettering">
-            Change your password <a href={linkChangePassword}>here</a>
+            Change your password <a href="/profile/edit/changePassword">here</a>
           </p>
         </div>
 
@@ -141,11 +141,18 @@ export default function EditProfileForm(props) {
 
         <div>
           <p className="blueLettering">
-            DO you want to sign up for jobs?{" "}
+            Do you want to sign up for jobs?{" "}
             <Link to="/profile/upgradeToHandyMan">
               {" "}
               Upgrade to HandyMan account!
             </Link>
+          </p>
+        </div>
+
+        <br />
+        <div>
+          <p className="blueLettering">
+            <Link to="/profile/editHandyMan"> Edit HandyMan profile</Link>
           </p>
         </div>
       </Form>
