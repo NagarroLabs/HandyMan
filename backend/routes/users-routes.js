@@ -5,6 +5,7 @@ const {
   requireLastName,
   requireEmail,
   requirePassword,
+  requirePasswordConfirmation,
   requirePhone,
   requireUsername,
   requireEditMail,
@@ -48,7 +49,7 @@ router.post("/login", login);
 router.patch(
   "/update/:userId/password",
   checkAuth,
-  [requirePassword],
+  [requirePassword, requirePasswordConfirmation],
   handleErrors,
   updatePassword
 );
