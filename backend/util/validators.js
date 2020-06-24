@@ -23,6 +23,17 @@ module.exports = {
     .trim()
     .isLength({ min: 6, max: 20 })
     .withMessage("Must be between 6 and 20 characters."),
+  requirePasswordConfirmation: check('passwordConfirmation')
+    .trim()
+    .isLength({ min: 6, max: 20 })
+    .withMessage('Must be between 6 and 20 characters')
+    .custom((passwordConfirmation, { req }) => {
+      if (passwordConfirmation !== req.body.password) {
+        throw new HttpError('Passwords must match',500);
+      } else {
+          return true;
+      }
+    }),
   requireEmail: check("email")
     .trim()
     .normalizeEmail()

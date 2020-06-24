@@ -21,7 +21,6 @@ const upgradeToHandyMan = async (req, res, next) => {
   } = req.body;
 
   const { userId } = req.userData;
-
   let user;
   try {
     user = await User.findById(userId);
