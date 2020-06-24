@@ -5,7 +5,7 @@ import AddJobForm from '../components/AddJobForm';
 
 export default function AddJobPage() {
     const auth = useContext(AuthContext);
-    const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const { sendRequest } = useHttpClient();
     const [job, setJob] = useState({
         id: null,
         jobName: '',
@@ -15,7 +15,7 @@ export default function AddJobPage() {
         jobStartDate: '',
         jobCompletionFrame: '',
         jobReqSkills: [],
-        jobCountry: '',
+        jobCountry: 'Romania',
         jobRegion: '',
         jobCity: 'Timisoara',
         jobAddress: '',
@@ -70,6 +70,7 @@ export default function AddJobPage() {
                     Authorization: `JWT ${auth.token}`,
                 }
             );
+            console.log(responseData);
         } catch (err) {
             console.log(err);
         }

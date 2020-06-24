@@ -22,7 +22,7 @@ const getJobById = async (req, res, next) => {
     const { jobId } = req.params;
     let job;
     try {
-        job = await Job.find(jobId);
+        job = await Job.findById(jobId);
     } catch (err) {
         return next(
             new HttpError('Something went wrong, could not find job.'),

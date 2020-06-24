@@ -20,6 +20,12 @@
 
 <b>localhost:3001/api/jobs/delete/:jobId</b> -> <b>DELETE</b> route to delete Job (authentication is required)
 
+#### For handymen
+
+<b>localhost:3001/api/handymen/upgradeToHandyMan</b> -> <b>POST</b> route to add upgrade the user type (authentication is required)
+
+<b>localhost:3001/api/handymen/enlist/:jobId</b> -> <b>PATCH</b> route for a HandyMan to enlist to a certain job (authentication is required & being a HandyMan is required)
+
 ## Examples
 
 #### For users
@@ -62,6 +68,23 @@ Example of an accepted format for <b>ADDING JOB</b>:
 <b> You also need to set the Authentication header, just as in the patch example in order to add a job.</b>
 
 Same JSON input for editing a job.
+
+#### For handymen
+
+Example of an accepted format for <b>UPGRADING to HandyMan</b>:
+
+{
+    "areaOfInterest": "Finance",
+    "skills": ["Yolo","Pride"],
+    "spokenLanguages": ["English","Dutch"],
+    "city": "Timisoara",
+    "country": "Romania",
+    "address": "Bulevardul Eroilor de la Tisa",
+    "companyName": "Yolo",
+    "companyWebsite": "Yolo.org",
+    "companyPhone": "0729313459",
+    "experience": "5 years"
+}
 
 Try them out in POSTMAN.
 
