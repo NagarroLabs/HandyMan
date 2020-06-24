@@ -1,13 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../shared/context/auth-context';
 import { useHttpClient } from '../shared/hooks/http-hook';
+
 import AddJobForm from '../components/AddJobForm';
 
-export default function AddJobPage() {
+function EditJobPage(props) {
     const auth = useContext(AuthContext);
     const { sendRequest } = useHttpClient();
     const [job, setJob] = useState({
-        id: null,
+        id: props.match.params.jobId,
         jobName: '',
         jobDescription: '',
         jobCategory: '',
@@ -22,26 +23,32 @@ export default function AddJobPage() {
         jobOwner: null
     });
 
-    function handleChange({ target }) {
-        if (target.name === 'jobReqSkills') {
-            setJob({
-                ...job,
-                [target.name]: [...job.jobReqSkills, target.value]
-            });
-        } else {
-            setJob({
-                ...job,
-                [target.name]: target.value
-            });
+    useEffect(() => {
+        async function getJobInfo() {
+            try {
+                const url = 'http://localhost:3001/api/jobs/' + job.id;
+                const responseData = await sendRequest(url);
+                setJob(responseData.job);
+            } catch (error) {
+                console.log(error);
+            }
         }
+        getJobInfo();
+    }, [sendRequest, props.jobId]);
+
+    function handleChange({ target }) {
+        setJob({
+            ...job,
+            [target.name]: target.value
+        });
     }
 
-    async function handleSubmit(event) {
+    async function handleEdit(event) {
         event.preventDefault();
         try {
             await sendRequest(
-                'http://localhost:3001/api/jobs/new',
-                'POST',
+                `http://localhost:3001/api/jobs/edit/${job.id}`,
+                'PATCH',
                 JSON.stringify({
                     jobName: job.jobName,
                     jobDescription: job.jobDescription,
@@ -69,9 +76,11 @@ export default function AddJobPage() {
             <AddJobForm
                 job={job}
                 onChange={handleChange}
-                onSubmit={handleSubmit}
-                type="add"
+                onSubmit={handleEdit}
+                type="edit"
             />
         </div>
     );
 }
+
+export default EditJobPage;

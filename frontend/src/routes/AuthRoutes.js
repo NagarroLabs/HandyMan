@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-    BrowserRouter as Router,
-    Route,
-    Redirect,
-    Switch
-} from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import AddJobPage from '../pages/AddJobPage';
 import JobsListingPage from '../pages/JobsListingPage';
-import EditJobPage from '../pages/EditJobsPage';
+import MyJobsPage from '../pages/MyJobsPage';
+import EditJobPage from '../pages/EditJobPage.js';
 
 const AuthRoutes = () => {
     return (
@@ -18,10 +14,8 @@ const AuthRoutes = () => {
             </Route>
             <Route path="/jobs" exact component={JobsListingPage} />
             <Route path="/jobs/new" exact component={AddJobPage} />
-            <Route path="/jobs/:userId" exact component={EditJobPage} />
-            <Route path="/jobs/:jobId" exact>
-                <div>Insert job page component here.</div>
-            </Route>
+            <Route path="/jobs/:userId" exact component={MyJobsPage} />
+            <Route path="/jobs/myJobs/:jobId" exact component={EditJobPage} />
 
             <Redirect to="/" />
         </Switch>

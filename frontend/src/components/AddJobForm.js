@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
+import React, { useState, useEffect } from 'react';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 export default function AddJobForm(props) {
     const specializations = ['Finance', 'Account Executive', 'Technology'];
-    const [country, setCountry] = useState('Romania');
-    const [region, setRegion] = useState('Timis');
     const [skill, setSkill] = useState('');
     const [skillList, setSkillList] = useState([]);
     const [showSkills, setShowSkills] = useState(false);
     const sendForm = (event) => {
         event.preventDefault();
-        props.sendData({
-            country,
-            region,
-            skillList
-        });
         props.onSubmit(event);
     };
 
     const handleSkill = () => {
         setSkillList([...skillList, skill]);
+        props.onChange({ target: { name: 'jobReqSkills', value: skill } });
         setSkill('');
     };
 
@@ -31,6 +24,10 @@ export default function AddJobForm(props) {
     function displaySkills() {
         setShowSkills(!showSkills);
     }
+
+    useEffect(() => {
+        setSkillList(props.job.jobReqSkills);
+    }, [props.job]);
 
     return (
         <div className="row justify-content-md-center">
@@ -111,8 +108,8 @@ export default function AddJobForm(props) {
                     <label className="m-2 font-weight-bold">
                         Starting date of the job
                     </label>
-                    <Form.Control
-                        style={{ width: '240px' }}
+                    <input
+                        className="form-control"
                         type="date"
                         name="jobStartDate"
                         onChange={props.onChange}
@@ -124,8 +121,8 @@ export default function AddJobForm(props) {
                     <label className="m-2 font-weight-bold">
                         Ending date of the job
                     </label>
-                    <Form.Control
-                        style={{ width: '240px' }}
+                    <input
+                        className="form-control"
                         type="date"
                         name="jobCompletionFrame"
                         onChange={props.onChange}
@@ -175,15 +172,18 @@ export default function AddJobForm(props) {
                     <div>
                         <CountryDropdown
                             className="m-2 form-control"
-                            value={'Romania'}
-                            onChange={setCountry}
+                            name="jobCountry"
+                            country="Romania"
+                            value={props.job.jobCountry}
+                            onChange={props.onChange}
                             disabled
                         />
                         <RegionDropdown
                             className="m-2 form-control"
-                            country={country}
-                            value={'Timis'}
-                            onChange={setRegion}
+                            name="jobRegion"
+                            country={props.job.jobCountry}
+                            value={props.job.jobRegion}
+                            onChange={props.onChange}
                             disabled
                         />
                     </div>
@@ -207,7 +207,11 @@ export default function AddJobForm(props) {
                 </div>
                 {/* Submit */}
                 <button className="m-3 btn btn-primary" type="submit">
-                    Submit job
+                    {props.type === 'edit' ? (
+                        <span>Edit job</span>
+                    ) : (
+                        <span>Submit job</span>
+                    )}
                 </button>
             </form>
         </div>

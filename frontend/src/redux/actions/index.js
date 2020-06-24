@@ -18,10 +18,13 @@ export const setLoggedIn = (logged) => {
 };
 
 export const getUserJobs = (sendRequest, userId) => async (dispatch) => {
-    console.log(userId);
-    const response = await sendRequest(
-        'http://localhost:3001/api/jobs/myjobs/' + userId
-    );
-    console.log(response);
+    let response;
+    try {
+        response = await sendRequest(
+            'http://localhost:3001/api/jobs/myjobs/' + userId
+        );
+    } catch (err) {
+        console.log(err);
+    }
     dispatch({ type: 'GET_USER_JOBS', payload: response });
 };

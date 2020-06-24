@@ -13,7 +13,7 @@ function LoginPage(props) {
     });
 
     const auth = useContext(AuthContext);
-    const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const { sendRequest } = useHttpClient();
 
     function handleChange({ target }) {
         setLoginInfo({

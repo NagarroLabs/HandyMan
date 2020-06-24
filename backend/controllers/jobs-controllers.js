@@ -22,7 +22,7 @@ const getJobById = async (req, res, next) => {
     const { jobId } = req.params;
     let job;
     try {
-        job = await Job.find(jobId);
+        job = await Job.findById(jobId);
     } catch (err) {
         return next(
             new HttpError('Something went wrong, could not find job.'),
@@ -43,12 +43,16 @@ const getJobsForCurrentUser = async (req, res, next) => {
     const { userId } = req.params;
     let jobs;
     try {
-        console.log('aici');
-        jobs = await User.findById(userId);
+        jobs = await Job.find({ jobOwner: userId });
     } catch (err) {
-        return next(new HttpError('something went wrong'), 500);
+        return next(new HttpError('Something went wrong'), 500);
     }
-    console.log(jobs);
+    if (!jobs) {
+        return next(
+            new HttpError('Could not find job with the provided id', 404)
+        );
+    }
+    res.json({ jobs: jobs.map((job) => job.toObject({ getters: true })) });
 };
 
 const addJob = async (req, res, next) => {

@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 
 import jobReducer from './jobReducer';
 import loginReducer from './loginReducer';
+import { getJobs } from './userJobsReducer';
 
 const persistConfig = {
     key: 'root',
@@ -15,6 +16,7 @@ export default persistReducer(
     persistConfig,
     combineReducers({
         jobs: jobReducer,
-        isLoggedIn: loginReducer
+        isLoggedIn: loginReducer,
+        userJobs: getJobs
     })
 );
