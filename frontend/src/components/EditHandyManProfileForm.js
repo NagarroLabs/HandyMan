@@ -301,7 +301,7 @@ function EditHandyManProfileForm(props) {
             fontSize: "20px",
           }}
         >
-          Upgrade to HandyMan
+          Update HandyMan profile
         </Button>
         <br />
       </Form>
