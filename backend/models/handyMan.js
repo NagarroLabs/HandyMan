@@ -44,6 +44,18 @@ const handyManSchema = new mongoose.Schema({
       ref: "Review",
     },
   ],
+  jobsEnlistedTo: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Job",
+      default: []
+    }
+  ],
+  jobsAcceptedAt: [{
+    type: mongoose.Types.ObjectId,
+    ref: "Job"
+  }
+  ]
 });
 
 module.exports = mongoose.model("HandyMan", handyManSchema);
