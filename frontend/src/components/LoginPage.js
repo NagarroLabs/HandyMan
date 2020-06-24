@@ -1,22 +1,21 @@
 import React, { useState, useContext } from "react";
-import { connect } from "react-redux";
+import LoginForm from "./LoginForm";
 
-import LoginForm from "../components/LoginForm";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { AuthContext } from "../shared/context/auth-context";
-import { setLoggedIn } from "../actions";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 toast.configure();
-function LoginPage(props) {
+
+function LoginPage() {
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
 
-    const auth = useContext(AuthContext);
-    const { sendRequest } = useHttpClient();
+  const auth = useContext(AuthContext);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   function handleChange({ target }) {
     setLoginInfo({
@@ -40,12 +39,11 @@ function LoginPage(props) {
         }
       );
       auth.login(responseData.userId, responseData.token);
-      props.setLoggedIn(true);
       toast.success("Logged in successfully!", {
         position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
       });
     } catch (err) {
-      console.log("error" + err);
       toast.error("Invalid email or password!", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: false,
@@ -64,8 +62,4 @@ function LoginPage(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return { isLoggedIn: state.isLoggedIn };
-};
-
-export default connect(mapStateToProps, { setLoggedIn })(LoginPage);
+export default LoginPage;

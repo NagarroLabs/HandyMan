@@ -4,8 +4,12 @@
   background-color: #161032;
 }
 
-.form-control {
+.form-row {
   width: 100%;
+}
+
+.form-control {
+  width: 400px;
   border-radius: 10px;
   padding: 9px 19px;
   background-color: rgba(255, 255, 255, 0.3);
@@ -130,6 +134,12 @@
 
 .orangeLettering {
   color: #e9810a;
+  font-family: "Rubik", sans-serif;
+  font-size: 24px;
+}
+
+.blueLettering {
+  color: #161032;
   font-family: "Rubik", sans-serif;
   font-size: 24px;
 }

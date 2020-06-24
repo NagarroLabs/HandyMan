@@ -44,6 +44,10 @@ function EditProfilePage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    toast.success("Account successfully updated!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
 
     try {
       const url = "http://localhost:3001/api/users/update/" + userId;

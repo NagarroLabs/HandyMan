@@ -22,8 +22,8 @@ function RegisterPage(props) {
     password: "",
   });
 
-  const auth = useContext(AuthContext);
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const auth = useContext(AuthContext);
+    const { sendRequest } = useHttpClient();
 
   function handleChange({ target }) {
     setUser({
