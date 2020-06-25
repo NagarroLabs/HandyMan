@@ -25,7 +25,6 @@ const router = express.Router();
 router.get('/', getJobs);
 
 router.get('/myjobs/:userId', getJobsForCurrentUser);
-
 router.get('/:jobId', getJobById);
 
 router.post(

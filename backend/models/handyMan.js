@@ -30,6 +30,10 @@ const handyManSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    experience: {
+        type: String,
+        required: true
+    },
     companyName: String,
     companyPhone: String,
     companyWebsite: String,
@@ -38,6 +42,19 @@ const handyManSchema = new mongoose.Schema({
         {
             type: mongoose.Types.ObjectId,
             ref: 'Review'
+        }
+    ],
+    jobsEnlistedTo: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Job',
+            default: []
+        }
+    ],
+    jobsAcceptedAt: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Job'
         }
     ]
 });

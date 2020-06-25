@@ -5,6 +5,8 @@ import AddJobPage from '../pages/AddJobPage';
 import JobsListingPage from '../pages/JobsListingPage';
 import MyJobsPage from '../pages/MyJobsPage';
 import EditJobPage from '../pages/EditJobPage.js';
+import EditProfilePage from '../components/EditProfilePage';
+import UpgradeToHandyManPage from '../components/UpgradeToHandyManPage';
 
 const AuthRoutes = () => {
     return (
@@ -16,7 +18,12 @@ const AuthRoutes = () => {
             <Route path="/jobs/new" exact component={AddJobPage} />
             <Route path="/jobs/:userId" exact component={MyJobsPage} />
             <Route path="/jobs/myJobs/:jobId" exact component={EditJobPage} />
-
+            <Route path="/profile/edit" exact component={EditProfilePage} />
+            <Route
+                path="/profile/upgradeToHandyMan"
+                exact
+                component={UpgradeToHandyManPage}
+            />
             <Redirect to="/" />
         </Switch>
     );

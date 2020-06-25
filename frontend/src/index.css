@@ -8,6 +8,10 @@
     width: 100%;
 }
 
+.form-row {
+    width: 100%;
+}
+
 .form-control {
     border-radius: 10px;
     padding: 9px 19px;
@@ -137,10 +141,17 @@
     font-size: 24px;
 }
 
+.blueLettering {
+    color: #161032;
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+}
+
 .body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    background-color: #ffe1a8 !important;
 }
 
 .btn-princ {

@@ -6,6 +6,7 @@ const { check } = require('express-validator');
 
 const HttpError = require('../models/http-error');
 const User = require('../models/users');
+const HandyMan = require('../models/handyMan');
 
 module.exports = {
     requireFirstName: check('firstName')
@@ -22,6 +23,17 @@ module.exports = {
         .trim()
         .isLength({ min: 6, max: 20 })
         .withMessage('Must be between 6 and 20 characters.'),
+    requirePasswordConfirmation: check('passwordConfirmation')
+        .trim()
+        .isLength({ min: 6, max: 20 })
+        .withMessage('Must be between 6 and 20 characters')
+        .custom((passwordConfirmation, { req }) => {
+            if (passwordConfirmation !== req.body.password) {
+                throw new HttpError('Passwords must match', 500);
+            } else {
+                return true;
+            }
+        }),
     requireEmail: check('email')
         .trim()
         .normalizeEmail()
@@ -98,5 +110,30 @@ module.exports = {
         .trim()
         .normalizeEmail()
         .isEmail()
-        .withMessage('Must be a valid email.')
+        .withMessage('Must be a valid email.'),
+    requireSkills: check('skills')
+        .not()
+        .isEmpty()
+        .trim()
+        .withMessage('Skills must not be empty.'),
+    requireSpokenLanguages: check('spokenLanguages')
+        .not()
+        .isEmpty()
+        .trim()
+        .withMessage('Spoken languages must not be empty.'),
+    requireCountry: check('country')
+        .not()
+        .isEmpty()
+        .trim()
+        .withMessage('Country must not be empty.'),
+    requireCity: check('city')
+        .not()
+        .isEmpty()
+        .trim()
+        .withMessage('City must not be empty.'),
+    requireAddress: check('address')
+        .not()
+        .isEmpty()
+        .trim()
+        .withMessage('Address must not be empty.')
 };

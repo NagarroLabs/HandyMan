@@ -48,7 +48,7 @@ const signup = async (req, res, next) => {
         phone,
         userName,
         gender,
-        birthDate,
+        birthDate
     } = req.body;
 
     /* If you want to check out bcrypt's methods:
@@ -72,7 +72,7 @@ const signup = async (req, res, next) => {
         phone,
         userName,
         gender,
-        birthDate: new Date(birthDate),
+        birthDate: new Date(birthDate)
     });
 
     try {
@@ -96,7 +96,7 @@ const signup = async (req, res, next) => {
             {
                 userId: createdUser.id,
                 email: createdUser.email,
-                userName: createdUser.userName,
+                userName: createdUser.userName
             },
             process.env.TOKEN_ENCRYPTION,
             { expiresIn: '6h' }
@@ -110,7 +110,7 @@ const signup = async (req, res, next) => {
         userId: createdUser.id,
         email: createdUser.email,
         userName: createdUser.userName,
-        token,
+        token
     });
 };
 
@@ -158,7 +158,7 @@ const login = async (req, res, next) => {
             {
                 userId: existingUser.id,
                 email: existingUser.email,
-                userName: existingUser.userName,
+                userName: existingUser.userName
             },
             process.env.TOKEN_ENCRYPTION,
             { expiresIn: '6h' }
@@ -172,7 +172,7 @@ const login = async (req, res, next) => {
         userId: existingUser.id,
         email: existingUser.email,
         userName: existingUser.userName,
-        token,
+        token
     });
 };
 
@@ -206,7 +206,7 @@ const updateUser = async (req, res, next) => {
     }
 
     res.status(200).json({
-        user: user.toObject({ getters: true }),
+        user: user.toObject({ getters: true })
     });
 };
 

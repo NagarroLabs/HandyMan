@@ -8,7 +8,6 @@ export default function AddJobForm(props) {
     const [showSkills, setShowSkills] = useState(false);
     const sendForm = (event) => {
         event.preventDefault();
-        props.onSubmit(event);
     };
 
     const handleSkill = () => {

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router';
+// import { withRouter } from "react-router";
 import PropTypes from 'prop-types';
 import logo from '../WhiteLogo.svg';
+import './RegisterForm.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import './RegisterForm.css';
 /* eslint-disable */
 
 function RegisterForm(props) {
@@ -51,20 +52,6 @@ function RegisterForm(props) {
     const submitButtonClick = (event) => {
         props.onSubmit(event);
         formIsValid();
-    };
-
-    const isEnabled =
-        props.user.firstName.length > 0 &&
-        props.user.lastName.length > 0 &&
-        props.user.email.length > 0 &&
-        props.user.phone.length > 0 &&
-        props.user.gender.length > 0 &&
-        props.user.birthDate.length > 0 &&
-        props.user.username.length > 0;
-
-    const routeChange = () => {
-        let path = '/';
-        history.push(path);
     };
 
     return (
@@ -181,7 +168,7 @@ function RegisterForm(props) {
 
                     <Col className="inputBox">
                         <Form.Group>
-                            <Form.Label>birthDate</Form.Label>
+                            <Form.Label>Birthday</Form.Label>
                             <Form.Control
                                 type="date"
                                 name="birthDate"
@@ -227,7 +214,6 @@ function RegisterForm(props) {
                                 placeholder="Password"
                                 name="password"
                                 onChange={props.onChange}
-                                //value={props.user.password}
                             />
                         </Form.Group>
                     </Col>
@@ -237,7 +223,7 @@ function RegisterForm(props) {
                     Register
                 </Button>
                 <br />
-                <p className="lettering" style={{ fontSize: '18px' }}>
+                <p className="lettering">
                     Already have an account? <a href="/login">Sign in</a>
                 </p>
             </Form>
@@ -251,4 +237,4 @@ RegisterForm.propTypes = {
     onChange: PropTypes.func.isRequired
 };
 
-export default withRouter(RegisterForm);
+export default RegisterForm;

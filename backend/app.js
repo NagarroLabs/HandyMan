@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/api/users/', usersRouter);
-app.use(handyManRouter);
+app.use('/api/handymen/', handyManRouter);
 app.use('/api/jobs/', jobsRouter);
 app.use(reviewsRouter);
 
@@ -55,6 +55,7 @@ mongoose
     .connect(
         `mongodb+srv://handy:${process.env.DB_PASS}@handyman-odppl.mongodb.net/handyManDB?retryWrites=true&w=majority
     `,
+
         { useNewUrlParser: true, useUnifiedTopology: true }
     )
     .then(() => {
