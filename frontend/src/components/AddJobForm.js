@@ -121,12 +121,13 @@ export default function AddJobForm(props) {
                     <label className="m-2 font-weight-bold">
                         Ending date of the job
                     </label>
+
                     <input
                         className="form-control"
                         type="date"
-                        name="jobCompletionFrame"
+                        name="jobCompletionTimeFrame"
                         onChange={props.onChange}
-                        value={props.job.jobCompletionFrame}
+                        value={props.job.jobCompletionTimeFrame}
                     />
                 </div>
                 {/* Required Skills */}

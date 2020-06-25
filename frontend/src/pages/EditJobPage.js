@@ -14,7 +14,7 @@ function EditJobPage(props) {
         jobCategory: '',
         jobBudget: '',
         jobStartDate: '',
-        jobCompletionFrame: '',
+        jobCompletionTimeFrame: '',
         jobReqSkills: [],
         jobCountry: 'Romania',
         jobRegion: 'Timis',
@@ -28,7 +28,17 @@ function EditJobPage(props) {
             try {
                 const url = 'http://localhost:3001/api/jobs/' + job.id;
                 const responseData = await sendRequest(url);
-                setJob(responseData.job);
+
+                let newJob = responseData.job;
+                newJob.jobCompletionTimeFrame = new Date(
+                    responseData.job.jobCompletionTimeFrame
+                )
+                    .toISOString()
+                    .substring(0, 10);
+                newJob.jobStartDate = new Date(responseData.job.jobStartDate)
+                    .toISOString()
+                    .substring(0, 10);
+                setJob(newJob);
             } catch (error) {
                 console.log(error);
             }
@@ -55,7 +65,7 @@ function EditJobPage(props) {
                     jobCategory: job.jobCategory,
                     jobBudget: job.jobBudget,
                     jobStartDate: job.jobStartDate,
-                    jobCompletionTimeFrame: job.jobCompletionFrame,
+                    jobCompletionTimeFrame: job.jobCompletionTimeFrame,
                     jobReqSkills: job.jobReqSkills,
                     jobCountry: job.jobCountry,
                     jobCity: job.jobCity,
