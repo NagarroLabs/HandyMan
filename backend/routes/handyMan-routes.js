@@ -8,6 +8,7 @@ const {
 } = require("../util/validators");
 
 const {
+  getHandyManById,
   upgradeToHandyMan,
   applyForJob,
   updateHandyMan,
@@ -17,6 +18,8 @@ const { handleErrors } = require("../middlewares/handle-errors.js");
 const checkAuth = require("../middlewares/check-auth");
 
 const router = express.Router();
+
+router.get("/:userId", getHandyManById);
 
 router.post(
   "/upgradeToHandyMan",

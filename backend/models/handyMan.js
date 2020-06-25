@@ -10,7 +10,7 @@ const handyManSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
-  topFiveSkills: {
+  skills: {
     type: [String],
     required: true,
   },
@@ -48,14 +48,15 @@ const handyManSchema = new mongoose.Schema({
     {
       type: mongoose.Types.ObjectId,
       ref: "Job",
-      default: []
-    }
+      default: [],
+    },
   ],
-  jobsAcceptedAt: [{
-    type: mongoose.Types.ObjectId,
-    ref: "Job"
-  }
-  ]
+  jobsAcceptedAt: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Job",
+    },
+  ],
 });
 
 module.exports = mongoose.model("HandyMan", handyManSchema);

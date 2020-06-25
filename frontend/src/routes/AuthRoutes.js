@@ -25,7 +25,7 @@ const AuthRoutes = () => {
       </Route>
       <Route path="/profile/edit" exact component={EditProfilePage} />
       <Route
-        path="/profile/editHandyMan"
+        path="/profile/editHandyMan/"
         exact
         component={EditHandyManProfilePage}
       />

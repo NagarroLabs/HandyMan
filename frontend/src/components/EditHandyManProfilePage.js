@@ -33,24 +33,27 @@ function EditHandyManProfilePage() {
   useEffect(() => {
     async function getHandyManInfo() {
       try {
-        const url = "http://localhost:3001/api/handymen/" + user.handyManId;
+        const url = "http://localhost:3001/api/handymen/" + userId;
         const responseData = await sendRequest(url);
         setHandyMan(responseData.handyMan);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     }
 
-    async function getUserInfo() {
-      try {
-        const url = "http://localhost:3001/api/users/" + userId;
-        const responseData = await sendRequest(url);
-        setUser(responseData.user);
-        console.log("handyman: " + user.firstName);
-        getHandyManInfo();
-      } catch (err) {}
-    }
+    // async function getUserInfo() {
+    //   try {
+    //     const url = "http://localhost:3001/api/users/" + userId;
+    //     const responseData = await sendRequest(url);
+    //     setUser(responseData.user);
+    //     console.log("handyman: " + user.handyManId);
+    //     getHandyManInfo();
+    //   } catch (err) {}
+    // }
 
-    getUserInfo();
-  }, [sendRequest, userId]);
+    // getUserInfo();
+    getHandyManInfo();
+  }, []);
 
   function handleChange({ target }) {
     setHandyMan({
@@ -63,8 +66,7 @@ function EditHandyManProfilePage() {
     event.preventDefault();
 
     try {
-      const url =
-        "http://localhost:3001/api/handymen/update/" + userId.handyManId;
+      const url = "http://localhost:3001/api/handymen/editHandyMan/";
       const responseData = await sendRequest(
         url,
         "PATCH",

@@ -6,6 +6,25 @@ const User = require("../models/users");
 const Job = require("../models/jobs");
 const handyMan = require("../models/handyMan");
 
+const getHandyManById = async (req, res, next) => {
+  const { userId } = req.params;
+
+  let handyMan;
+  try {
+    handyMan = await HandyMan.find({ info: userId }).populate("info");
+  } catch (err) {
+    return next(
+      new HttpError("Something went wrong, could not find user.", 500)
+    );
+  }
+
+  if (!handyMan) {
+    return next(new HttpError("Could not find user with the provided id", 404));
+  }
+
+  res.json({ handyMan: handyMan[0].toObject({ getters: true }) });
+};
+
 const upgradeToHandyMan = async (req, res, next) => {
   const {
     areaOfInterest,
@@ -76,7 +95,7 @@ const updateHandyMan = async (req, res, next) => {
     country,
     address,
   } = req.body;
-  const { userId } = req.params;
+  const { userId } = req.userData;
 
   let user;
   try {
@@ -87,11 +106,15 @@ const updateHandyMan = async (req, res, next) => {
     );
   }
 
+  let handyMan;
   try {
     handyMan = await HandyMan.findById(user.handyManId);
   } catch (err) {
     return next(
-      new HttpError("Something went wrong, could not find a HandyMan", 500)
+      new HttpError(
+        "Something went wrong, could not find a HandyMan" + err,
+        500
+      )
     );
   }
 
@@ -99,9 +122,9 @@ const updateHandyMan = async (req, res, next) => {
     return next(new HttpError("You do not have edit privileges.", 401));
   }
 
-  handyMan.areaOfInterest = areaOfInterest;
-  handyMan.skills = skills;
-  handyMan.spokenLanguages = spokenLanguages;
+  handyMan.areaOfInterest.push(areaOfInterest);
+  handyMan.skills.push(skills);
+  handyMan.spokenLanguages.push(spokenLanguages);
   handyMan.city = city;
   handyMan.country = country;
   handyMan.address = address;
@@ -177,6 +200,7 @@ const applyForJob = async (req, res, next) => {
   res.status(201).json("Successfully applied for the job.");
 };
 
+exports.getHandyManById = getHandyManById;
 exports.upgradeToHandyMan = upgradeToHandyMan;
 exports.applyForJob = applyForJob;
 exports.updateHandyMan = updateHandyMan;
