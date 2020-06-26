@@ -5,8 +5,7 @@ export default function JobsList({ props }) {
     if (props.displayedJobs) {
         return (
             <div className="card-deck m-1 justify-content-center">
-                {props.displayedJobs.map((job, index) => {
-                    console.log(job);
+                {props.displayedJobs.map((job) => {
                     return (
                         <JobCard
                             className=""
@@ -16,6 +15,8 @@ export default function JobsList({ props }) {
                             description={job.jobDescription}
                             estimatedBudget={job.jobBudget}
                             specialization={job.jobCategory}
+                            type={props.type}
+                            deleteJob={props.deleteJob}
                         />
                     );
                 })}

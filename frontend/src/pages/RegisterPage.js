@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import RegisterForm from '../components/RegisterForm';
 import { useHttpClient } from '../shared/hooks/http-hook';
 import { AuthContext } from '../shared/context/auth-context';
-import { setLoggedIn } from '../actions';
+import { setLoggedIn } from '../redux/actions';
 
 function RegisterPage(props) {
     const [user, setUser] = useState({
@@ -16,7 +16,7 @@ function RegisterPage(props) {
         phone: '',
         gender: '',
         birthDate: '',
-        password: '',
+        password: ''
     });
 
     const auth = useContext(AuthContext);
@@ -25,7 +25,7 @@ function RegisterPage(props) {
     function handleChange({ target }) {
         setUser({
             ...user,
-            [target.name]: target.value,
+            [target.name]: target.value
         });
     }
 
@@ -45,10 +45,10 @@ function RegisterPage(props) {
                     phone: user.phone,
                     gender: user.gender,
                     birthDate: user.birthDate,
-                    password: user.password,
+                    password: user.password
                 }),
                 {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             );
             props.setLoggedIn(true);

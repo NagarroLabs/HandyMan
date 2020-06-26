@@ -10,7 +10,6 @@ export default function FilteringSection({ props }) {
     const [searchField, setField] = useState('');
 
     useEffect(() => {
-        console.log(props.jobs);
         setJobs(props.jobs);
         setFilteredJobs(props.jobs);
         setDisplayedJobs(props.jobs);
@@ -72,7 +71,7 @@ export default function FilteringSection({ props }) {
                 </div>
                 <div className="col-xl-10 col-lg-8 col-md-8 col-sm-6 ">
                     <ErrorBoundry>
-                        <JobsList props={{ displayedJobs }} />
+                        <JobsList props={{ displayedJobs, type: 'display' }} />
                     </ErrorBoundry>
                 </div>
             </div>
