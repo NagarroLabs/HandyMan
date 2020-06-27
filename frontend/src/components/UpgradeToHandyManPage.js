@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 /* eslint-disable */
 
+toast.configure();
 function UpgradeToHandyManPage() {
   const [user, setUser] = useState({
     id: null,

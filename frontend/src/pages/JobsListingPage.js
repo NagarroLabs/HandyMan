@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getJobs } from '../actions';
+import { getJobs } from '../redux/actions';
 
 import { useHttpClient } from '../shared/hooks/http-hook';
 import SearchBox from '../components/SearchBox';
@@ -13,7 +13,7 @@ function JobsListingPage(props) {
 
     useEffect(() => {
         props.getJobs(sendRequest);
-    }, [props, sendRequest]);
+    }, []);
 
     const onSearchChange = (event) => {
         setSearchField(event.target.value);

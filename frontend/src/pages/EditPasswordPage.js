@@ -1,39 +1,25 @@
-import React, { useState, useContext, useEffect } from "react";
-import EditProfileForm from "./EditProfileForm";
-import { AuthContext } from "../shared/context/auth-context";
+import React, { useState, useContext } from "react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useHistory } from "react-router-dom";
 
+import EditPasswordForm from "../components/EditPasswordForm";
+import { AuthContext } from "../shared/context/auth-context";
 import { useHttpClient } from "../shared/hooks/http-hook";
 
-import "./EditProfileForm.css";
-/* eslint-disable */
+import "react-toastify/dist/ReactToastify.css";
+import "../components/EditProfileForm.css";
 
-toast.configure();
 function EditProfilePage() {
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { sendRequest } = useHttpClient();
   const [user, setUser] = useState({
     id: null,
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
+    password: "",
+    passwordConfirmation: ""
   });
 
   const auth = useContext(AuthContext);
   const userId = auth.userId;
-
-  useEffect(() => {
-    async function getUserInfo() {
-      try {
-        const url = "http://localhost:3001/api/users/" + userId;
-        const responseData = await sendRequest(url);
-        setUser(responseData.user);
-      } catch (err) {}
-    }
-
-    getUserInfo();
-  }, [sendRequest, userId]);
+  let history = useHistory();
 
   function handleChange({ target }) {
     setUser({
@@ -44,17 +30,15 @@ function EditProfilePage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
+  
     try {
-      const url = "http://localhost:3001/api/users/update/" + userId;
+      const url = `http://localhost:3001/api/users/update/${userId}/password`;
       const responseData = await sendRequest(
         url,
         "PATCH",
         JSON.stringify({
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          phone: user.phone,
+          password: user.password,
+          passwordConfirmation: user.passwordConfirmation,
         }),
         {
           "Content-Type": "application/json",
@@ -62,13 +46,14 @@ function EditProfilePage() {
         }
       );
       auth.login(responseData.userId, responseData.token);
-      toast.success("Account successfully updated!", {
+      toast.success("Password successfully updated!", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 2000,
       });
+      history.push("/");
     } catch (err) {
       console.log(err);
-      toast.error("Something went wrong.", {
+      toast.error("Something went wrong updating the password.", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: false,
       });
@@ -77,7 +62,7 @@ function EditProfilePage() {
 
   return (
     <>
-      <EditProfileForm
+      <EditPasswordForm
         user={user}
         onChange={handleChange}
         onSubmit={handleSubmit}

@@ -7,15 +7,22 @@ const {
   requireAddress,
 } = require("../util/validators");
 
-const { upgradeToHandyMan, applyForJob } = require("../controllers/handyMan-controllers");
+const {
+  getHandyManById,
+  upgradeToHandyMan,
+  applyForJob,
+  updateHandyMan,
+} = require("../controllers/handyMan-controllers");
 
 const { handleErrors } = require("../middlewares/handle-errors.js");
 const checkAuth = require("../middlewares/check-auth");
 
 const router = express.Router();
 
+router.get("/:userId", getHandyManById);
+
 router.post(
-  '/upgradeToHandyMan',
+  "/upgradeToHandyMan",
   checkAuth,
   [
     requireSkills,
@@ -28,6 +35,20 @@ router.post(
   upgradeToHandyMan
 );
 
-router.post('/enlist/:jobId',checkAuth, applyForJob);
+router.patch(
+  "/editHandyMan",
+  checkAuth,
+  [
+    requireSkills,
+    requireSpokenLanguages,
+    requireCountry,
+    requireCity,
+    requireAddress,
+  ],
+  handleErrors,
+  updateHandyMan
+);
+
+router.post("/enlist/:jobId", checkAuth, applyForJob);
 
 module.exports = router;

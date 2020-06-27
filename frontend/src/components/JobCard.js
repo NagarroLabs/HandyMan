@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './JobCard.css';
 
 const JobCard = ({
@@ -6,7 +7,9 @@ const JobCard = ({
     name,
     description,
     estimatedBudget,
-    specialization
+    specialization,
+    type,
+    deleteJob
 }) => {
     return (
         <div className="card text-center m-2">
@@ -21,14 +24,34 @@ const JobCard = ({
                     Specialization: <span className="b">{specialization}</span>
                 </h5>
             </div>
-            <div className="">
-                <button type="button" className="btn btn-primary m-2">
-                    Details
-                </button>
-                <button type="button" className="btn btn-secondary m-2">
-                    Contact
-                </button>
-            </div>
+            {type === 'display' ? (
+                <div>
+                    <button type="button" className="btn btn-primary m-2">
+                        Details
+                    </button>
+                    <button type="button" className="btn btn-secondary m-2">
+                        Contact
+                    </button>
+                </div>
+            ) : (
+                <div>
+                    <Link
+                        type="button"
+                        to={'/jobs/myjobs/' + id}
+                        className="btn btn-primary m-2"
+                    >
+                        Edit
+                    </Link>
+                    <button
+                        type="button"
+                        className="btn btn-secondary m-2"
+                        onClick={deleteJob}
+                        value={id}
+                    >
+                        Delete
+                    </button>
+                </div>
+            )}
         </div>
     );
 };
