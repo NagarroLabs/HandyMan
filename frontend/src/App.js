@@ -9,7 +9,8 @@ import CustomNavbar from './components/CustomNavbar';
 import { connect } from 'react-redux';
 import { setLoggedIn } from './redux/actions';
 
-import './index.css';
+import "./index.css";
+import EditHandyManProfilePage from "./components/EditHandyManProfilePage";
 
 const App = (props) => {
     const { token, userId, login, logout } = useAuth();

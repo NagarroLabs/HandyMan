@@ -5,6 +5,7 @@ import { AuthContext } from "../shared/context/auth-context";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+toast.configure();
 function RegisterPage() {
   const [user, setUser] = useState({
     id: null,
