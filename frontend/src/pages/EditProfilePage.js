@@ -1,29 +1,39 @@
-import React, { useState, useContext } from 'react';
-import { connect } from 'react-redux';
-
-import RegisterForm from '../components/RegisterForm';
-import { useHttpClient } from '../shared/hooks/http-hook';
+import React, { useState, useContext, useEffect } from 'react';
+import EditProfileForm from '../components/EditProfileForm';
 import { AuthContext } from '../shared/context/auth-context';
-import { setLoggedIn } from '../redux/actions';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { useHttpClient } from '../shared/hooks/http-hook';
+
+import '../components/EditProfileForm.css';
+/* eslint-disable */
+
 toast.configure();
-function RegisterPage(props) {
+function EditProfilePage() {
+    const { isLoading, error, sendRequest, clearError } = useHttpClient();
     const [user, setUser] = useState({
         id: null,
         firstName: '',
         lastName: '',
         email: '',
-        username: '',
-        phone: '',
-        gender: '',
-        birthDate: '',
-        password: ''
+        phone: ''
     });
 
     const auth = useContext(AuthContext);
-    const { sendRequest } = useHttpClient();
+    const userId = auth.userId;
+
+    useEffect(() => {
+        async function getUserInfo() {
+            try {
+                const url = 'http://localhost:3001/api/users/' + userId;
+                const responseData = await sendRequest(url);
+                setUser(responseData.user);
+            } catch (err) {}
+        }
+
+        getUserInfo();
+    }, [sendRequest, userId]);
 
     function handleChange({ target }) {
         setUser({
@@ -36,32 +46,29 @@ function RegisterPage(props) {
         event.preventDefault();
 
         try {
+            const url = 'http://localhost:3001/api/users/update/' + userId;
             const responseData = await sendRequest(
-                'http://localhost:3001/api/users/signup',
-                'POST',
+                url,
+                'PATCH',
                 JSON.stringify({
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email,
-                    userName: user.username,
-                    phone: user.phone,
-                    gender: user.gender,
-                    birthDate: user.birthDate,
-                    password: user.password
+                    phone: user.phone
                 }),
                 {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    Authorization: 'JWT ' + auth.token
                 }
             );
-            props.setLoggedIn(true);
             auth.login(responseData.userId, responseData.token);
-            console.log('logged in');
-            toast.success('Account successfully created!', {
+            toast.success('Account successfully updated!', {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 2000
             });
         } catch (err) {
-            toast.error('Email or username already taken!', {
+            console.log(err);
+            toast.error('Something went wrong.', {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: false
             });
@@ -70,17 +77,14 @@ function RegisterPage(props) {
 
     return (
         <>
-            <RegisterForm
+            <EditProfileForm
                 user={user}
                 onChange={handleChange}
                 onSubmit={handleSubmit}
+                userId={userId}
             />
         </>
     );
 }
 
-const mapStateToProps = (state) => {
-    return { isLoggedIn: state.isLoggedIn };
-};
-
-export default connect(mapStateToProps, { setLoggedIn })(RegisterPage);
+export default EditProfilePage;

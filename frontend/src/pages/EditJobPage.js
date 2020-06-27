@@ -44,7 +44,7 @@ function EditJobPage(props) {
             }
         }
         getJobInfo();
-    }, [sendRequest, props.jobId]);
+    }, [sendRequest, job.id]);
 
     function handleChange({ target }) {
         setJob({
