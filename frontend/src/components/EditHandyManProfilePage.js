@@ -40,18 +40,6 @@ function EditHandyManProfilePage() {
         console.log(err);
       }
     }
-
-    // async function getUserInfo() {
-    //   try {
-    //     const url = "http://localhost:3001/api/users/" + userId;
-    //     const responseData = await sendRequest(url);
-    //     setUser(responseData.user);
-    //     console.log("handyman: " + user.handyManId);
-    //     getHandyManInfo();
-    //   } catch (err) {}
-    // }
-
-    // getUserInfo();
     getHandyManInfo();
   }, []);
 

@@ -39,12 +39,6 @@ function LoginPage(props) {
                     'Content-Type': 'application/json'
                 }
             );
-            auth.login(responseData.userId, responseData.token);
-            props.setLoggedIn(true);
-        } catch (err) {
-            console.log('error' + err);
-        }
-      );
       auth.login(responseData.userId, responseData.token);
       props.setLoggedIn(true);
       toast.success("Logged in successfully!", {

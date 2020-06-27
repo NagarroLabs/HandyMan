@@ -7,15 +7,15 @@ const handyManSchema = new mongoose.Schema({
         ref: 'User'
     },
     areaOfInterest: {
-        type: [String],
+        type: String,
         required: true
     },
-    topFiveSkills: {
-        type: [String],
+    skills: {
+        type: String,
         required: true
     },
     spokenLanguages: {
-        type: [String],
+        type: String,
         required: true
     },
     country: {

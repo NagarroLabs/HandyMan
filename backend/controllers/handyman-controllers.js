@@ -122,9 +122,9 @@ const updateHandyMan = async (req, res, next) => {
     return next(new HttpError("You do not have edit privileges.", 401));
   }
 
-  handyMan.areaOfInterest.push(areaOfInterest);
-  handyMan.skills.push(skills);
-  handyMan.spokenLanguages.push(spokenLanguages);
+  handyMan.areaOfInterest = areaOfInterest;
+  handyMan.skills = skills ;
+  handyMan.spokenLanguages = spokenLanguages;
   handyMan.city = city;
   handyMan.country = country;
   handyMan.address = address;

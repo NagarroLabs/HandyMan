@@ -19,7 +19,7 @@ function CustomNavbar(props) {
         <Navbar className="navbar" expand="lg">
             <Navbar.Brand className="mr-3">
                 <Link to="/">
-                    <img src={logo} style={{ width: 100, marginTop: -7 }} />
+                    <img src={logo} style={{ width: 100, marginTop: -7 }} alt="Logo"/>
                 </Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -62,7 +62,7 @@ function CustomNavbar(props) {
                             id="basic-nav-dropdown"
                         >
                             <Nav.Item>
-                                <Link to="/editProfile">Edit Profile</Link>
+                                <Link to="/profile/edit">Edit Profile</Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <Link to="/">
