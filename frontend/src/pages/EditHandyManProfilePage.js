@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { AuthContext } from '../shared/context/auth-context';
@@ -96,7 +96,7 @@ function EditHandyManProfilePage() {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 2000
             });
-            history.push("/");
+            history.push('/');
         } catch (err) {
             console.log(err);
             toast.error('Something went wrong.', {

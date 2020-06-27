@@ -8,6 +8,7 @@ import MyJobsPage from '../pages/MyJobsPage';
 import EditJobPage from '../pages/EditJobPage.js';
 import UpgradeToHandyManPage from '../pages/UpgradeToHandyManPage';
 import EditPasswordPage from '../pages/EditPasswordPage';
+import ViewDetailsAboutJobPage from '../pages/ViewDetailsAboutJobPage';
 import EditHandyManProfilePage from '../pages/EditHandyManProfilePage';
 
 const AuthRoutes = () => {
@@ -16,6 +17,11 @@ const AuthRoutes = () => {
             <Route path="/" exact>
                 <div>Insert home auth page component here.</div>
             </Route>
+            <Route
+                path="/job/:jobId"
+                exact
+                component={ViewDetailsAboutJobPage}
+            />
             <Route path="/jobs" exact component={JobsListingPage} />
             <Route path="/jobs/new" exact component={AddJobPage} />
             <Route path="/jobs/:userId" exact component={MyJobsPage} />

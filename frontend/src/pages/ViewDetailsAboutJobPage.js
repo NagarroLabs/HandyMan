@@ -4,9 +4,10 @@ import { AuthContext } from '../shared/context/auth-context';
 import { useHttpClient } from '../shared/hooks/http-hook';
 import ViewDetailsAboutJobForm from '../components/ViewDetailsAboutJobForm';
 
-function ViewDetailsAboutJobPage() {
+function ViewDetailsAboutJobPage(props) {
     const { sendRequest } = useHttpClient();
     const [job, setJob] = useState({
+        id: props.match.params.jobId,
         jobName: '',
         jobDescription: '',
         jobCategory: '',
@@ -24,17 +25,17 @@ function ViewDetailsAboutJobPage() {
     const auth = useContext(AuthContext);
     const userId = auth.userId;
 
-    //   useEffect(() => {
-    //     async function getJobById() {
-    //       try {
-    //         const url = "http://localhost:3001/api/jobs/" + jobId;
-    //         const responseData = await sendRequest(url);
-    //         setJob(responseData.user);
-    //       } catch (err) {}
-    //     }
+    useEffect(() => {
+        async function getJobById() {
+            try {
+                const url = 'http://localhost:3001/api/jobs/' + job.id;
+                const responseData = await sendRequest(url);
+                setJob(responseData.job);
+            } catch (err) {}
+        }
 
-    //     getJobById();
-    //   }, [sendRequest, jobId]);
+        getJobById();
+    }, []);
 
     return (
         <>

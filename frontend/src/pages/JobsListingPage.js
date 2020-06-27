@@ -13,8 +13,8 @@ function JobsListingPage(props) {
 
     useEffect(() => {
         props.getJobs(sendRequest);
-    }, [props, sendRequest]);
-    
+    }, []);
+
     const onSearchChange = (event) => {
         setSearchField(event.target.value);
     };

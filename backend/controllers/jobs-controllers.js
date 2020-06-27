@@ -35,7 +35,6 @@ const getJobById = async (req, res, next) => {
             new HttpError('Could not find job with the provided id', 404)
         );
     }
-
     res.json({ job: job.toObject({ getters: true }) });
 };
 const getJobsForCurrentUser = async (req, res, next) => {
