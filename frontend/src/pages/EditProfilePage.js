@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
+
 import EditProfileForm from '../components/EditProfileForm';
 import { AuthContext } from '../shared/context/auth-context';
 import { toast } from 'react-toastify';
@@ -22,6 +24,7 @@ function EditProfilePage() {
 
     const auth = useContext(AuthContext);
     const userId = auth.userId;
+    let history = useHistory();
 
     useEffect(() => {
         async function getUserInfo() {
@@ -66,6 +69,7 @@ function EditProfilePage() {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 2000
             });
+            history.push("/");
         } catch (err) {
             console.log(err);
             toast.error('Something went wrong.', {

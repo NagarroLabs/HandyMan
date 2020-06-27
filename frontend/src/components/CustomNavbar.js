@@ -66,7 +66,7 @@ function CustomNavbar(props) {
                             id="basic-nav-dropdown"
                         >
                             <Nav.Item>
-                                <Link to="/editProfile">Edit Profile</Link>
+                                <Link to="/profile/edit">Edit Profile</Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <Link to="/">

@@ -12,8 +12,8 @@ import { setLoggedIn } from './redux/actions';
 import './index.css';
 
 const App = (props) => {
-    const { token, userId, login, logout } = useAuth();
 
+    const { token, userId, login, logout } = useAuth();
     return (
         <AuthContext.Provider
             value={{

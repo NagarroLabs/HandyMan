@@ -4,7 +4,6 @@ const HttpError = require("../models/http-error");
 const HandyMan = require("../models/handyMan");
 const User = require("../models/users");
 const Job = require("../models/jobs");
-const handyMan = require("../models/handyMan");
 
 const getHandyManById = async (req, res, next) => {
   const { userId } = req.params;
@@ -122,9 +121,9 @@ const updateHandyMan = async (req, res, next) => {
     return next(new HttpError("You do not have edit privileges.", 401));
   }
 
-  handyMan.areaOfInterest.push(areaOfInterest);
-  handyMan.skills.push(skills);
-  handyMan.spokenLanguages.push(spokenLanguages);
+  handyMan.areaOfInterest = areaOfInterest;
+  handyMan.skills = skills ;
+  handyMan.spokenLanguages = spokenLanguages;
   handyMan.city = city;
   handyMan.country = country;
   handyMan.address = address;

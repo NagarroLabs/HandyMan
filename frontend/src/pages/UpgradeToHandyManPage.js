@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from "react-router-dom";
+import { toast } from 'react-toastify';
+
 import UpgradeToHandyManForm from '../components/UpgradeToHandyManForm';
 import { AuthContext } from '../shared/context/auth-context';
 import { useHttpClient } from '../shared/hooks/http-hook';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
 
 /* eslint-disable */
 
@@ -24,6 +26,7 @@ function UpgradeToHandyManPage() {
         companyPhone: '',
         experience: ''
     });
+    let history = useHistory();
 
     function handleChange({ target }) {
         setUser({
@@ -64,6 +67,7 @@ function UpgradeToHandyManPage() {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 2000
             });
+            history.push("/");
         } catch (err) {
             console.log(err);
             toast.error('Email or username already taken!', {

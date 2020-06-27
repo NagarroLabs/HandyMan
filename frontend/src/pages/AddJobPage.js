@@ -39,7 +39,7 @@ export default function AddJobPage() {
     async function handleSubmit(event) {
         event.preventDefault();
         try {
-            await sendRequest(
+            const responseData = await sendRequest(
                 'http://localhost:3001/api/jobs/new',
                 'POST',
                 JSON.stringify({
@@ -59,6 +59,7 @@ export default function AddJobPage() {
                     Authorization: `JWT ${auth.token}`
                 }
             );
+            console.log(responseData);
         } catch (err) {
             console.log(err);
         }

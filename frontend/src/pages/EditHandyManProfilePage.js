@@ -1,10 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { AuthContext } from '../shared/context/auth-context';
+import { useHistory } from "react-router-dom";
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import EditHandyManProfileForm from '../components/EditHandyManProfileForm';
 
+import { AuthContext } from '../shared/context/auth-context';
+import EditHandyManProfileForm from '../components/EditHandyManProfileForm';
 import { useHttpClient } from '../shared/hooks/http-hook';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 /* eslint-disable */
 
@@ -29,6 +31,7 @@ function EditHandyManProfilePage() {
 
     const auth = useContext(AuthContext);
     const userId = auth.userId;
+    let history = useHistory();
 
     useEffect(() => {
         async function getHandyManInfo() {
@@ -93,6 +96,7 @@ function EditHandyManProfilePage() {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 2000
             });
+            history.push("/");
         } catch (err) {
             console.log(err);
             toast.error('Something went wrong.', {
