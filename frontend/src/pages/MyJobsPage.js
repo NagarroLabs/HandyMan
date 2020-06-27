@@ -12,7 +12,7 @@ function MyJobsPage(props) {
 
     useEffect(() => {
         props.getUserJobs(sendRequest, auth.userId);
-    });
+    }, [auth.userId, sendRequest, props]);
 
     async function deleteJob(event) {
         event.preventDefault();

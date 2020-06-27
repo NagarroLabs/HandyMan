@@ -4,7 +4,6 @@ const HttpError = require("../models/http-error");
 const HandyMan = require("../models/handyMan");
 const User = require("../models/users");
 const Job = require("../models/jobs");
-const handyMan = require("../models/handyMan");
 
 const getHandyManById = async (req, res, next) => {
   const { userId } = req.params;

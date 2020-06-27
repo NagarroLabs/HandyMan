@@ -9,11 +9,11 @@ import CustomNavbar from './components/CustomNavbar';
 import { connect } from 'react-redux';
 import { setLoggedIn } from './redux/actions';
 
-import "./index.css";
+import './index.css';
 
 const App = (props) => {
-    const { token, userId, login, logout } = useAuth();
 
+    const { token, userId, login, logout } = useAuth();
     return (
         <AuthContext.Provider
             value={{

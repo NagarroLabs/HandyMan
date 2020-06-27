@@ -53,6 +53,7 @@ const getJobsForCurrentUser = async (req, res, next) => {
     }
     res.json({ jobs: jobs.map((job) => job.toObject({ getters: true })) });
 };
+
 const addJob = async (req, res, next) => {
     const {
         jobName,

@@ -1,17 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../shared/context/auth-context";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import EditHandyManProfileForm from "./EditHandyManProfileForm";
 
+import { AuthContext } from "../shared/context/auth-context";
+import EditHandyManProfileForm from "./EditHandyManProfileForm";
 import { useHttpClient } from "../shared/hooks/http-hook";
+
+import "react-toastify/dist/ReactToastify.css";
 
 /* eslint-disable */
 
 toast.configure();
 function EditHandyManProfilePage() {
   const { sendRequest } = useHttpClient();
-  const [user, setUser] = useState();
   const [handyMan, setHandyMan] = useState({
     id: null,
     areaOfInterest: " ",

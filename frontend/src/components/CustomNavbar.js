@@ -19,7 +19,11 @@ function CustomNavbar(props) {
         <Navbar className="navbar" expand="lg">
             <Navbar.Brand className="mr-3">
                 <Link to="/">
-                    <img src={logo} style={{ width: 100, marginTop: -7 }} alt="Logo"/>
+                    <img
+                        src={logo}
+                        style={{ width: 100, marginTop: -7 }}
+                        alt=""
+                    />
                 </Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
