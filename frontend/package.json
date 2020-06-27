@@ -18,8 +18,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-star-ratings": "^2.3.0",
-    "react-toastify": "^6.0.5",
     "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
+    "react-toastify": "^6.0.5",
     "redux-thunk": "^2.3.0",
     "thunk": "0.0.1"
   },

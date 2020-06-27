@@ -4,33 +4,33 @@ import { connect } from "react-redux";
 import RegisterForm from "../components/RegisterForm";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { AuthContext } from "../shared/context/auth-context";
-import { setLoggedIn } from "../actions";
+import { setLoggedIn } from '../redux/actions';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 toast.configure();
 function RegisterPage(props) {
-  const [user, setUser] = useState({
-    id: null,
-    firstName: "",
-    lastName: "",
-    email: "",
-    username: "",
-    phone: "",
-    gender: "",
-    birthDate: "",
-    password: "",
-  });
+    const [user, setUser] = useState({
+        id: null,
+        firstName: '',
+        lastName: '',
+        email: '',
+        username: '',
+        phone: '',
+        gender: '',
+        birthDate: '',
+        password: ''
+    });
 
   const auth = useContext(AuthContext);
   const { sendRequest } = useHttpClient();
 
-  function handleChange({ target }) {
-    setUser({
-      ...user,
-      [target.name]: target.value,
-    });
-  }
+    function handleChange({ target }) {
+        setUser({
+            ...user,
+            [target.name]: target.value
+        });
+    }
 
   async function handleSubmit(event) {
     event.preventDefault();
