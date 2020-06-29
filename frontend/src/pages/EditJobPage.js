@@ -1,4 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
+
 import { AuthContext } from '../shared/context/auth-context';
 import { useHttpClient } from '../shared/hooks/http-hook';
 
@@ -22,6 +24,7 @@ function EditJobPage(props) {
         jobAddress: '',
         jobOwner: null
     });
+    let history = useHistory();
 
     useEffect(() => {
         async function getJobInfo() {
@@ -76,6 +79,7 @@ function EditJobPage(props) {
                     Authorization: `JWT ${auth.token}`
                 }
             );
+            history.push(`/jobs/${auth.userId}`);
         } catch (err) {
             console.log(err);
         }

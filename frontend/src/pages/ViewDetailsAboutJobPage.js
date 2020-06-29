@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { AuthContext } from '../shared/context/auth-context';
+import React, { useState, useEffect } from 'react';
+// import { AuthContext } from '../shared/context/auth-context';
 
 import { useHttpClient } from '../shared/hooks/http-hook';
 import ViewDetailsAboutJobForm from '../components/ViewDetailsAboutJobForm';
@@ -22,8 +22,8 @@ function ViewDetailsAboutJobPage(props) {
         jobOwner: null
     });
 
-    const auth = useContext(AuthContext);
-    const userId = auth.userId;
+    // const auth = useContext(AuthContext);
+    // const userId = auth.userId;
 
     useEffect(() => {
         async function getJobById() {
