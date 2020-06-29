@@ -1,17 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../shared/context/auth-context";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import EditHandyManProfileForm from "./EditHandyManProfileForm";
 
+import { AuthContext } from "../shared/context/auth-context";
+import EditHandyManProfileForm from "./EditHandyManProfileForm";
 import { useHttpClient } from "../shared/hooks/http-hook";
+
+import "react-toastify/dist/ReactToastify.css";
 
 /* eslint-disable */
 
 toast.configure();
 function EditHandyManProfilePage() {
   const { sendRequest } = useHttpClient();
-  const [user, setUser] = useState();
   const [handyMan, setHandyMan] = useState({
     id: null,
     areaOfInterest: " ",
@@ -40,18 +41,6 @@ function EditHandyManProfilePage() {
         console.log(err);
       }
     }
-
-    // async function getUserInfo() {
-    //   try {
-    //     const url = "http://localhost:3001/api/users/" + userId;
-    //     const responseData = await sendRequest(url);
-    //     setUser(responseData.user);
-    //     console.log("handyman: " + user.handyManId);
-    //     getHandyManInfo();
-    //   } catch (err) {}
-    // }
-
-    // getUserInfo();
     getHandyManInfo();
   }, []);
 

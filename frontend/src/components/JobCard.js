@@ -26,9 +26,13 @@ const JobCard = ({
             </div>
             {type === 'display' ? (
                 <div>
-                    <button type="button" className="btn btn-primary m-2">
+                    <Link
+                        type="button"
+                        to={'/job/' + id}
+                        className="btn btn-primary m-2"
+                    >
                         Details
-                    </button>
+                    </Link>
                     <button type="button" className="btn btn-secondary m-2">
                         Contact
                     </button>

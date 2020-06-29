@@ -2,6 +2,11 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../shared/context/auth-context';
 import { useHttpClient } from '../shared/hooks/http-hook';
 import AddJobForm from '../components/AddJobForm';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useHistory } from 'react-router-dom';
+
+toast.configure();
 
 export default function AddJobPage() {
     const auth = useContext(AuthContext);
@@ -22,6 +27,7 @@ export default function AddJobPage() {
         jobOwner: null
     });
 
+    let history = useHistory();
     function handleChange({ target }) {
         if (target.name === 'jobReqSkills') {
             setJob({
@@ -39,7 +45,7 @@ export default function AddJobPage() {
     async function handleSubmit(event) {
         event.preventDefault();
         try {
-            await sendRequest(
+            const responseData = await sendRequest(
                 'http://localhost:3001/api/jobs/new',
                 'POST',
                 JSON.stringify({
@@ -59,6 +65,11 @@ export default function AddJobPage() {
                     Authorization: `JWT ${auth.token}`
                 }
             );
+            toast.success('Job added successfully', {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 2000
+            });
+            history.push('/jobs');
         } catch (err) {
             console.log(err);
         }
