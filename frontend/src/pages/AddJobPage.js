@@ -45,7 +45,7 @@ export default function AddJobPage() {
     async function handleSubmit(event) {
         event.preventDefault();
         try {
-            const responseData = await sendRequest(
+            await sendRequest(
                 'http://localhost:3001/api/jobs/new',
                 'POST',
                 JSON.stringify({
